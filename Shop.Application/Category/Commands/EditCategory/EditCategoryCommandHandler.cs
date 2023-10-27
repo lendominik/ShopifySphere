@@ -25,7 +25,6 @@ namespace Shop.Application.Category.Commands.EditCategory
             var category = await _categoryRepository.GetByEncodedName(request.EncodedName);
 
             category.Description = request.Description;
-            category.Name = request.Name;
 
             category.EncodeName();
 

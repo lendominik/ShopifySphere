@@ -24,8 +24,23 @@ namespace Shop.Infrastructure.Repositories
             _dbContext.Items.Add(item);
             await _dbContext.SaveChangesAsync();
         }
-
+        public async Task Commit()
+        {
+            await _dbContext.SaveChangesAsync();
+        }
         public async Task<IEnumerable<Item>> GetAll()
             => await _dbContext.Items.Include(c => c.Category).ToListAsync();
+
+        public async Task<Item> GetByEncodedName(string encodedName)
+        {
+            var item = await _dbContext.Items.FirstAsync(e => e.EncodedName == encodedName);
+
+            return item;
+        }
+        public async Task Delete(Item item)
+        {
+            _dbContext.Items.Remove(item);
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }

@@ -4,6 +4,7 @@ using Shop.Application.Category.Commands.CreateCategory;
 using Shop.Application.Category.Commands.EditCategory;
 using Shop.Application.Item;
 using Shop.Application.Item.Commands.CreateItem;
+using Shop.Application.Item.Commands.EditItem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,8 @@ namespace Shop.Application.Mappings
             CreateMap<CreateCategoryCommand, Domain.Entities.Category>();
 
             CreateMap<CategoryDto, EditCategoryCommand>();
+
+            CreateMap<ItemDto, EditItemCommand>();
         }
     }
 }

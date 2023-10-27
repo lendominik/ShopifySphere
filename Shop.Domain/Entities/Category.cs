@@ -14,6 +14,6 @@ namespace Shop.Domain.Entities
         public string Description { get; set; }
         public List<Item> Items { get; set; } = new List<Item>();
         public string EncodedName { get; private set; } = default!;
-        public void EncodeName() => EncodedName = Name.ToLower().Replace(" ", "");
+        public void EncodeName() => EncodedName = "category" + Name.ToLower().Replace(" ", "");
     }
 }

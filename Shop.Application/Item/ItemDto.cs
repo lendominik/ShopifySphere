@@ -16,5 +16,6 @@ namespace Shop.Application.Item
         public string ProductImage { get; set; } // zdjecie produktu\
         public Domain.Entities.Category Category { get; set; }
         public int CategoryId { get; set; }
+        public string EncodedName { get; set; }
     }
 }

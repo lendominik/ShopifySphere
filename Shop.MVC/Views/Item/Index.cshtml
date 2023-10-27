@@ -52,9 +52,12 @@
                 @Html.DisplayFor(modelItem => item.Category.Name)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    <a class="btn btn-primary" asp-controller="Item" asp-action="Edit" asp-route-encodedName="@item.EncodedName">Edycja</a>
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                <form asp-action="Delete" method="post">
+                    <input type="hidden" name="encodedName" value="@item.EncodedName" />
+                    <button type="submit" class="btn btn-danger">Usuń</button>
+                </form>
             </td>
         </tr>
 }
