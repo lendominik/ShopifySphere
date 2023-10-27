@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Shop.Application.Category;
+using Shop.Application.Category.Commands.CreateCategory;
+using Shop.Application.Category.Commands.EditCategory;
 using Shop.Application.Item;
 using Shop.Application.Item.Commands.CreateItem;
 using System;
@@ -22,6 +24,10 @@ namespace Shop.Application.Mappings
                 .ReverseMap();
 
             CreateMap<CreateItemCommand, Domain.Entities.Item>();
+
+            CreateMap<CreateCategoryCommand, Domain.Entities.Category>();
+
+            CreateMap<CategoryDto, EditCategoryCommand>();
         }
     }
 }

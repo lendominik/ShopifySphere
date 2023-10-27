@@ -33,5 +33,9 @@ namespace Shop.Infrastructure.Repositories
 
             return category;
         }
+        public async Task Commit()
+        {
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }

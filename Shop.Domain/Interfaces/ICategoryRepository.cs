@@ -11,5 +11,6 @@ namespace Shop.Domain.Interfaces
         Task<IEnumerable<Domain.Entities.Category>> GetAll();
         Task Create(Domain.Entities.Category category);
         Task<Domain.Entities.Category> GetByEncodedName(string encodedName);
+        Task Commit();
     }
 }
