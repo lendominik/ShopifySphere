@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shop.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ namespace Shop.Application.Item
         public string Price { get; set; } // cena
         public string Description { get; set; } //opis 
         public int StockQuantity { get; set; } // stan magazynowy
-        public string ProductImage { get; set; } // zdjecie produktu
+        public string ProductImage { get; set; } // zdjecie produktu\
+        public Domain.Entities.Category Category { get; set; }
+        public int CategoryId { get; set; }
     }
 }

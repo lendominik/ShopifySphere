@@ -18,6 +18,13 @@ namespace Shop.Infrastructure.Repositories
         {
             _dbContext = dbContext;
         }
+
+        public async Task Create(Item item)
+        {
+            _dbContext.Items.Add(item);
+            await _dbContext.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<Item>> GetAll()
             => await _dbContext.Items.ToListAsync();
     }

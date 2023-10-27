@@ -25,6 +25,7 @@ namespace Shop.Infrastructure.Extensions
                 .AddEntityFrameworkStores<ShopDbContext>();
 
             services.AddScoped<IItemRepository, ItemRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
         }
     }
 }

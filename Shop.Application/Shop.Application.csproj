@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Item\Queries\" />
+    <Folder Include="Category\Commands\" />
   </ItemGroup>
 
 </Project>

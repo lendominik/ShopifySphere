@@ -9,5 +9,6 @@ namespace Shop.Domain.Interfaces
     public interface IItemRepository
     {
         Task<IEnumerable<Domain.Entities.Item>> GetAll();
+        Task Create(Domain.Entities.Item item);
     }
 }
