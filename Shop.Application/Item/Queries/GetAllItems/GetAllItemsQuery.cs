@@ -9,6 +9,5 @@ namespace Shop.Application.Item.Queries.GetAllItems
 {
     public class GetAllItemsQuery : IRequest<IEnumerable<ItemDto>>
     {
-
     }
 }
