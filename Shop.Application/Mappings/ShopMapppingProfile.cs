@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Shop.Application.Item;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,8 @@ namespace Shop.Application.Mappings
     {
         public ShopMappingProfile()
         {
-            
+            CreateMap<Domain.Entities.Item, ItemDto>()
+                .ReverseMap();
         }
     }
 }
