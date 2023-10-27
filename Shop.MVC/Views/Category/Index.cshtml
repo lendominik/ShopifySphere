@@ -2,13 +2,13 @@
 @model IEnumerable<Shop.Application.Category.CategoryDto>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Kategorie";
 }
 
-<h1>Index</h1>
+<h1>Kategorie</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Stwórz</a>
 </p>
 <table class="table">
     <thead>
@@ -30,8 +30,10 @@
             <td>
                 <partial name="_CreateItem" model="new CreateItemCommand() {CategoryEncodedName = item.EncodedName }" />
                 <a class="btn btn-primary" asp-controller="Category" asp-action="Edit" asp-route-encodedName="@item.EncodedName">Edycja</a>
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                <form asp-action="Delete" method="post">
+                    <input type="hidden" name="encodedName" value="@item.EncodedName" />
+                    <button type="submit" class="btn btn-danger">Usuń</button>
+                </form>
             </td>
         </tr>
 }

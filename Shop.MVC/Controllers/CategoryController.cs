@@ -3,6 +3,7 @@ using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Application.Category.Commands.CreateCategory;
+using Shop.Application.Category.Commands.DeleteCategory;
 using Shop.Application.Category.Commands.EditCategory;
 using Shop.Application.Category.Queries.GetAllCategories;
 using Shop.Application.Category.Queries.GetCategory;
@@ -80,6 +81,18 @@ namespace Shop.MVC.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        [HttpPost]
+        [Route("Category/Delete")]
+        public async Task<IActionResult> Delete(DeleteCategoryCommand command)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
+            await _mediator.Send(command);
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

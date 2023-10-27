@@ -37,5 +37,11 @@ namespace Shop.Infrastructure.Repositories
         {
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task Delete(Category category)
+        {
+            _dbContext.Categories.Remove(category);
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }
