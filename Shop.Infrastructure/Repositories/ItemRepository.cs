@@ -26,6 +26,6 @@ namespace Shop.Infrastructure.Repositories
         }
 
         public async Task<IEnumerable<Item>> GetAll()
-            => await _dbContext.Items.ToListAsync();
+            => await _dbContext.Items.Include(c => c.Category).ToListAsync();
     }
 }

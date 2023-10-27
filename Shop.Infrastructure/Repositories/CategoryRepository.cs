@@ -1,5 +1,7 @@
-﻿using Shop.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Shop.Domain.Entities;
 using Shop.Domain.Interfaces;
+using Shop.Infrastructure.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +12,26 @@ namespace Shop.Infrastructure.Repositories
 {
     public class CategoryRepository : ICategoryRepository
     {
-        public Task Create(Category category)
+        private readonly ShopDbContext _dbContext;
+
+        public CategoryRepository(ShopDbContext dbContext)
         {
-            throw new NotImplementedException();
+            _dbContext = dbContext;
+        }
+        public async Task Create(Category category)
+        {
+            _dbContext.Categories.Add(category);
+            await _dbContext.SaveChangesAsync();
         }
 
-        public Task<IEnumerable<Category>> GetAll()
+        public async Task<IEnumerable<Category>> GetAll()
+            => await _dbContext.Categories.ToListAsync();
+
+        public async Task<Category> GetByEncodedName(string encodedName)
         {
-            throw new NotImplementedException();
+            var category = await _dbContext.Categories.FirstAsync(e => e.EncodedName == encodedName);
+
+            return category;
         }
     }
 }

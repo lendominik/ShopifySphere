@@ -9,5 +9,6 @@ namespace Shop.Application.Item.Commands.CreateItem
 {
     public class CreateItemCommand : ItemDto ,IRequest
     {
+        public string CategoryEncodedName { get; set; }
     }
 }

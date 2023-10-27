@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "9u6J9hJjFRtmO5z4ZNnpCNsKzrMwQbCGRq0pPtS8QzY=",
+  "Hash": "FETDJrWRs6jB3yZgwe4Xjj3lVuw1qwyZDKbs8DkIBjg=",
   "Source": "Shop.MVC",
   "BasePath": "_content/Shop.MVC",
   "Mode": "Default",
@@ -1103,6 +1103,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Dominik\\Desktop\\SHOP.MVC\\Shop.MVC\\wwwroot\\js\\Shop\\Edit.js",
+      "SourceId": "Shop.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Dominik\\Desktop\\SHOP.MVC\\Shop.MVC\\wwwroot\\",
+      "BasePath": "_content/Shop.MVC",
+      "RelativePath": "js/Shop/Edit.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Shop\\Edit.js"
     },
     {
       "Identity": "C:\\Users\\Dominik\\Desktop\\SHOP.MVC\\Shop.MVC\\wwwroot\\js\\site.js",

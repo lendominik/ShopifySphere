@@ -1,0 +1,59 @@
+﻿@model Shop.Application.Item.Commands.CreateItem.CreateItemCommand
+
+@{
+    ViewData["Title"] = "CreateItem";
+}
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createItemModal">
+    Dodaj nowy produkt
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="createItemModal" tabindex="-1" aria-labelledby="createItemModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-action="CreateItem">
+
+                <input asp-for="CategoryEncodedName" class="form-control" type="hidden" />
+
+                <div class="form-group mb-3">
+                    <label class="control-label" asp-for="Name">Nazwa produktu</label>
+                    <input class="form-control" type="text" asp-for="Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="control-label" asp-for="Description">Opis</label>
+                    <input class="form-control" type="text" asp-for="Description">
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="control-label" asp-for="StockQuantity">Ilość</label>
+                    <input class="form-control" type="text" asp-for="StockQuantity">
+                    <span asp-validation-for="StockQuantity" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="control-label" asp-for="ProductImage">Zdjęcie</label>
+                    <input class="form-control" type="text" asp-for="ProductImage">
+                    <span asp-validation-for="ProductImage" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="control-label" asp-for="Price">Cena</label>
+                    <input class="form-control" type="text" asp-for="Price">
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+                    <input type="submit" value="Dodaj" class="btn btn-primary">
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
