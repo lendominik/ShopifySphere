@@ -1,5 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using AutoMapper;
+using MediatR;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Shop.Application.ApplicationUser;
+using Shop.Application.Item.Queries;
+using Shop.Application.Mappings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +18,15 @@ namespace Shop.Application.Extensions
         public static void AddAplication(this IServiceCollection services)
         {
             services.AddScoped<IUserContext, UserContext>();
+            services.AddMediatR(typeof(GetAllItemsQuery));
+
+            services.AddScoped(provider => new MapperConfiguration(cfg =>
+            {
+                var scope = provider.CreateScope();
+                var userContext = scope.ServiceProvider.GetRequiredService<IUserContext>();
+                cfg.AddProfile(new ShopMappingProfile());
+            }).CreateMapper()
+            );
         }
     }
 }

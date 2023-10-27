@@ -2,7 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Shop.Domain.Interfaces;
 using Shop.Infrastructure.Persistence;
+using Shop.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +23,8 @@ namespace Shop.Infrastructure.Extensions
             services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ShopDbContext>();
+
+            services.AddScoped<IItemRepository, ItemRepository>();
         }
     }
 }
