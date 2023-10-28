@@ -2,6 +2,14 @@
 
 <h2>Lista Elementów</h2>
 
+<form method="post" action="/Item/Index">
+    <div class="form-group">
+        <label for="searchPhrase">Wyszukaj:</label>
+        <input type="text" class="form-control" id="searchPhrase" name="searchPhrase" placeholder="Wpisz frazę..." />
+    </div>
+    <button type="submit" class="btn btn-primary">Szukaj</button>
+</form>
+
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -35,7 +43,7 @@
             @for (var i = 1; i <= Model.TotalPages; i++)
             {
                 <li class="page-item @(Model.CurrentPage == i ? "active" : "")">
-                    <a class="page-link" href="@Url.Action("Index", new { PageNumber = i, PageSize = Model.PageSize})">@i</a>
+                    <a class="page-link" href="@Url.Action("Index", new { PageNumber = i, PageSize = Model.PageSize, searchPhrase = ViewData["SearchPhrase"]})">@i</a>
                 </li>
             }
         </ul>

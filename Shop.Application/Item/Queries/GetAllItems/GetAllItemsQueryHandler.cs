@@ -28,7 +28,7 @@ namespace Shop.Application.Item.Queries.GetAllItems
             var itemsCount = items.Count();
 
             items = items
-                         //.Where(r => request.SearchPhrase == null || (r.Name.ToLower().Contains(request.SearchPhrase.ToLower())))
+                         .Where(r => request.SearchPhrase == null || (r.Name.ToLower().Contains(request.SearchPhrase.ToLower())))
                          .Skip(request.PageSize * (request.PageNumber - 1))
                          .Take(request.PageSize).ToList();
 

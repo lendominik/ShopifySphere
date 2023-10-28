@@ -19,8 +19,10 @@ namespace Shop.MVC.Controllers
             _mediator = mediator;
             _mapper = mapper;
         }
-        public async Task<IActionResult> Index(int PageNumber, int PageSize)
+        public async Task<IActionResult> Index(int PageNumber, int PageSize, string searchPhrase)
         {
+            
+
             if (PageNumber < 1)
             {
                 PageNumber = 1; // Domyślna strona
@@ -33,8 +35,9 @@ namespace Shop.MVC.Controllers
 
             var items = await _mediator.Send(new GetAllItemsQuery{
                 PageNumber = PageNumber,
-                PageSize = PageSize
-            });
+                PageSize = PageSize,
+                SearchPhrase = searchPhrase
+             });
 
             await Console.Out.WriteLineAsync(PageNumber +" "+PageSize);
 
