@@ -27,8 +27,6 @@ namespace Shop.Application.Item.Commands.CreateItem
         {
             var item = _mapper.Map<Domain.Entities.Item>(request);
 
-            await Console.Out.WriteLineAsync(request.CategoryEncodedName);
-
             var category = await _categoryRepository.GetByEncodedName(request.CategoryEncodedName!);
 
             item.EncodeName();

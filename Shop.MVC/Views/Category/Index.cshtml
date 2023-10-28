@@ -1,4 +1,4 @@
-﻿@using Shop.Application.Item.Commands.CreateItem;
+﻿
 @model IEnumerable<Shop.Application.Category.CategoryDto>
 
 @{
@@ -25,16 +25,16 @@
                     
             </td>
             <td>
-                @item.Description
+                    @item.Description
             </td>
-            <td>
-                <partial name="_CreateItem" model="new CreateItemCommand() {CategoryEncodedName = item.EncodedName }" />
-                <a class="btn btn-primary" asp-controller="Category" asp-action="Edit" asp-route-encodedName="@item.EncodedName">Edycja</a>
-                <form asp-action="Delete" method="post">
-                    <input type="hidden" name="encodedName" value="@item.EncodedName" />
-                    <button type="submit" class="btn btn-danger">Usuń</button>
-                </form>
-            </td>
+                <td>
+                    
+                    <a class="btn btn-primary" asp-controller="Category" asp-action="Edit" asp-route-encodedName="@item.EncodedName">Edycja</a>
+                    <form asp-action="Delete" method="post">
+                        <input type="hidden" name="encodedName" value="@item.EncodedName" />
+                        <button type="submit" class="btn btn-danger">Usuń</button>
+                    </form>
+                </td>
         </tr>
 }
     </tbody>

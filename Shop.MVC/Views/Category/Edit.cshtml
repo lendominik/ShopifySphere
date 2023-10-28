@@ -1,4 +1,5 @@
 ﻿@model Shop.Application.Category.Commands.EditCategory.EditCategoryCommand
+@using Shop.Application.Item.Commands.CreateItem;
 
 @{
     ViewData["Title"] = "Edit";
@@ -25,6 +26,7 @@
 </div>
 
 <div>
+    <partial name="_CreateItem" model="new CreateItemCommand() { CategoryEncodedName = @Model.EncodedName }" />
     <a asp-action="Index">Back to List</a>
 </div>
 

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Azure.Core;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Application.Category.Commands.DeleteCategory;
@@ -19,10 +20,8 @@ namespace Shop.MVC.Controllers
             _mediator = mediator;
             _mapper = mapper;
         }
-        public async Task<IActionResult> Index(int PageNumber, int PageSize, string searchPhrase)
+        public async Task<IActionResult> Index(int PageNumber, int PageSize, string searchPhrase, string SortBy, string SortDirection)
         {
-            
-
             if (PageNumber < 1)
             {
                 PageNumber = 1; // Domyślna strona
@@ -32,12 +31,14 @@ namespace Shop.MVC.Controllers
             {
                 PageSize = 10; // Domyślna ilość elementów na stronie
             }
-
-            var items = await _mediator.Send(new GetAllItemsQuery{
+            var items = await _mediator.Send(new GetAllItemsQuery
+            {
                 PageNumber = PageNumber,
                 PageSize = PageSize,
-                SearchPhrase = searchPhrase
-             });
+                SearchPhrase = searchPhrase,
+                SortBy = SortBy,
+                SortDirection = SortDirection
+            });
 
             await Console.Out.WriteLineAsync(PageNumber +" "+PageSize);
 
