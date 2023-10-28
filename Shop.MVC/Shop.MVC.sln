@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.MVC", "Shop.MVC.csproj", "{1D605BD3-1474-4FC1-8490-6BD45DA458FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.MVC", "Shop.MVC.csproj", "{1D605BD3-1474-4FC1-8490-6BD45DA458FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Application", "..\Shop.Application\Shop.Application.csproj", "{3AE7D9F9-A345-4A1A-9F16-4B034C3E291F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Application", "..\Shop.Application\Shop.Application.csproj", "{3AE7D9F9-A345-4A1A-9F16-4B034C3E291F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Domain", "..\Shop.Domain\Shop.Domain.csproj", "{FBFAA6BF-4D1F-41C2-87BF-59336C56EFB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Domain", "..\Shop.Domain\Shop.Domain.csproj", "{FBFAA6BF-4D1F-41C2-87BF-59336C56EFB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Infrastructure", "..\Shop.Infrastructure\Shop.Infrastructure.csproj", "{125BD657-AE0C-4585-87DC-49A522361B54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Infrastructure", "..\Shop.Infrastructure\Shop.Infrastructure.csproj", "{125BD657-AE0C-4585-87DC-49A522361B54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
