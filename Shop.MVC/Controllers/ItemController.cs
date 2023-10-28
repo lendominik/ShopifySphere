@@ -32,7 +32,8 @@ namespace Shop.MVC.Controllers
             }
 
             var items = await _mediator.Send(new GetAllItemsQuery{
-                PageNumber = PageNumber, PageSize = PageSize
+                PageNumber = PageNumber,
+                PageSize = PageSize
             });
 
             await Console.Out.WriteLineAsync(PageNumber +" "+PageSize);

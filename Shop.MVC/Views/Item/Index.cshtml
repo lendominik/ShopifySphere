@@ -1,11 +1,14 @@
-﻿<h2>Lista Elementów</h2>
+﻿@model Shop.Application.Item.PagedResult;
 
+<h2>Lista Elementów</h2>
 
 <table class="table table-bordered">
     <thead>
         <tr>
             <th>Nazwa</th>
-            <!-- Dodaj tutaj nagłówki dla innych kolumn -->
+            <th>Opis</th>
+            <th>Zdjęcie</th>
+            <th>Cena</th>
         </tr>
     </thead>
     <tbody>
@@ -13,7 +16,9 @@
         {
             <tr>
                 <td>@item.Name</td>
-                <!-- Dodaj tutaj odpowiednie dane dla innych kolumn -->
+                <td>@item.Description</td>
+                <td>@item.ProductImage</td>
+                <td>@item.Price</td>
             </tr>
         }
     </tbody>
@@ -26,7 +31,7 @@
             @for (var i = 1; i <= Model.TotalPages; i++)
             {
                 <li class="page-item @(Model.CurrentPage == i ? "active" : "")">
-                    <a class="page-link" href="@Url.Action("Index", new { PageNumber = i, PageSize = Model.PageSize })">@i</a>
+                    <a class="page-link" href="@Url.Action("Index", new { PageNumber = i, PageSize = Model.PageSize})">@i</a>
                 </li>
             }
         </ul>
