@@ -273,3 +273,4 @@ C:\Users\Dominik\Desktop\SHOP.MVC\Shop.MVC\bin\Debug\net7.0\zh-Hant\Microsoft.Co
 C:\Users\Dominik\Desktop\SHOP.MVC\Shop.MVC\obj\Debug\net7.0\Shop.MVC.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Dominik\Desktop\SHOP.MVC\Shop.MVC\bin\Debug\net7.0\PagedList.dll
 C:\Users\Dominik\Desktop\SHOP.MVC\Shop.MVC\bin\Debug\net7.0\PagedList.Mvc.dll
+C:\Users\Dominik\Desktop\Shop.mvc\Shop.MVC\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.Facebook.dll

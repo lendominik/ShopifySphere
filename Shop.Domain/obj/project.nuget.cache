@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "OpI5ocorTKS92yM4bZW9ATC6/mXYu8UDaj9p/INqHLDeQotmC7/pJVSzTmLLWqPqVW6sT4aDmewU5d2skbpEgQ==",
+  "dgSpecHash": "/lEyTJMZInVo+hFdYDt2EF6gN19i04zP2JU/QX7s+TP2JTUspw0gRbcNyWs7YlqJck6o4dFHNrI5daARZ321Pw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Dominik\\Desktop\\Shop.mvc\\Shop.Domain\\Shop.Domain.csproj",
   "expectedPackageFiles": [
@@ -12,6 +12,7 @@
     "C:\\Users\\Dominik\\.nuget\\packages\\mediatr\\11.0.0\\mediatr.11.0.0.nupkg.sha512",
     "C:\\Users\\Dominik\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
     "C:\\Users\\Dominik\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\11.1.0\\mediatr.extensions.microsoft.dependencyinjection.11.1.0.nupkg.sha512",
+    "C:\\Users\\Dominik\\.nuget\\packages\\microsoft.aspnetcore.authentication.facebook\\7.0.13\\microsoft.aspnetcore.authentication.facebook.7.0.13.nupkg.sha512",
     "C:\\Users\\Dominik\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.13\\microsoft.aspnetcore.cryptography.internal.7.0.13.nupkg.sha512",
     "C:\\Users\\Dominik\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\7.0.13\\microsoft.aspnetcore.cryptography.keyderivation.7.0.13.nupkg.sha512",
     "C:\\Users\\Dominik\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\7.0.13\\microsoft.aspnetcore.identity.entityframeworkcore.7.0.13.nupkg.sha512",

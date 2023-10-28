@@ -1,5 +1,7 @@
 using Shop.Application.Extensions;
 using Shop.Infrastructure.Extensions;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +11,17 @@ builder.Services.AddControllersWithViews(options => options.SuppressImplicitRequ
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddAplication();
 
+builder.Services.AddAuthentication()
+    .AddFacebook(options =>
+    {
+        IConfigurationSection FBAuthNSection = builder.Configuration.GetSection("Authentication:Facebook");
+        options.AppId = FBAuthNSection["AppId"];
+        options.AppSecret = FBAuthNSection["AppSecret"];
+    });
 
 var app = builder.Build();
+
+var scope = app.Services.CreateScope();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -30,5 +41,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapRazorPages();
 
 app.Run();
