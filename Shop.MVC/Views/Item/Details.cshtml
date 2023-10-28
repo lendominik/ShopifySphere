@@ -37,5 +37,9 @@
 </div>
 <div>
     <a class="btn btn-primary" asp-controller="Item" asp-action="Edit" asp-route-encodedName="@Model.EncodedName">Edycja</a>
+    <form asp-action="Delete" method="post">
+        <input type="hidden" name="encodedName" value="@Model.EncodedName" />
+        <button type="submit" class="btn btn-danger">Usuń</button>
+    </form>
     <a asp-action="Index">Back to List</a>
 </div>
