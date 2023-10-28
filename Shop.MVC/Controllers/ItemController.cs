@@ -19,9 +19,23 @@ namespace Shop.MVC.Controllers
             _mediator = mediator;
             _mapper = mapper;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int PageNumber, int PageSize)
         {
-            var items = await _mediator.Send(new GetAllItemsQuery());
+            if (PageNumber < 1)
+            {
+                PageNumber = 1; // Domyślna strona
+            }
+
+            if (PageSize < 1)
+            {
+                PageSize = 10; // Domyślna ilość elementów na stronie
+            }
+
+            var items = await _mediator.Send(new GetAllItemsQuery{
+                PageNumber = PageNumber, PageSize = PageSize
+            });
+
+            await Console.Out.WriteLineAsync(PageNumber +" "+PageSize);
 
             return View(items);
         }
@@ -33,6 +47,13 @@ namespace Shop.MVC.Controllers
             EditItemCommand model = _mapper.Map<EditItemCommand>(dto);
 
             return View(model);
+        }
+        [Route("Item/{encodedName}/Details")]
+        public async Task<IActionResult> Details(string encodedName)
+        {
+            var item = await _mediator.Send(new GetItemQuery(encodedName));
+
+            return View(item);
         }
         [HttpPost]
         [Route("Item/{encodedName}/Edit")]

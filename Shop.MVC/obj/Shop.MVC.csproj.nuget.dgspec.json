@@ -75,6 +75,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.13, )"
+            },
+            "PagedList.Mvc": {
+              "target": "Package",
+              "version": "[4.5.0, )"
             }
           },
           "imports": [
@@ -164,6 +168,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.13, )"
+            },
+            "PagedList.Mvc": {
+              "target": "Package",
+              "version": "[4.5.0, )"
             }
           },
           "imports": [
@@ -257,6 +265,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.13, )"
+            },
+            "PagedList.Mvc": {
+              "target": "Package",
+              "version": "[4.5.0, )"
             }
           },
           "imports": [
@@ -357,6 +369,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[7.0.9, )"
+            },
+            "PagedList.Mvc": {
+              "target": "Package",
+              "version": "[4.5.0, )"
             }
           },
           "imports": [
