@@ -24,6 +24,14 @@ namespace Shop.Application.Item.Queries.GetAllItems
 
         public async Task<PagedResult> Handle(GetAllItemsQuery request, CancellationToken cancellationToken)
         {
+            if (request.PageNumber < 1) {
+                request.PageNumber = 1;
+            }
+
+            if (request.PageSize < 1) {
+                request.PageSize = 10;
+            }
+
             var items = await _itemRepository.GetAll();
 
             items = items

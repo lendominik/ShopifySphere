@@ -22,15 +22,7 @@ namespace Shop.MVC.Controllers
         }
         public async Task<IActionResult> Index(int PageNumber, int PageSize, string searchPhrase, string SortBy, string SortDirection)
         {
-            if (PageNumber < 1)
-            {
-                PageNumber = 1; // Domyślna strona
-            }
-
-            if (PageSize < 1)
-            {
-                PageSize = 10; // Domyślna ilość elementów na stronie
-            }
+            
             var items = await _mediator.Send(new GetAllItemsQuery
             {
                 PageNumber = PageNumber,

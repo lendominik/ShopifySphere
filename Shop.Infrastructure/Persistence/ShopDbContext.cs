@@ -24,22 +24,30 @@ namespace Shop.Infrastructure.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Cart>()
-                .HasOne(a => a.Payment)
-                .WithOne(p => p.Cart)
-                .HasForeignKey<Payment>(p => p.CartId);
+            //modelBuilder.Entity<Cart>()
+            //    .HasOne(a => a.Payment)
+            //    .WithOne(p => p.Cart)
+            //    .HasForeignKey<Payment>(p => p.CartId);
 
-            modelBuilder.Entity<Cart>(a =>
+            modelBuilder.Entity<Item>(entity =>
             {
-                a.HasMany(c => c.CartItems)
-                .WithOne(o => o.Cart)
-                .HasForeignKey(c => c.CartId);
+                entity.HasMany(i => i.CartItems)
+                    .WithOne(ci => ci.Item)    
+                    .HasForeignKey(ci => ci.ItemId);
             });
 
-            modelBuilder.Entity<CartItem>()
-                .HasOne(a => a.Item)
-                .WithOne(p => p.CartItem)
-                .HasForeignKey<CartItem>(p => p.ItemId);
+            modelBuilder.Entity<Cart>(entity =>
+            {
+                entity.HasMany(c => c.CartItems)
+                    .WithOne(ci => ci.Cart) 
+                    .HasForeignKey(ci => ci.CartId);
+
+            });
+
+            modelBuilder.Entity<CartItem>(entity =>
+            {
+                entity.HasKey(ci => ci.Id);
+            });
 
             modelBuilder.Entity<Category>(a =>
             {

@@ -226,33 +226,13 @@ namespace Shop.Infrastructure.Migrations
 
             modelBuilder.Entity("Shop.Domain.Entities.Cart", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CartTotal")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("OrderedById")
+                    b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ShippingInformation")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
+                    b.Property<string>("CartTotal")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OrderedById");
 
                     b.ToTable("Carts");
                 });
@@ -265,8 +245,9 @@ namespace Shop.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CartId")
-                        .HasColumnType("int");
+                    b.Property<string>("CartId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("ItemId")
                         .HasColumnType("int");
@@ -282,8 +263,7 @@ namespace Shop.Infrastructure.Migrations
 
                     b.HasIndex("CartId");
 
-                    b.HasIndex("ItemId")
-                        .IsUnique();
+                    b.HasIndex("ItemId");
 
                     b.ToTable("CartItems");
                 });
@@ -362,9 +342,6 @@ namespace Shop.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CartId")
-                        .HasColumnType("int");
-
                     b.Property<string>("PaymentAmount")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -377,9 +354,6 @@ namespace Shop.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CartId")
-                        .IsUnique();
 
                     b.ToTable("Payments");
                 });
@@ -435,15 +409,6 @@ namespace Shop.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Shop.Domain.Entities.Cart", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "OrderedBy")
-                        .WithMany()
-                        .HasForeignKey("OrderedById");
-
-                    b.Navigation("OrderedBy");
-                });
-
             modelBuilder.Entity("Shop.Domain.Entities.CartItem", b =>
                 {
                     b.HasOne("Shop.Domain.Entities.Cart", "Cart")
@@ -453,8 +418,8 @@ namespace Shop.Infrastructure.Migrations
                         .IsRequired();
 
                     b.HasOne("Shop.Domain.Entities.Item", "Item")
-                        .WithOne("CartItem")
-                        .HasForeignKey("Shop.Domain.Entities.CartItem", "ItemId")
+                        .WithMany("CartItems")
+                        .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -474,23 +439,9 @@ namespace Shop.Infrastructure.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("Shop.Domain.Entities.Payment", b =>
-                {
-                    b.HasOne("Shop.Domain.Entities.Cart", "Cart")
-                        .WithOne("Payment")
-                        .HasForeignKey("Shop.Domain.Entities.Payment", "CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cart");
-                });
-
             modelBuilder.Entity("Shop.Domain.Entities.Cart", b =>
                 {
                     b.Navigation("CartItems");
-
-                    b.Navigation("Payment")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Shop.Domain.Entities.Category", b =>
@@ -500,8 +451,7 @@ namespace Shop.Infrastructure.Migrations
 
             modelBuilder.Entity("Shop.Domain.Entities.Item", b =>
                 {
-                    b.Navigation("CartItem")
-                        .IsRequired();
+                    b.Navigation("CartItems");
                 });
 #pragma warning restore 612, 618
         }

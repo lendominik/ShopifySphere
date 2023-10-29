@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Shop.Application.Cart;
 using Shop.Application.Category;
 using Shop.Application.Category.Commands.CreateCategory;
 using Shop.Application.Category.Commands.EditCategory;
@@ -31,6 +32,8 @@ namespace Shop.Application.Mappings
             CreateMap<CategoryDto, EditCategoryCommand>();
 
             CreateMap<ItemDto, EditItemCommand>();
+
+            CreateMap<Domain.Entities.Cart, CartDto>();
         }
     }
 }

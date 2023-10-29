@@ -9,14 +9,8 @@ namespace Shop.Domain.Entities
 {
     public class Cart
     {
-        public int Id { get; set; }
-        public DateTime Date { get; set; } // data złożenia
-        public string Status { get; set; } // status zamówienia
-        public string ShippingInformation { get; set; } // informacje o dostawie
-        public string CartTotal { get; set; } // suma zamówienia
-        public IdentityUser? OrderedBy { get; set; }
-        public Payment Payment { get; set; }
+        public string Id { get; set; }
+        public string? CartTotal { get; set; }
         public List<CartItem> CartItems { get; set; } = new List<CartItem>();
-        public string CartSessionKey { get; set; }
     }
 }

@@ -11,6 +11,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
 namespace Shop.Infrastructure.Extensions
 {
     public static class ServiceCollectionExtensions
@@ -20,12 +22,15 @@ namespace Shop.Infrastructure.Extensions
             services.AddDbContext<ShopDbContext>(options => options.UseSqlServer(
                 configuration.GetConnectionString("FootballClub")));
 
+            services.AddHttpContextAccessor();
+
             services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ShopDbContext>();
 
             services.AddScoped<IItemRepository, ItemRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ICartRepository, CartRepository>();
         }
     }
 }

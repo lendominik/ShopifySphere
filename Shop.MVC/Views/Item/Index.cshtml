@@ -47,6 +47,10 @@
                 <td>@item.Price</td>
                 <td width="50px">
                 <a class="btn btn-primary" asp-controller="Item" asp-action="Details" asp-route-encodedName="@item.EncodedName">Szczegóły</a>
+                    <form asp-controller="Cart" asp-action="AddItem" method="post">
+                        <input type="hidden" name="encodedName" value="@item.EncodedName" />
+                        <button type="submit" class="btn btn-danger">Dodaj do koszyka</button>
+                    </form>
                 </td>
             </tr>
         }

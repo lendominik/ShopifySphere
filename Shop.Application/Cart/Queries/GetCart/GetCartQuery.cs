@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shop.Application.Cart.Commands
+namespace Shop.Application.Cart.Queries.GetCart
 {
-    public class AddToCartCommand : IRequest
+    public class GetCartQuery : IRequest<CartDto>
     {
-        public string ItemEncodedName { get; set; }
     }
 }

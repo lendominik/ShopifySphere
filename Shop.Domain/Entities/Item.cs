@@ -14,7 +14,7 @@ namespace Shop.Domain.Entities
         public string Description { get; set; } //opis 
         public int StockQuantity { get; set; } // stan magazynowy
         public string ProductImage { get; set; } // zdjecie produktu
-        public CartItem CartItem { get; set; }
+        public List<CartItem> CartItems { get; set; } = new List<CartItem>();
         public Category Category { get; set; }
         public int CategoryId { get; set; }
         public string EncodedName { get; private set; } = default!;

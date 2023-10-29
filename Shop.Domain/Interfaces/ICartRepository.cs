@@ -1,4 +1,5 @@
-﻿using Shop.Domain.Entities;
+﻿using Microsoft.AspNetCore.Http;
+using Shop.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,9 @@ namespace Shop.Domain.Interfaces
     public interface ICartRepository
     {
         Task AddToCart(Cart cart, CartItem cartItem);
+        Task<Cart> GetCart(string cartId);
+        Task<string?> GetCartId(IHttpContextAccessor httpContextAccessor);
+        Task SaveCartToDatabase(Cart cart);
+        Task<List<CartItem>> GetCartItems(string cartId);
     }
 }

@@ -4151,6 +4151,7 @@
           "Microsoft.AspNetCore.Identity.UI": "7.0.13",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.13",
           "Microsoft.Extensions.Configuration": "7.0.0",
+          "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "PagedList.Mvc": "4.5.0",
           "Shop.Domain": "1.0.0"
         },
@@ -4171,6 +4172,7 @@
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.13",
           "Microsoft.AspNetCore.Identity.UI": "7.0.13",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.13",
+          "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "PagedList.Mvc": "4.5.0"
         },
         "compile": {
@@ -4190,6 +4192,8 @@
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.13",
           "Microsoft.AspNetCore.Identity.UI": "7.0.13",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.13",
+          "Microsoft.Extensions.DependencyInjection": "7.0.0",
+          "Newtonsoft.Json": "13.0.1",
           "PagedList.Mvc": "4.5.0",
           "Shop.Application": "1.0.0"
         },
@@ -11931,6 +11935,7 @@
       "Microsoft.AspNetCore.Identity.UI >= 7.0.13",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.13",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.13",
+      "Microsoft.Extensions.DependencyInjection >= 7.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 7.0.9",
       "PagedList.Mvc >= 4.5.0",
       "Shop.Application >= 1.0.0",
@@ -12020,6 +12025,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[7.0.13, )"
+          },
+          "Microsoft.Extensions.DependencyInjection": {
+            "target": "Package",
+            "version": "[7.0.0, )"
           },
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",

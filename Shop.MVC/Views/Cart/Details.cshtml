@@ -1,0 +1,35 @@
+﻿@model Shop.Application.Cart.CartDto
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    <h4>CartDto</h4>
+    <hr />
+    <!-- Pozostała część widoku -->
+</div>
+
+<div>
+    @if (Model.CartItems != null && Model.CartItems.Any())
+    {
+        <h4>Przedmioty w koszu:</h4>
+        <ul>
+            @foreach (var item in Model.CartItems)
+            {
+                <li>
+                    <span>@item.Quantity</span> - <span>@item.Item.Name</span>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>Koszyk jest pusty</p>
+    }
+</div>
+
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

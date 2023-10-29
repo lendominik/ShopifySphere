@@ -12,7 +12,7 @@ namespace Shop.Domain.Entities
         public int Quantity { get; set; }
         public string UnitPrice { get; set; }
         public Cart Cart { get; set; }
-        public int CartId { get; set; }
+        public string CartId { get; set; }
         public Item Item { get; set; }
         public int ItemId { get; set; }
 

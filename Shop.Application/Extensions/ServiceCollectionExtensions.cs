@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Shop.Application.ApplicationUser;
+using Shop.Application.Cart.Queries.GetCart;
 using Shop.Application.Item.Queries;
 using Shop.Application.Item.Queries.GetAllItems;
 using Shop.Application.Mappings;
@@ -20,6 +21,9 @@ namespace Shop.Application.Extensions
         {
             services.AddScoped<IUserContext, UserContext>();
             services.AddMediatR(typeof(GetAllItemsQuery));
+            services.AddMediatR(typeof(GetCartQuery));
+
+            services.AddHttpContextAccessor();
 
             services.AddScoped(provider => new MapperConfiguration(cfg =>
             {

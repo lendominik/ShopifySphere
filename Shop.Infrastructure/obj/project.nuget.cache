@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "iJkh/C1Q1F72DWc9vmYIEBSbCOyvsYwWGCJF9IoMzJSY/ytW+gfbGiylYYmIGt55h5b2vVdRjAANvoy8ol70Vg==",
+  "dgSpecHash": "eKSycZvHsKA/V97kz88MTaEFnI8xS6VYDXcnPyIZRb1fSOwqMkhR1a4ZJtxqkgpl5hAJyFqV8P8LQGzptmnMpw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Dominik\\Desktop\\shopmc\\Shop.Infrastructure\\Shop.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -56,6 +56,7 @@
     "C:\\Users\\Dominik\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "C:\\Users\\Dominik\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\Dominik\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\Dominik\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Dominik\\.nuget\\packages\\pagedlist\\1.17.0\\pagedlist.1.17.0.nupkg.sha512",
     "C:\\Users\\Dominik\\.nuget\\packages\\pagedlist.mvc\\4.5.0\\pagedlist.mvc.4.5.0.nupkg.sha512",
     "C:\\Users\\Dominik\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
