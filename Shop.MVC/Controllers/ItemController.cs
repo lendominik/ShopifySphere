@@ -20,16 +20,16 @@ namespace Shop.MVC.Controllers
             _mediator = mediator;
             _mapper = mapper;
         }
-        public async Task<IActionResult> Index(int PageNumber, int PageSize, string searchPhrase, string SortBy, string SortDirection)
+        public async Task<IActionResult> Index(int PageNumber, int PageSize, string searchPhrase, string SortBy, string SortDirection, string SelectedCategory)
         {
-            
             var items = await _mediator.Send(new GetAllItemsQuery
             {
                 PageNumber = PageNumber,
                 PageSize = PageSize,
                 SearchPhrase = searchPhrase,
                 SortBy = SortBy,
-                SortDirection = SortDirection
+                SortDirection = SortDirection,
+                SelectedCategory = SelectedCategory
             });
 
             await Console.Out.WriteLineAsync(PageNumber +" "+PageSize);

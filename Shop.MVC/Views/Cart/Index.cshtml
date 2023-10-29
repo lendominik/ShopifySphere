@@ -11,21 +11,31 @@
 </div>
 
 <div>
-    @if (Model.CartItems != null && Model.CartItems.Any())
-    {
-        <h4>Przedmioty w koszu:</h4>
-        <ul>
+@if (Model.CartItems != null && Model.CartItems.Any())
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Cena za sztukę</th>
+                <th>Ilość</th>
+            </tr>
+        </thead>
+        <tbody>
             @foreach (var item in Model.CartItems)
             {
-                <li>
-                    <span>@item.Quantity</span> - <span>@item.Item.Name</span>
-                </li>
+                <tr>
+                    <td>@item.Item.Name</td>
+                    <td>@item.Item.Price zł</td>
+                    <td>@item.Quantity</td>
+                </tr>
             }
-        </ul>
-    }
-    else
-    {
-        <p>Koszyk jest pusty</p>
+    </table>
+
+    <span>Koszt łącznie: @Model.CartTotal zł</span>
+}
+else
+{
+    <p>Koszyk jest pusty</p>
     }
 </div>
-

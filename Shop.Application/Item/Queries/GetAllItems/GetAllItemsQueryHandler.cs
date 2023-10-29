@@ -14,11 +14,13 @@ namespace Shop.Application.Item.Queries.GetAllItems
     public class GetAllItemsQueryHandler : IRequestHandler<GetAllItemsQuery, PagedResult>
     {
         private readonly IItemRepository _itemRepository;
+        private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
 
-        public GetAllItemsQueryHandler(IItemRepository itemRepository, IMapper mapper)
+        public GetAllItemsQueryHandler(IItemRepository itemRepository, ICategoryRepository categoryRepository,IMapper mapper)
         {
             _itemRepository = itemRepository;
+            _categoryRepository = categoryRepository;
             _mapper = mapper;
         }
 
@@ -29,10 +31,15 @@ namespace Shop.Application.Item.Queries.GetAllItems
 
             var items = await _itemRepository.GetAll();
 
+            if (!string.IsNullOrEmpty(request.SelectedCategory))
+            {
+                items = items.Where(c => c.Category.Name == request.SelectedCategory);
+            }
+
             if (!string.IsNullOrEmpty(request.SearchPhrase))
             {
                 items = items.Where(r => r.Name.ToLower().Contains(request.SearchPhrase.ToLower()) || r.Description.ToLower().Contains(request.SearchPhrase.ToLower()));
-            }
+            }  
 
             if (!string.IsNullOrEmpty(request.SortBy))
             {
@@ -40,7 +47,6 @@ namespace Shop.Application.Item.Queries.GetAllItems
             {
                 {nameof(Domain.Entities.Item.Name), x => x.Name},
                 {nameof(Domain.Entities.Item.Category), x => x.Category.Name},
-                {nameof(Domain.Entities.Item.Description), x => x.Description},
             };
 
                 if (columnsSelectors.TryGetValue(request.SortBy, out var selectedColumn))
@@ -54,7 +60,9 @@ namespace Shop.Application.Item.Queries.GetAllItems
 
             var itemDtos = _mapper.Map<IEnumerable<ItemDto>>(itemsToDisplay);
 
-            var result = new PagedResult(itemDtos, itemsCount, request.PageSize,request.PageNumber);
+            var categories = await _categoryRepository.GetAll();
+
+            var result = new PagedResult(itemDtos, itemsCount, request.PageSize,request.PageNumber, categories);
 
             return result;
         }

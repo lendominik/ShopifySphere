@@ -38,10 +38,13 @@ namespace Shop.Application.Cart.Commands.AddToCart
                 var cartItem = await _cartItemRepository.GetCartItem(existingCartItem.Id);
                 cartItem.Quantity = existingCartItem.Quantity + 1;
                 cartItem.UnitPrice = cartItem.Quantity * item.Price;
+                cart.CartTotal = cart.CartTotal + item.Price * 1; // tu zmiany trzeba bezdie zrobić gdy dojdę do etapu że można wybrać ilość 
                 await _cartRepository.Commit();
             }
             else
             {
+                cart.CartTotal = cart.CartTotal + item.Price;
+
                 var cartItem = new CartItem
                 {
                     Cart = cart,

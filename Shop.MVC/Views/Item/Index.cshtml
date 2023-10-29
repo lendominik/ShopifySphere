@@ -8,12 +8,15 @@
         <input type="text" class="form-control" id="searchPhrase" name="searchPhrase" placeholder="Wpisz frazę..." />
     </div>
     <button type="submit" class="btn btn-primary">Szukaj</button>
+</form>
 
+<form method="post" action="/Item/Index">
     @using (Html.BeginForm("Index", "Item", FormMethod.Get))
     {
         <label for="SortBy">Sortuj według:</label>
         <select id="SortBy" name="SortBy">
             <option value="Name">Nazwa</option>
+            <option value="Category">Kategoria</option>
         </select>
 
         <label for="SortDirection">Kierunek:</label>
@@ -21,9 +24,19 @@
             <option value="ASC">Rosnąco</option>
             <option value="DESC">Malejąco</option>
         </select>
-
         <button type="submit">Sortuj</button>
     }
+</form>
+<form method="post" action="/Item/Index">
+        <label for="selectedCategory">Kategoria:</label>
+        <select id="selectedCategory" name="selectedCategory" >
+            @foreach (var category in Model.Categories)
+            {
+                <option value="@category.Name">@category.Name</option>
+            }
+        </select>
+
+        <button type="submit">Wyszukaj po kategorii</button>
 </form>
 
 <table class="table table-bordered">
@@ -64,7 +77,7 @@
             @for (var i = 1; i <= Model.TotalPages; i++)
             {
                 <li class="page-item @(Model.CurrentPage == i ? "active" : "")">
-                    <a class="page-link" href="@Url.Action("Index", new { PageNumber = i, PageSize = Model.PageSize, searchPhrase = ViewData["SearchPhrase"]})">@i</a>
+                    <a class="page-link" href="@Url.Action("Index", new { PageNumber = i, PageSize = Model.PageSize, searchPhrase = ViewData["SearchPhrase"], selectedCategory = ViewData["SelectedCategory"] })">@i</a>
                 </li>
             }
         </ul>
