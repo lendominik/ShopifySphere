@@ -8,23 +8,23 @@
         <input type="text" class="form-control" id="searchPhrase" name="searchPhrase" placeholder="Wpisz frazę..." />
     </div>
     <button type="submit" class="btn btn-primary">Szukaj</button>
+
+    @using (Html.BeginForm("Index", "Item", FormMethod.Get))
+    {
+        <label for="SortBy">Sortuj według:</label>
+        <select id="SortBy" name="SortBy">
+            <option value="Name">Nazwa</option>
+        </select>
+
+        <label for="SortDirection">Kierunek:</label>
+        <select id="SortDirection" name="SortDirection">
+            <option value="ASC">Rosnąco</option>
+            <option value="DESC">Malejąco</option>
+        </select>
+
+        <button type="submit">Sortuj</button>
+    }
 </form>
-
-@using (Html.BeginForm("Index", "Item", FormMethod.Get))
-{
-    <label for="SortBy">Sortuj według:</label>
-    <select id="SortBy" name="SortBy">
-        <option value="Name">Nazwa</option>
-    </select>
-
-    <label for="SortDirection">Kierunek:</label>
-    <select id="SortDirection" name="SortDirection">
-        <option value="ASC">Rosnąco</option>
-        <option value="DESC">Malejąco</option>
-    </select>
-
-    <button type="submit">Sortuj</button>
-}
 
 <table class="table table-bordered">
     <thead>
