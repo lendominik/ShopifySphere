@@ -25,9 +25,7 @@ namespace Shop.Application.Item.Queries.GetItem
         public async Task<ItemDto> Handle(GetItemQuery request, CancellationToken cancellationToken)
         {
             var item = await _itemRepository.GetByEncodedName(request.EncodedName);
-
             var itemDto = _mapper.Map<ItemDto>(item);
-
             return itemDto;
         }
     }

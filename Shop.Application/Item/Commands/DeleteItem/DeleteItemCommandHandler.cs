@@ -21,9 +21,7 @@ namespace Shop.Application.Item.Commands.DeleteItem
         public async Task<Unit> Handle(DeleteItemCommand request, CancellationToken cancellationToken)
         {
             var item = await _itemRepository.GetByEncodedName(request.EncodedName);
-
             await _itemRepository.Delete(item);
-
             return Unit.Value;
         }
     }

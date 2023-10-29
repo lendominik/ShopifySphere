@@ -24,43 +24,35 @@ namespace Shop.Application.Item.Queries.GetAllItems
 
         public async Task<PagedResult> Handle(GetAllItemsQuery request, CancellationToken cancellationToken)
         {
-            if (request.PageNumber < 1) {
-                request.PageNumber = 1;
-            }
-
-            if (request.PageSize < 1) {
-                request.PageSize = 10;
-            }
+            request.PageNumber = request.PageNumber < 1 ? 1 : request.PageNumber;
+            request.PageSize = request.PageSize < 1 ? 10 : request.PageSize;
 
             var items = await _itemRepository.GetAll();
 
-            items = items
-                         .Where(r => request.SearchPhrase == null || (r.Name.ToLower().Contains(request.SearchPhrase.ToLower()) ||
-                         (r.Description.ToLower().Contains(request.SearchPhrase.ToLower()))));
+            if (!string.IsNullOrEmpty(request.SearchPhrase))
+            {
+                items = items.Where(r => r.Name.ToLower().Contains(request.SearchPhrase.ToLower()) || r.Description.ToLower().Contains(request.SearchPhrase.ToLower()));
+            }
 
             if (!string.IsNullOrEmpty(request.SortBy))
             {
                 var columnsSelectors = new Dictionary<string, Expression<Func<Domain.Entities.Item, object>>>
-            {
-                {nameof(Domain.Entities.Item.Name), x => x.Name},
-                {nameof(Domain.Entities.Item.Category), x => x.Category.Name},
-                {nameof(Domain.Entities.Item.Description), x => x.Description},
-            };
+    {
+        {nameof(Domain.Entities.Item.Name), x => x.Name},
+        {nameof(Domain.Entities.Item.Category), x => x.Category.Name},
+        {nameof(Domain.Entities.Item.Description), x => x.Description},
+    };
 
-                var selectedColumn = columnsSelectors[request.SortBy];
-
-                items = request.SortDirection == "ASC"
-                    ? items.AsQueryable().OrderBy(selectedColumn)
-                    : items.AsQueryable().OrderByDescending(selectedColumn);
+                if (columnsSelectors.TryGetValue(request.SortBy, out var selectedColumn))
+                {
+                    items = request.SortDirection == "ASC" ? items.AsQueryable().OrderBy(selectedColumn) : items.AsQueryable().OrderByDescending(selectedColumn);
+                }
             }
 
             var itemsCount = items.Count();
+            var itemsToDisplay = items.Skip((request.PageNumber - 1) * request.PageSize).Take(request.PageSize).ToList();
 
-            items = items
-                .Skip(request.PageSize * (request.PageNumber - 1))
-                .Take(request.PageSize).ToList();
-
-            var itemDtos = _mapper.Map<IEnumerable<ItemDto>>(items);
+            var itemDtos = _mapper.Map<IEnumerable<ItemDto>>(itemsToDisplay);
 
             var result = new PagedResult(itemDtos, itemsCount, request.PageSize,request.PageNumber);
 
