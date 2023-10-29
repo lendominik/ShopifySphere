@@ -12,8 +12,8 @@ namespace Shop.Domain.Entities
         public string PaymentMethod { get; set; }
         public string PaymentAmount { get; set; }
         public DateTime PaymentDate { get; set; }
-        public Order Order { get; set; }
-        public int OrderId { get; set; }
+        public Cart Cart { get; set; }
+        public int CartId { get; set; }
 
     }
 }

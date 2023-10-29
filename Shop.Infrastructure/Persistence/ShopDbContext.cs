@@ -16,30 +16,30 @@ namespace Shop.Infrastructure.Persistence
         {
 
         }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Order>()
+            modelBuilder.Entity<Cart>()
                 .HasOne(a => a.Payment)
-                .WithOne(p => p.Order)
-                .HasForeignKey<Payment>(p => p.OrderId);
+                .WithOne(p => p.Cart)
+                .HasForeignKey<Payment>(p => p.CartId);
 
-            modelBuilder.Entity<Order>(a =>
+            modelBuilder.Entity<Cart>(a =>
             {
-                a.HasMany(c => c.OrderItems)
-                .WithOne(o => o.Order)
-                .HasForeignKey(c => c.OrderId);
+                a.HasMany(c => c.CartItems)
+                .WithOne(o => o.Cart)
+                .HasForeignKey(c => c.CartId);
             });
 
-            modelBuilder.Entity<OrderItem>()
+            modelBuilder.Entity<CartItem>()
                 .HasOne(a => a.Item)
-                .WithOne(p => p.OrderItem)
-                .HasForeignKey<OrderItem>(p => p.ItemId);
+                .WithOne(p => p.CartItem)
+                .HasForeignKey<CartItem>(p => p.ItemId);
 
             modelBuilder.Entity<Category>(a =>
             {
