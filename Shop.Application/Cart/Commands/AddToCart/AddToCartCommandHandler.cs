@@ -15,12 +15,14 @@ namespace Shop.Application.Cart.Commands.AddToCart
         private readonly ICartRepository _cartRepository;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IItemRepository _itemRepository;
+        private readonly ICartItemRepository _cartItemRepository;
 
-        public AddToCartCommandHandler(ICartRepository cartRepository, IItemRepository itemRepository, IHttpContextAccessor httpContextAccessor)
+        public AddToCartCommandHandler(ICartRepository cartRepository, IItemRepository itemRepository, ICartItemRepository cartItemRepository, IHttpContextAccessor httpContextAccessor)
         {
             _cartRepository = cartRepository;
             _httpContextAccessor = httpContextAccessor;
             _itemRepository = itemRepository;
+            _cartItemRepository = cartItemRepository;
         }
 
         public async Task<Unit> Handle(AddToCartCommand request, CancellationToken cancellationToken)
@@ -33,9 +35,10 @@ namespace Shop.Application.Cart.Commands.AddToCart
 
             if (existingCartItem != null)
             {
-                // Jeśli istnieje, zaktualizuj jego ilość i/lub cenę jednostkową
-                existingCartItem.Quantity += 1;
-                //existingCartItem.UnitPrice = request.UnitPrice;
+                var cartItem = await _cartItemRepository.GetCartItem(existingCartItem.Id);
+                cartItem.Quantity = existingCartItem.Quantity + 1;
+                cartItem.UnitPrice = cartItem.Quantity * item.Price;
+                await _cartRepository.Commit();
             }
             else
             {
@@ -48,8 +51,6 @@ namespace Shop.Application.Cart.Commands.AddToCart
                     UnitPrice = request.Quantity * item.Price,
                     ItemId = item.Id
                 };
-
-
                 await _cartRepository.AddToCart(cart, cartItem);
             }
 

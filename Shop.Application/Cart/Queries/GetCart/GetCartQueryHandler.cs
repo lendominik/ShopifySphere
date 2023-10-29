@@ -26,11 +26,7 @@ namespace Shop.Application.Cart.Queries.GetCart
         {
             var cartId = await _cartRepository.GetCartId(_httpContextAccessor);
             var cart = await _cartRepository.GetCart(cartId);
-
-            var cartItems = await _cartRepository.GetCartItems(cartId);
-
             var cartDto = _mapper.Map<CartDto>(cart);
-
             return cartDto;
         }
     }

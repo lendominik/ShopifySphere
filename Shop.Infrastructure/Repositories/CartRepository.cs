@@ -20,12 +20,6 @@ namespace Shop.Infrastructure.Repositories
         {
             _dbContext = dbContext;
         }
-        public async Task<List<CartItem>> GetCartItems(string cartId)
-        {
-            var cart = await _dbContext.CartItems.Where(c => c.CartId == cartId).ToListAsync();
-            await Console.Out.WriteLineAsync("GetCartItems"); await Console.Out.WriteLineAsync("GetCartItems"); await Console.Out.WriteLineAsync("GETCART"); await Console.Out.WriteLineAsync("GETCART");
-            return cart;
-        }
         public async Task<Cart> GetCart(string cartId)
         {
             var cart = await _dbContext.Carts
@@ -68,6 +62,10 @@ namespace Shop.Infrastructure.Repositories
             }
 
             return cartId;
+        }
+        public async Task Commit()
+        {
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

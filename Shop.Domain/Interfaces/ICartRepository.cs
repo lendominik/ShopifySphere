@@ -14,6 +14,6 @@ namespace Shop.Domain.Interfaces
         Task<Cart> GetCart(string cartId);
         Task<string?> GetCartId(IHttpContextAccessor httpContextAccessor);
         Task SaveCartToDatabase(Cart cart);
-        Task<List<CartItem>> GetCartItems(string cartId);
+        Task Commit();
     }
 }

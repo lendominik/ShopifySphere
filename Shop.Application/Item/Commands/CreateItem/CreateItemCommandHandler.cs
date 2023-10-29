@@ -30,7 +30,6 @@ namespace Shop.Application.Item.Commands.CreateItem
             var category = await _categoryRepository.GetByEncodedName(request.CategoryEncodedName!);
 
             item.EncodeName();
-
             item.Category = category;
 
             await _itemRepository.Create(item);
