@@ -10,8 +10,7 @@ namespace Shop.Application.Cart
 {
     public class CartDto
     {
-        public string CartTotal { get; set; } // suma zamówienia
-        public IdentityUser? OrderedBy { get; set; }
+        public float CartTotal { get; set; } // suma zamówienia
         public List<CartItem> CartItems { get; set; } 
     }
 }

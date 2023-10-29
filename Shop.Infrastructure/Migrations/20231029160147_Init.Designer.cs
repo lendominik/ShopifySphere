@@ -12,7 +12,7 @@ using Shop.Infrastructure.Persistence;
 namespace Shop.Infrastructure.Migrations
 {
     [DbContext(typeof(ShopDbContext))]
-    [Migration("20231029135437_Init")]
+    [Migration("20231029160147_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -232,9 +232,8 @@ namespace Shop.Infrastructure.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("CartTotal")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<float>("CartTotal")
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -259,16 +258,14 @@ namespace Shop.Infrastructure.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<string>("UnitPrice")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<float>("UnitPrice")
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CartId");
 
-                    b.HasIndex("ItemId")
-                        .IsUnique();
+                    b.HasIndex("ItemId");
 
                     b.ToTable("CartItems");
                 });
@@ -321,9 +318,8 @@ namespace Shop.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Price")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
 
                     b.Property<string>("ProductImage")
                         .IsRequired()
@@ -423,8 +419,8 @@ namespace Shop.Infrastructure.Migrations
                         .IsRequired();
 
                     b.HasOne("Shop.Domain.Entities.Item", "Item")
-                        .WithOne("CartItem")
-                        .HasForeignKey("Shop.Domain.Entities.CartItem", "ItemId")
+                        .WithMany("CartItems")
+                        .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -456,8 +452,7 @@ namespace Shop.Infrastructure.Migrations
 
             modelBuilder.Entity("Shop.Domain.Entities.Item", b =>
                 {
-                    b.Navigation("CartItem")
-                        .IsRequired();
+                    b.Navigation("CartItems");
                 });
 #pragma warning restore 612, 618
         }

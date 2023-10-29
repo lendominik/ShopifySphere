@@ -55,7 +55,7 @@ namespace Shop.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    CartTotal = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CartTotal = table.Column<float>(type: "real", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -205,7 +205,7 @@ namespace Shop.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<float>(type: "real", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StockQuantity = table.Column<int>(type: "int", nullable: false),
                     ProductImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -230,7 +230,7 @@ namespace Shop.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Quantity = table.Column<int>(type: "int", nullable: false),
-                    UnitPrice = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UnitPrice = table.Column<float>(type: "real", nullable: false),
                     CartId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ItemId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -298,8 +298,7 @@ namespace Shop.Infrastructure.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_CartItems_ItemId",
                 table: "CartItems",
-                column: "ItemId",
-                unique: true);
+                column: "ItemId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Items_CategoryId",

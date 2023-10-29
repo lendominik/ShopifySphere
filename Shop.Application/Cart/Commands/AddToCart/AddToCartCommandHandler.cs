@@ -45,7 +45,7 @@ namespace Shop.Application.Cart.Commands.AddToCart
                     Item = item,
                     CartId = cartId,
                     Quantity = 1,
-                    UnitPrice = "test",
+                    UnitPrice = request.Quantity * item.Price,
                     ItemId = item.Id
                 };
 

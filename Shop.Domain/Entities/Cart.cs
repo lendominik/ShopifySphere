@@ -10,7 +10,7 @@ namespace Shop.Domain.Entities
     public class Cart
     {
         public string Id { get; set; }
-        public string? CartTotal { get; set; }
+        public float CartTotal { get; set; }
         public List<CartItem> CartItems { get; set; } = new List<CartItem>();
     }
 }

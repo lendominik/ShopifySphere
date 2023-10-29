@@ -58,7 +58,7 @@ namespace Shop.Infrastructure.Repositories
                 var newCart = new Cart
                 {
                     Id = cartId,
-                    CartTotal = "0"
+                    CartTotal = 0
                 };
 
                 session.SetString("CartSessionKey", cartId);
