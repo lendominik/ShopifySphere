@@ -17,6 +17,6 @@ namespace Shop.Domain.Entities
         public IdentityUser? OrderedBy { get; set; }
         public Payment Payment { get; set; }
         public List<CartItem> CartItems { get; set; } = new List<CartItem>();
-
+        public string CartSessionKey { get; set; }
     }
 }

@@ -11,6 +11,8 @@ builder.Services.AddControllersWithViews(options => options.SuppressImplicitRequ
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddAplication();
 
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddAuthentication()
     .AddFacebook(options =>
     {
