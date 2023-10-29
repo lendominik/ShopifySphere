@@ -37,11 +37,11 @@ namespace Shop.Application.Item.Queries.GetAllItems
             if (!string.IsNullOrEmpty(request.SortBy))
             {
                 var columnsSelectors = new Dictionary<string, Expression<Func<Domain.Entities.Item, object>>>
-    {
-        {nameof(Domain.Entities.Item.Name), x => x.Name},
-        {nameof(Domain.Entities.Item.Category), x => x.Category.Name},
-        {nameof(Domain.Entities.Item.Description), x => x.Description},
-    };
+            {
+                {nameof(Domain.Entities.Item.Name), x => x.Name},
+                {nameof(Domain.Entities.Item.Category), x => x.Category.Name},
+                {nameof(Domain.Entities.Item.Description), x => x.Description},
+            };
 
                 if (columnsSelectors.TryGetValue(request.SortBy, out var selectedColumn))
                 {

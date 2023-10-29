@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Shop.Application.Cart.Commands.AddToCart;
 using Shop.Application.Cart.Queries.GetCart;
 using Shop.Application.Category.Commands.CreateCategory;
+using Shop.Application.Category.Queries.GetAllCategories;
 using Shop.Application.Item.Commands.CreateItem;
 using Shop.Application.Item.Queries.GetItem;
 
@@ -19,9 +20,11 @@ namespace Shop.MVC.Controllers
             _mediator = mediator;
             _mapper = mapper;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var items = await _mediator.Send(new GetCartQuery());
+
+            return View(items);
         }
         [HttpPost]
         [Route("Cart/AddItem")]

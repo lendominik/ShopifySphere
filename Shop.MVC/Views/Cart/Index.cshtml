@@ -1,5 +1,31 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Shop.Application.Cart.CartDto
+
 @{
+    ViewData["Title"] = "Kosz";
 }
+
+<div>
+    <h4>Kosz z zakupami</h4>
+    <hr />
+    <!-- Pozostała część widoku -->
+</div>
+
+<div>
+    @if (Model.CartItems != null && Model.CartItems.Any())
+    {
+        <h4>Przedmioty w koszu:</h4>
+        <ul>
+            @foreach (var item in Model.CartItems)
+            {
+                <li>
+                    <span>@item.Quantity</span> - <span>@item.Item.Name</span>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>Koszyk jest pusty</p>
+    }
+</div>
+
