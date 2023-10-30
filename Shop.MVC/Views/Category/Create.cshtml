@@ -14,25 +14,68 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
+                <input asp-for="Name" class="form-control" id="nameInput"/>
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <div id="nameError" class="text-danger" style="display: none;"></div>
+            </div>
+            <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+                <input asp-for="Description" class="form-control" id="descriptionInput" />
                 <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div id="descriptionError" class="text-danger" style="display: none;"></div>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
+
 
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+<script>
+    let nameInput = document.getElementById("nameInput");
+    let nameError = document.getElementById("nameError");
+    let descriptionInput = document.getElementById("descriptionInput");
+    let descriptionError = document.getElementById("descriptionError");
+    let submitButton = document.querySelector('input[type="submit"]');
 
+    const regName = /^[A-ZĘÓĄŚŁŻŹĆŃ]{1}[a-zżźęółśążźćń]{1,50}$/;
+    const regDescription = /^[A-ZĘÓĄŚŁŻŹĆŃ]{1}[a-zżźęółśążźćń]{1,50}$/;
+
+    let isValid = false;
+
+    submitButton.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        if (!regName.test(nameInput.value)) {
+            nameError.textContent = "Nazwa kategorii musi się zaczynać z wielkiej litery i mieć maksymalnie 50 znaków długości.";
+            nameError.style.display = "block";
+            isValid = false;
+        } else {
+            nameError.style.display = "none";
+        }
+
+        if (!regDescription.test(descriptionInput.value)) {
+            descriptionError.textContent = "Opis kategorii musi się zaczynać z wielkiej litery i mieć maksymalnie 200 znaków długości.";
+            descriptionError.style.display = "block";
+            isValid = false;
+        } else {
+            descriptionError.style.display = "none";
+        }
+
+
+        if (isValid) {
+            this.form.submit();
+        }
+    });
+
+</script>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
