@@ -48,10 +48,11 @@
     const regName = /^[A-ZĘÓĄŚŁŻŹĆŃ]{1}[a-zżźęółśążźćń]{1,50}$/;
     const regDescription = /^[A-ZĘÓĄŚŁŻŹĆŃ]{1}[a-zżźęółśążźćń]{1,50}$/;
 
-    let isValid = false;
+    let isValid = true;
 
     submitButton.addEventListener("click", function (event) {
         event.preventDefault();
+        isValid = true;
 
         if (!regName.test(nameInput.value)) {
             nameError.textContent = "Nazwa kategorii musi się zaczynać z wielkiej litery i mieć maksymalnie 50 znaków długości.";
