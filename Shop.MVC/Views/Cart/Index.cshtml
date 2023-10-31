@@ -19,6 +19,7 @@
                 <th>Nazwa</th>
                 <th>Cena za sztukę</th>
                 <th>Ilość</th>
+                <th>Cena za całość</th>
                 <th></th>
             </tr>
         </thead>
@@ -34,6 +35,9 @@
                             <input type="number" name="Quantity" value="@item.Quantity" min="1" /> 
                             <button type="submit" class="btn btn-primary">Aktualizuj</button>
                         </form>
+                    </td>
+                    <td>
+                        @item.UnitPrice
                     </td>
                     <td>
                         <form asp-action="DeleteItem" method="post">

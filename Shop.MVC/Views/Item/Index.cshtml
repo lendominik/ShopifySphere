@@ -58,7 +58,7 @@
                 <td>@item.Category.Name</td>
                 <td>@item.Description</td>
                 <td>@item.ProductImage</td>
-                <td>@item.Price</td>
+                <td>@item.Price zł</td>
                 <td width="50px">
                 <a class="btn btn-primary" asp-controller="Item" asp-action="Details" asp-route-encodedName="@item.EncodedName">Szczegóły</a>
                     <form asp-controller="Cart" asp-action="AddItem" method="post">

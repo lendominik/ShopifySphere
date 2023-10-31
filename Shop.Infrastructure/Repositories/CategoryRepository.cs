@@ -39,7 +39,7 @@ namespace Shop.Infrastructure.Repositories
         }
         public async Task<Category?> GetByName(string name)
         {
-            var category = await _dbContext.Categories.FirstAsync(e => e.Name == name);
+            var category = await _dbContext.Categories.FirstOrDefaultAsync(e => e.Name == name);
 
             return category;
         }
