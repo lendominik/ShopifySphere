@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Shop.Application.Exceptions;
 using Shop.Domain.Entities;
 using Shop.Domain.Interfaces;
 using System;
@@ -28,6 +29,11 @@ namespace Shop.Application.Cart.Commands.ChangingCartItemQuantity
             var cartItem = await _cartItemRepository.GetCartItem(request.Id);
             var cartId = await _cartRepository.GetCartId(_httpContextAccessor);
             var cart = await _cartRepository.GetCart(cartId);
+
+            if (cartId == null || cart == null || cartItem == null)
+            {
+                throw new NotFoundException("Nie znaleziono kosza użytkownika lub podanego przedmiotu.");
+            }
 
             decimal unitPrice = cartItem.UnitPrice / cartItem.Quantity;
 

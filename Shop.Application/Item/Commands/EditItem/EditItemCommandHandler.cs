@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Shop.Application.Exceptions;
 using Shop.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,11 @@ namespace Shop.Application.Item.Commands.EditItem
         public async Task<Unit> Handle(EditItemCommand request, CancellationToken cancellationToken)
         {
             var item = await _itemRepository.GetByEncodedName(request.EncodedName);
+
+            if (item == null)
+            {
+                throw new NotFoundException("Podany przedmiot nie istnieje.");
+            }
 
             item.Description = request.Description;
             item.Price = request.Price;

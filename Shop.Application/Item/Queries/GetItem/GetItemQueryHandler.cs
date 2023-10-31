@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Shop.Application.Category;
+using Shop.Application.Exceptions;
 using Shop.Domain.Entities;
 using Shop.Domain.Interfaces;
 using System;
@@ -25,6 +26,12 @@ namespace Shop.Application.Item.Queries.GetItem
         public async Task<ItemDto> Handle(GetItemQuery request, CancellationToken cancellationToken)
         {
             var item = await _itemRepository.GetByEncodedName(request.EncodedName);
+
+            if (item == null)
+            {
+                throw new NotFoundException("Podany przedmiot nie istnieje.");
+            }
+
             var itemDto = _mapper.Map<ItemDto>(item);
             return itemDto;
         }

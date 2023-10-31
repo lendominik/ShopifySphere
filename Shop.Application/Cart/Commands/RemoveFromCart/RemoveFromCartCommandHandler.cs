@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
+using Shop.Application.Exceptions;
 using Shop.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,11 @@ namespace Shop.Application.Cart.Commands.RemoveFromCart
             var cartItem = await _cartItemRepository.GetCartItem(request.Id);
             var cartId = await _cartRepository.GetCartId(_httpContextAccessor);
             var cart = await _cartRepository.GetCart(cartId);
+
+            if (cartId == null || cart == null || cartItem == null)
+            {
+                throw new NotFoundException("Nie znaleziono kosza użytkownika lub podanego przedmiotu.");
+            }
 
             cart.CartTotal = cart.CartTotal - cartItem.UnitPrice;
             await _cartRepository.Commit(); 

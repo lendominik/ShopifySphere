@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Shop.Application.Exceptions;
 
 namespace Shop.Application.Cart.Commands.AddToCart
 {
@@ -30,6 +31,11 @@ namespace Shop.Application.Cart.Commands.AddToCart
             var cartId = await _cartRepository.GetCartId(_httpContextAccessor);
             var cart = await _cartRepository.GetCart(cartId);
             var item = await _itemRepository.GetByEncodedName(request.EncodedName);
+
+            if(cartId == null || cart == null || item == null)
+            {
+                throw new NotFoundException("Nie znaleziono kosza użytkownika lub podanego przedmiotu.");
+            }
 
             var existingCartItem = cart.CartItems.FirstOrDefault(ci => ci.ItemId == item.Id);
 

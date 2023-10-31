@@ -1,5 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Shop.Application.Exceptions;
+using Shop.Domain.Entities;
 using Shop.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -21,6 +23,12 @@ namespace Shop.Application.Item.Commands.DeleteItem
         public async Task<Unit> Handle(DeleteItemCommand request, CancellationToken cancellationToken)
         {
             var item = await _itemRepository.GetByEncodedName(request.EncodedName);
+
+            if (item == null)
+            {
+                throw new NotFoundException("Podany przedmiot nie istnieje.");
+            }
+
             await _itemRepository.Delete(item);
             return Unit.Value;
         }

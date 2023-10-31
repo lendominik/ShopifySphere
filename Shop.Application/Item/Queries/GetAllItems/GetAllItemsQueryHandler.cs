@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using System.Linq.Expressions;
+using Shop.Application.Exceptions;
 
 namespace Shop.Application.Item.Queries.GetAllItems
 {
@@ -30,6 +31,11 @@ namespace Shop.Application.Item.Queries.GetAllItems
             request.PageSize = request.PageSize < 1 ? 10 : request.PageSize;
 
             var items = await _itemRepository.GetAll();
+
+            if(items == null)
+            {
+                throw new NotFoundException("Nie ma żadnych przedmiotów w sklepie");
+            }
 
             if (!string.IsNullOrEmpty(request.SelectedCategory))
             {
