@@ -37,6 +37,12 @@ namespace Shop.Infrastructure.Repositories
 
             return item;
         }
+        public async Task<Item> GetByName(string name)
+        {
+            var item = await _dbContext.Items.FirstAsync(e => e.Name == name);
+
+            return item;
+        }
         public async Task Delete(Item item)
         {
             _dbContext.Items.Remove(item);

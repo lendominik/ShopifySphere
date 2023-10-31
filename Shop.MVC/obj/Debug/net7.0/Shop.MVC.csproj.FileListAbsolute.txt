@@ -1102,3 +1102,6 @@ C:\Users\Dominik\Desktop\shopmc\Shop.MVC\obj\Debug\net7.0\refint\Shop.MVC.dll
 C:\Users\Dominik\Desktop\shopmc\Shop.MVC\obj\Debug\net7.0\Shop.MVC.pdb
 C:\Users\Dominik\Desktop\shopmc\Shop.MVC\obj\Debug\net7.0\Shop.MVC.genruntimeconfig.cache
 C:\Users\Dominik\Desktop\shopmc\Shop.MVC\obj\Debug\net7.0\ref\Shop.MVC.dll
+C:\Users\Dominik\Desktop\shopmc\Shop.MVC\bin\Debug\net7.0\FluentValidation.dll
+C:\Users\Dominik\Desktop\shopmc\Shop.MVC\bin\Debug\net7.0\FluentValidation.AspNetCore.dll
+C:\Users\Dominik\Desktop\shopmc\Shop.MVC\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll

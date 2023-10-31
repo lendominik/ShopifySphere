@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "eKSycZvHsKA/V97kz88MTaEFnI8xS6VYDXcnPyIZRb1fSOwqMkhR1a4ZJtxqkgpl5hAJyFqV8P8LQGzptmnMpw==",
+  "dgSpecHash": "Gtj6bqPaVnIaojFUpOCtJ6q7QXYnDoQnmYyrC29jx0PwCVQbbZ+OxSC4SvUYlWGolOahPVgsXgCpXkVdS1pz9g==",
   "success": true,
   "projectFilePath": "C:\\Users\\Dominik\\Desktop\\shopmc\\Shop.Infrastructure\\Shop.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,9 @@
     "C:\\Users\\Dominik\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\Dominik\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Dominik\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
+    "C:\\Users\\Dominik\\.nuget\\packages\\fluentvalidation\\11.8.0\\fluentvalidation.11.8.0.nupkg.sha512",
+    "C:\\Users\\Dominik\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "C:\\Users\\Dominik\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.1\\fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
     "C:\\Users\\Dominik\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Dominik\\.nuget\\packages\\mediatr\\11.0.0\\mediatr.11.0.0.nupkg.sha512",
     "C:\\Users\\Dominik\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",

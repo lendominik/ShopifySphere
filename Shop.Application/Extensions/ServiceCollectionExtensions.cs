@@ -4,14 +4,18 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Shop.Application.ApplicationUser;
 using Shop.Application.Cart.Queries.GetCart;
+using Shop.Application.Item.Commands.CreateItem;
 using Shop.Application.Item.Queries;
 using Shop.Application.Item.Queries.GetAllItems;
 using Shop.Application.Mappings;
+using Shop.Application.Middlewares;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 
 namespace Shop.Application.Extensions
 {
@@ -32,6 +36,8 @@ namespace Shop.Application.Extensions
                 cfg.AddProfile(new ShopMappingProfile());
             }).CreateMapper()
             );
+
+            services.AddValidatorsFromAssemblyContaining<CreateItemCommandValidator>();
         }
     }
 }
