@@ -19,6 +19,7 @@
                 <th>Nazwa</th>
                 <th>Cena za sztukę</th>
                 <th>Ilość</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -27,7 +28,19 @@
                 <tr>
                     <td>@item.Item.Name</td>
                     <td>@item.Item.Price zł</td>
-                    <td>@item.Quantity</td>
+                    <td>
+                        <form asp-action="UpdateItemQuantity" method="post">
+                            <input type="hidden" name="Id" value="@item.Id" />
+                            <input type="number" name="Quantity" value="@item.Quantity" min="1" /> 
+                            <button type="submit" class="btn btn-primary">Aktualizuj</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form asp-action="DeleteItem" method="post">
+                            <input type="hidden" name="Id" value="@item.Id" />
+                            <button type="submit" class="btn btn-danger">Usuń</button>
+                        </form>
+                    </td>
                 </tr>
             }
     </table>

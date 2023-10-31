@@ -2,10 +2,14 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Application.Cart.Commands.AddToCart;
+using Shop.Application.Cart.Commands.ChangingCartItemQuantity;
+using Shop.Application.Cart.Commands.RemoveFromCart;
 using Shop.Application.Cart.Queries.GetCart;
 using Shop.Application.Category.Commands.CreateCategory;
+using Shop.Application.Category.Commands.DeleteCategory;
 using Shop.Application.Category.Queries.GetAllCategories;
 using Shop.Application.Item.Commands.CreateItem;
+using Shop.Application.Item.Commands.DeleteItem;
 using Shop.Application.Item.Queries.GetItem;
 
 namespace Shop.MVC.Controllers
@@ -62,6 +66,32 @@ namespace Shop.MVC.Controllers
         }
         [Route("Cart/AddItem")]
         public async Task<IActionResult> AddItem(AddToCartCommand command)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await _mediator.Send(command);
+
+            return RedirectToAction(nameof(Index));
+        }
+        [HttpPost]
+        [Route("Cart/DeleteItem")]
+        public async Task<IActionResult> DeleteItem(RemoveFromCartCommand command)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await _mediator.Send(command);
+
+            return RedirectToAction(nameof(Index));
+        }
+        [HttpPost]
+        [Route("Cart/UpdateItemQuantity")]
+        public async Task<IActionResult> UpdateItemQuantity(ChangingCartItemQuantityCommand command)
         {
             if (!ModelState.IsValid)
             {

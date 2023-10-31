@@ -24,12 +24,32 @@ namespace Shop.Infrastructure.Repositories
             _dbContext.CartItems.Add(cartItem);
             await _dbContext.SaveChangesAsync();
         }
-
-        public Task<CartItem> GetCartItem(int cartId)
+        public async Task<CartItem> GetCartItem(int cartItemId)
         {
-            var cartItem = _dbContext.CartItems.FirstOrDefaultAsync(c => c.Id == cartId);
+            var cartItem = await _dbContext.CartItems.FirstOrDefaultAsync(c => c.Id == cartItemId);
 
             return cartItem;
+        }
+        public async Task Delete(CartItem cartItem)
+        {
+            _dbContext.CartItems.Remove(cartItem);
+            await _dbContext.SaveChangesAsync();
+        }
+        public async Task Commit()
+        {
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task UpdateCartItemQuantity(CartItem cartItem, int quantity)
+        {
+            cartItem.Quantity = quantity;
+            await _dbContext.SaveChangesAsync();
+        }
+        public async Task UpdateCartItem(CartItem cartItem)
+        { 
+
+            _dbContext.CartItems.Update(cartItem);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

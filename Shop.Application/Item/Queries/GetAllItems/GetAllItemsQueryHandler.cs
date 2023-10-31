@@ -47,6 +47,7 @@ namespace Shop.Application.Item.Queries.GetAllItems
             {
                 {nameof(Domain.Entities.Item.Name), x => x.Name},
                 {nameof(Domain.Entities.Item.Category), x => x.Category.Name},
+                {nameof(Domain.Entities.Item.Price), x => x.Price},
             };
 
                 if (columnsSelectors.TryGetValue(request.SortBy, out var selectedColumn))

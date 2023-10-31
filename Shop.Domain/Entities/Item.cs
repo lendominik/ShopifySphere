@@ -10,7 +10,7 @@ namespace Shop.Domain.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; } // nazwa kategorii
-        public float Price { get; set; } // cena
+        public decimal Price { get; set; } // cena
         public string Description { get; set; } //opis 
         public int StockQuantity { get; set; } // stan magazynowy
         public string ProductImage { get; set; } // zdjecie produktu
