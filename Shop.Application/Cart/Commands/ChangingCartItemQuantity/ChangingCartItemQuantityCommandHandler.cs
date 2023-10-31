@@ -35,6 +35,11 @@ namespace Shop.Application.Cart.Commands.ChangingCartItemQuantity
                 throw new NotFoundException("Nie znaleziono kosza użytkownika lub podanego przedmiotu.");
             }
 
+            if (request.Quantity > cartItem.Item.StockQuantity)
+            {
+                throw new OutOfStockException("Nie ma tylu przedmiotów w magazynie.");
+            }
+
             decimal unitPrice = cartItem.UnitPrice / cartItem.Quantity;
 
             cartItem.Quantity = request.Quantity;

@@ -40,6 +40,7 @@ namespace Shop.Application.Extensions
             }).CreateMapper()
             );
 
+            services.AddTransient<ErrorHandlingMiddleware>();
 
             services.AddFluentValidation();
             services.AddValidatorsFromAssemblyContaining<CreateItemCommandValidator>();

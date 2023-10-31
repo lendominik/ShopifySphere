@@ -47,6 +47,7 @@
             <th>Kategoria</th>
             <th>Opis</th>
             <th>Zdjęcie</th>
+            <th>Liczba w magazynie</th>
             <th>Cena</th>
         </tr>
     </thead>
@@ -58,6 +59,7 @@
                 <td>@item.Category.Name</td>
                 <td>@item.Description</td>
                 <td>@item.ProductImage</td>
+                <td>@item.StockQuantity</td>
                 <td>@item.Price zł</td>
                 <td width="50px">
                 <a class="btn btn-primary" asp-controller="Item" asp-action="Details" asp-route-encodedName="@item.EncodedName">Szczegóły</a>

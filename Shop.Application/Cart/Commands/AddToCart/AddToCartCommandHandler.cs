@@ -37,6 +37,11 @@ namespace Shop.Application.Cart.Commands.AddToCart
                 throw new NotFoundException("Nie znaleziono kosza użytkownika lub podanego przedmiotu.");
             }
 
+            if(request.Quantity > item.StockQuantity)
+            {
+                throw new OutOfStockException("Nie ma tylu przedmiotów w magazynie.");
+            }
+
             var existingCartItem = cart.CartItems.FirstOrDefault(ci => ci.ItemId == item.Id);
 
             if (existingCartItem != null)

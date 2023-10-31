@@ -22,6 +22,11 @@ namespace Shop.Application.Middlewares
                 context.Response.StatusCode = 404;
                 await context.Response.WriteAsync(e.Message);
             }
+            catch (OutOfStockException e)
+            {
+                context.Response.StatusCode = 404;
+                await context.Response.WriteAsync(e.Message);
+            }
             catch (Exception)
             {
                 context.Response.StatusCode = 500;
