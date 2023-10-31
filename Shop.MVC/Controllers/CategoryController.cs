@@ -36,7 +36,7 @@ namespace Shop.MVC.Controllers
         [Route("Category/Create")]
         public async Task<IActionResult> Create(CreateCategoryCommand command)
         {
-            if (command == null)
+            if (!ModelState.IsValid || command == null)
             {
                 return BadRequest(ModelState);
             }

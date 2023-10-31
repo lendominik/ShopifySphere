@@ -16,6 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Shop.Application.Category.Commands.CreateCategory;
 
 namespace Shop.Application.Extensions
 {
@@ -37,7 +38,10 @@ namespace Shop.Application.Extensions
             }).CreateMapper()
             );
 
+
+            services.AddFluentValidation();
             services.AddValidatorsFromAssemblyContaining<CreateItemCommandValidator>();
+            services.AddValidatorsFromAssemblyContaining<CreateCategoryCommandValidator>();
         }
     }
 }

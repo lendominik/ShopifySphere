@@ -39,7 +39,7 @@ namespace Shop.Infrastructure.Repositories
         }
         public async Task<Item> GetByName(string name)
         {
-            var item = await _dbContext.Items.FirstAsync(e => e.Name == name);
+            var item = await _dbContext.Items.FirstOrDefaultAsync(e => e.Name == name);
 
             return item;
         }

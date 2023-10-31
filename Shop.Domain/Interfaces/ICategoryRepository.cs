@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shop.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace Shop.Domain.Interfaces
         Task Create(Domain.Entities.Category category);
         Task<Domain.Entities.Category> GetByEncodedName(string encodedName);
         Task Delete(Domain.Entities.Category category);
+        Task<Category?> GetByName(string name);
         Task Commit();
     }
 }

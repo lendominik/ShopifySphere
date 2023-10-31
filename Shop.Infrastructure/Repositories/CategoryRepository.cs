@@ -37,11 +37,11 @@ namespace Shop.Infrastructure.Repositories
         {
             await _dbContext.SaveChangesAsync();
         }
-        public async Task<Category> GetByName(string name)
+        public async Task<Category?> GetByName(string name)
         {
-            var item = await _dbContext.Categories.FirstAsync(e => e.Name == name);
+            var category = await _dbContext.Categories.FirstAsync(e => e.Name == name);
 
-            return item;
+            return category;
         }
         public async Task Delete(Category category)
         {

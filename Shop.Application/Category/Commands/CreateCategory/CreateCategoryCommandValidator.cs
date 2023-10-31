@@ -23,7 +23,6 @@ namespace Shop.Application.Category.Commands.CreateCategory
                         context.AddFailure("Kategoria o tej nazwie istnieje już w bazie danych.");
                     }
                 });
-
         }
     }
 }
