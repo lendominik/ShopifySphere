@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Shop.Application.Category.Commands.CreateCategory;
+using Shop.Application.Order.Commands.CreateOrder;
 
 namespace Shop.Application.Extensions
 {
@@ -27,6 +28,7 @@ namespace Shop.Application.Extensions
             services.AddScoped<IUserContext, UserContext>();
             services.AddMediatR(typeof(GetAllItemsQuery));
             services.AddMediatR(typeof(GetCartQuery));
+            services.AddMediatR(typeof(CreateOrderCommand));
 
             services.AddHttpContextAccessor();
 

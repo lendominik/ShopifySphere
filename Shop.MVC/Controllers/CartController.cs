@@ -11,6 +11,8 @@ using Shop.Application.Category.Queries.GetAllCategories;
 using Shop.Application.Item.Commands.CreateItem;
 using Shop.Application.Item.Commands.DeleteItem;
 using Shop.Application.Item.Queries.GetItem;
+using Shop.Application.Order.Commands.CreateOrder;
+using Shop.Domain.Entities;
 
 namespace Shop.MVC.Controllers
 {
@@ -48,6 +50,26 @@ namespace Shop.MVC.Controllers
         [Route("Cart/Details")]
         public async Task<IActionResult> CreateItem(AddToCartCommand command)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await _mediator.Send(command);
+
+            return RedirectToAction(nameof(Index));
+        }
+        public async Task<IActionResult> CreateOrder()
+        {
+            return View();
+        }
+        [HttpPost]
+        [Route("Cart/CreateOrder")]
+        public async Task<IActionResult> CreateOrder(string cartId, CreateOrderCommand command)
+        {
+            command.CartId = cartId;
+
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

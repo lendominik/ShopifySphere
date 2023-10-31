@@ -32,6 +32,7 @@ namespace Shop.Infrastructure.Extensions
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ICartRepository, CartRepository>();
             services.AddScoped<ICartItemRepository, CartItemRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
         }
     }
 }

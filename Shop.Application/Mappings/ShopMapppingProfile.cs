@@ -6,6 +6,8 @@ using Shop.Application.Category.Commands.EditCategory;
 using Shop.Application.Item;
 using Shop.Application.Item.Commands.CreateItem;
 using Shop.Application.Item.Commands.EditItem;
+using Shop.Application.Order;
+using Shop.Application.Order.Commands.CreateOrder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +36,10 @@ namespace Shop.Application.Mappings
             CreateMap<ItemDto, EditItemCommand>();
 
             CreateMap<Domain.Entities.Cart, CartDto>();
+
+            CreateMap<Domain.Entities.Order, OrderDto>();
+
+            CreateMap<CreateOrderCommand, Domain.Entities.Order>();
         }
     }
 }

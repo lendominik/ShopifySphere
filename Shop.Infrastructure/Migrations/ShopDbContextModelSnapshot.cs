@@ -252,6 +252,9 @@ namespace Shop.Infrastructure.Migrations
                     b.Property<int>("ItemId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -263,6 +266,8 @@ namespace Shop.Infrastructure.Migrations
                     b.HasIndex("CartId");
 
                     b.HasIndex("ItemId");
+
+                    b.HasIndex("OrderId");
 
                     b.ToTable("CartItems");
                 });
@@ -330,6 +335,57 @@ namespace Shop.Infrastructure.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Items");
+                });
+
+            modelBuilder.Entity("Shop.Domain.Entities.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("CartTotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Shop.Domain.Entities.Payment", b =>
@@ -421,6 +477,10 @@ namespace Shop.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Shop.Domain.Entities.Order", null)
+                        .WithMany("CartItems")
+                        .HasForeignKey("OrderId");
+
                     b.Navigation("Cart");
 
                     b.Navigation("Item");
@@ -448,6 +508,11 @@ namespace Shop.Infrastructure.Migrations
                 });
 
             modelBuilder.Entity("Shop.Domain.Entities.Item", b =>
+                {
+                    b.Navigation("CartItems");
+                });
+
+            modelBuilder.Entity("Shop.Domain.Entities.Order", b =>
                 {
                     b.Navigation("CartItems");
                 });

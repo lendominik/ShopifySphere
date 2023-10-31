@@ -1105,3 +1105,6 @@ C:\Users\Dominik\Desktop\shopmc\Shop.MVC\obj\Debug\net7.0\ref\Shop.MVC.dll
 C:\Users\Dominik\Desktop\shopmc\Shop.MVC\bin\Debug\net7.0\FluentValidation.dll
 C:\Users\Dominik\Desktop\shopmc\Shop.MVC\bin\Debug\net7.0\FluentValidation.AspNetCore.dll
 C:\Users\Dominik\Desktop\shopmc\Shop.MVC\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\Dominik\Desktop\shop\Shop.MVC\bin\Debug\net7.0\FluentValidation.dll
+C:\Users\Dominik\Desktop\shop\Shop.MVC\bin\Debug\net7.0\FluentValidation.AspNetCore.dll
+C:\Users\Dominik\Desktop\shop\Shop.MVC\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll

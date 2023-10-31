@@ -50,6 +50,10 @@
     </table>
 
     <span>Koszt łącznie: @Model.CartTotal zł</span>
+
+    <p>
+            <a asp-action="CreateOrder" asp-route-cartId="@Model.">Złóż zamówienie</a>
+    </p>
 }
 else
 {
