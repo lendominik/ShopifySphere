@@ -1,6 +1,7 @@
 ﻿
 using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Application.Category.Commands.CreateCategory;
 using Shop.Application.Category.Commands.DeleteCategory;
@@ -12,6 +13,7 @@ using Shop.Application.Item.Queries.GetAllItems;
 
 namespace Shop.MVC.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         private readonly IMediator _mediator;
@@ -22,6 +24,7 @@ namespace Shop.MVC.Controllers
             _mediator = mediator;
             _mapper = mapper;
         }
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var categories = await _mediator.Send(new GetAllCategoriesQuery());

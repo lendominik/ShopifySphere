@@ -19,6 +19,7 @@ namespace Shop.Domain.Entities
         public string Street { get; set; }
         public string Address { get; set; }
         public string PostalCode { get; set; }
+        public bool IsPaid { get; set; }
         public DateTime OrderDate { get; set; } = DateTime.Now;
     }
 }

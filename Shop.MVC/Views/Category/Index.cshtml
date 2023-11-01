@@ -7,9 +7,13 @@
 
 <h1>Kategorie</h1>
 
-<p>
-    <a asp-action="Create">Stwórz</a>
-</p>
+@if(User.IsInRole("Owner"))
+{
+    <p>
+        <a asp-action="Create">Stwórz</a>
+    </p>
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -28,12 +32,14 @@
                     @item.Description
             </td>
                 <td>
-                    
+                    @if (User.IsInRole("Owner"))
+                    {        
                     <a class="btn btn-primary" asp-controller="Category" asp-action="Edit" asp-route-encodedName="@item.EncodedName">Edycja</a>
                     <form asp-action="Delete" method="post">
                         <input type="hidden" name="encodedName" value="@item.EncodedName" />
                         <button type="submit" class="btn btn-danger">Usuń</button>
                     </form>
+                    }
                 </td>
         </tr>
 }

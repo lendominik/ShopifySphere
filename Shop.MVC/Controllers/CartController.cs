@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Application.Cart.Commands.AddToCart;
 using Shop.Application.Cart.Commands.ChangingCartItemQuantity;
@@ -59,10 +60,12 @@ namespace Shop.MVC.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        [Authorize]
         public async Task<IActionResult> CreateOrder()
         {
             return View();
         }
+        [Authorize]
         [HttpPost]
         [Route("Cart/CreateOrder")]
         public async Task<IActionResult> CreateOrder(string cartId, CreateOrderCommand command)
