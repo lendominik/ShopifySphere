@@ -10,6 +10,7 @@ using Shop.Application.Category.Queries.GetAllCategories;
 using Shop.Application.Category.Queries.GetCategory;
 using Shop.Application.Item.Commands.CreateItem;
 using Shop.Application.Item.Queries.GetAllItems;
+using Shop.MVC.Extensions;
 
 namespace Shop.MVC.Controllers
 {
@@ -42,9 +43,11 @@ namespace Shop.MVC.Controllers
         {
             if (!ModelState.IsValid || command == null)
             {
+                this.SetNotification("error", $"Nie udało się dodać nowej kategorii.");
                 return BadRequest(ModelState);
             }
 
+            this.SetNotification("success", $"Dodano nową kategorię.");
             await _mediator.Send(command);
 
             return RedirectToAction(nameof(Index));
@@ -57,9 +60,11 @@ namespace Shop.MVC.Controllers
         {
             if (!ModelState.IsValid)
             {
+                this.SetNotification("error", $"Nie udało się dodać nowego przedmiotu do wybranej kategorii");
                 return BadRequest(ModelState);
             }
 
+            this.SetNotification("success", $"Dodano nowy przedmiot do wybranej kategorii");
             await _mediator.Send(command);
 
             return RedirectToAction(nameof(Index));
@@ -81,9 +86,11 @@ namespace Shop.MVC.Controllers
         {
             if(!ModelState.IsValid)
             {
+                this.SetNotification("error", $"Nie udało się dokonanie edycji wybranej kategorii.");
                 return BadRequest(ModelState);
             }
 
+            this.SetNotification("success", $"Dokonano edycji wybranej kategorii.");
             await _mediator.Send(command);
 
             return RedirectToAction(nameof(Index));
@@ -95,10 +102,12 @@ namespace Shop.MVC.Controllers
         {
             if (!ModelState.IsValid)
             {
+                this.SetNotification("error", $"Wystąpił błąd przy usuwaniu kategorii.");
                 return BadRequest(ModelState);
             }
 
             await _mediator.Send(command);
+            this.SetNotification("warning", $"Usunięto wybraną kategorię.");
 
             return RedirectToAction(nameof(Index));
         }

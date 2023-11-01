@@ -14,6 +14,7 @@ using Shop.Application.Item.Commands.DeleteItem;
 using Shop.Application.Item.Queries.GetItem;
 using Shop.Application.Order.Commands.CreateOrder;
 using Shop.Domain.Entities;
+using Shop.MVC.Extensions;
 
 namespace Shop.MVC.Controllers
 {
@@ -39,10 +40,12 @@ namespace Shop.MVC.Controllers
         {
             if (command == null)
             {
+                this.SetNotification("error", $"Wystąpił błąd podcas dodawania przedmiotu do koszyka.");
                 return BadRequest(ModelState);
             }
 
             await _mediator.Send(command);
+            this.SetNotification("success", $"Dodano przedmiot do koszyka.");
 
             return RedirectToAction(nameof(Index));
         }
@@ -73,9 +76,11 @@ namespace Shop.MVC.Controllers
 
             if (!ModelState.IsValid)
             {
+                this.SetNotification("error", $"Wystąpił błąd podczas składania zamówienia.");
                 return BadRequest(ModelState);
             }
 
+            this.SetNotification("success", $"Zamówienie przyjęto do realizacji!");
             await _mediator.Send(command);
 
             return RedirectToAction(nameof(Index));
@@ -105,9 +110,11 @@ namespace Shop.MVC.Controllers
         {
             if (!ModelState.IsValid)
             {
+                this.SetNotification("error", $"Nie udało usunąć się przedmiotu z koszyka.");
                 return BadRequest(ModelState);
             }
 
+            this.SetNotification("success", $"Usunięto przedmiot z koszyka.");
             await _mediator.Send(command);
 
             return RedirectToAction(nameof(Index));
@@ -118,9 +125,11 @@ namespace Shop.MVC.Controllers
         {
             if (!ModelState.IsValid)
             {
+                this.SetNotification("error", $"Wystąpił błąd przy próbie zmiany liczby przedmiotów w koszyku.");
                 return BadRequest(ModelState);
             }
 
+            this.SetNotification("success", $"Zaktualizowano liczbę przedmiotów w koszyku.");
             await _mediator.Send(command);
 
             return RedirectToAction(nameof(Index));

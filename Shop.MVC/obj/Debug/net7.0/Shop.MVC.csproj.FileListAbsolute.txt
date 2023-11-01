@@ -1111,3 +1111,4 @@ C:\Users\Dominik\Desktop\shop\Shop.MVC\bin\Debug\net7.0\FluentValidation.Depende
 C:\Users\Dominik\Desktop\shopmvc\Shop.MVC\bin\Debug\net7.0\FluentValidation.dll
 C:\Users\Dominik\Desktop\shopmvc\Shop.MVC\bin\Debug\net7.0\FluentValidation.AspNetCore.dll
 C:\Users\Dominik\Desktop\shopmvc\Shop.MVC\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\Dominik\Desktop\shopmvc\Shop.MVC\bin\Debug\net7.0\libman.json

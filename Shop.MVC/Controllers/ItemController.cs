@@ -8,6 +8,7 @@ using Shop.Application.Item.Commands.DeleteItem;
 using Shop.Application.Item.Commands.EditItem;
 using Shop.Application.Item.Queries.GetAllItems;
 using Shop.Application.Item.Queries.GetItem;
+using Shop.MVC.Extensions;
 
 namespace Shop.MVC.Controllers
 {
@@ -61,9 +62,11 @@ namespace Shop.MVC.Controllers
         {
             if (!ModelState.IsValid)
             {
+                this.SetNotification("error", $"Nie udało się zeedytować przedmiotu.");
                 return BadRequest(ModelState);
             }
 
+            this.SetNotification("warning", $"Zmieniono wartości przedmiotu.");
             await _mediator.Send(command);
 
             return RedirectToAction(nameof(Index));
@@ -75,10 +78,12 @@ namespace Shop.MVC.Controllers
         {
             if (!ModelState.IsValid)
             {
+                this.SetNotification("error", $"Nie udało się usunąć przedmiotu.");
                 return BadRequest(ModelState);
             }
 
             await _mediator.Send(command);
+            this.SetNotification("warning", $"Usunięto przedmiot.");
 
             return RedirectToAction(nameof(Index));
         }
