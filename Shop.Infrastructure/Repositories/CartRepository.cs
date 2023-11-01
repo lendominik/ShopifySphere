@@ -64,7 +64,18 @@ namespace Shop.Infrastructure.Repositories
 
             return cartId;
         }
+        public async Task RemoveCartItemsByCartId(string cartId)
+        {
+            var cartItems = await _dbContext.CartItems
+                .Where(c => c.CartId == cartId)
+                .ToListAsync();
 
+            if (cartItems != null && cartItems.Any())
+            {
+                _dbContext.CartItems.RemoveRange(cartItems);
+                await _dbContext.SaveChangesAsync();
+            }
+        }
         public async Task Commit()
         {
             await _dbContext.SaveChangesAsync();

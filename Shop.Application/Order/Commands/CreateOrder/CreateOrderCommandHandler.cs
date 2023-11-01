@@ -38,6 +38,7 @@ namespace Shop.Application.Order.Commands.CreateOrder
             order.OrderDate = DateTime.Now;
 
             await _orderRepository.Create(order);
+            await _cartRepository.RemoveCartItemsByCartId(cartId);
 
             return Unit.Value;
         }

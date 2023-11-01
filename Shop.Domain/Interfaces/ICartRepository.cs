@@ -11,7 +11,7 @@ namespace Shop.Domain.Interfaces
     public interface ICartRepository
     {
         Task AddToCart(CartItem cartItem);
-        
+        Task RemoveCartItemsByCartId(string cartId);
         Task<List<CartItem>> GetCartItems(string cartId);
         //Task<Cart> GetCart(string cartId);
         Task<string?> GetCartId(IHttpContextAccessor httpContextAccessor);
