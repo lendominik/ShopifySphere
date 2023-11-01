@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Azure.Core;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Application.Category.Commands.DeleteCategory;
 using Shop.Application.Item.Commands.DeleteItem;
@@ -36,6 +37,7 @@ namespace Shop.MVC.Controllers
 
             return View(items);
         }
+        [Authorize(Roles = "Owner")]
         [Route("Item/{encodedName}/Edit")]
         public async Task<IActionResult> Edit(string encodedName)
         {
@@ -52,6 +54,7 @@ namespace Shop.MVC.Controllers
 
             return View(item);
         }
+        [Authorize(Roles = "Owner")]
         [HttpPost]
         [Route("Item/{encodedName}/Edit")]
         public async Task<IActionResult> Edit(EditItemCommand command)
@@ -65,6 +68,7 @@ namespace Shop.MVC.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        [Authorize(Roles = "Owner")]
         [HttpPost]
         [Route("Item/Delete")]
         public async Task<IActionResult> Delete(DeleteItemCommand command)
