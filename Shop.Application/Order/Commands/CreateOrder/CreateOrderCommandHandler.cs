@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using Shop.Domain.Entities;
 using Shop.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -28,17 +29,28 @@ namespace Shop.Application.Order.Commands.CreateOrder
         public async Task<Unit> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
             var cartId = await _cartRepository.GetCartId(_httpContextAccessor);
-            var cart = await _cartRepository.GetCart(cartId);
+            var cartItems = await _cartRepository.GetCartItems(cartId);
 
             var order = _mapper.Map<Domain.Entities.Order>(request);
 
-            order.CartItems = cart.CartItems;
-            order.CartTotal = cart.CartTotal;
+            order.CartItems = cartItems;
+            order.CartTotal = CalculateCartTotal(cartItems);
             order.OrderDate = DateTime.Now;
 
             await _orderRepository.Create(order);
 
             return Unit.Value;
+        }
+        public decimal CalculateCartTotal(List<CartItem> cartItems)
+        {
+            if (cartItems == null)
+            {
+                return 0; 
+            }
+
+            decimal total = cartItems.Sum(item => item.UnitPrice);
+
+            return total;
         }
     }
 }

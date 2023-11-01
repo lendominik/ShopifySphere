@@ -28,9 +28,8 @@ namespace Shop.Application.Cart.Commands.ChangingCartItemQuantity
         {
             var cartItem = await _cartItemRepository.GetCartItem(request.Id);
             var cartId = await _cartRepository.GetCartId(_httpContextAccessor);
-            var cart = await _cartRepository.GetCart(cartId);
 
-            if (cartId == null || cart == null || cartItem == null)
+            if (cartId == null || cartItem == null)
             {
                 throw new NotFoundException("Nie znaleziono kosza użytkownika lub podanego przedmiotu.");
             }
@@ -46,20 +45,10 @@ namespace Shop.Application.Cart.Commands.ChangingCartItemQuantity
 
             cartItem.UnitPrice = unitPrice * request.Quantity;
 
-            cart.CartTotal = CalculateCartTotal(cart.CartItems);
-
             await _cartItemRepository.UpdateCartItem(cartItem);
 
             return Unit.Value;
         }
-        private decimal CalculateCartTotal(List<CartItem> cartItems)
-        {
-            decimal total = 0;
-            foreach (var cartItem in cartItems)
-            {
-                total += cartItem.UnitPrice;
-            }
-            return total;
-        }
+        
     }
 }

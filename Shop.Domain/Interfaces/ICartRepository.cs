@@ -10,10 +10,11 @@ namespace Shop.Domain.Interfaces
 {
     public interface ICartRepository
     {
-        Task AddToCart(Cart cart, CartItem cartItem);
-        Task<Cart> GetCart(string cartId);
+        Task AddToCart(CartItem cartItem);
+        
+        Task<List<CartItem>> GetCartItems(string cartId);
+        //Task<Cart> GetCart(string cartId);
         Task<string?> GetCartId(IHttpContextAccessor httpContextAccessor);
-        Task SaveCartToDatabase(Cart cart);
         Task Commit();
     }
 }

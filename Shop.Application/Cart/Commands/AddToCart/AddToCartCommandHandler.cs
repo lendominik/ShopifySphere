@@ -29,10 +29,10 @@ namespace Shop.Application.Cart.Commands.AddToCart
         public async Task<Unit> Handle(AddToCartCommand request, CancellationToken cancellationToken)
         {
             var cartId = await _cartRepository.GetCartId(_httpContextAccessor);
-            var cart = await _cartRepository.GetCart(cartId);
+            var cartItems = await _cartRepository.GetCartItems(cartId);
             var item = await _itemRepository.GetByEncodedName(request.EncodedName);
 
-            if(cartId == null || cart == null || item == null)
+            if(cartId == null || item == null)
             {
                 throw new NotFoundException("Nie znaleziono kosza użytkownika lub podanego przedmiotu.");
             }
@@ -42,30 +42,26 @@ namespace Shop.Application.Cart.Commands.AddToCart
                 throw new OutOfStockException("Nie ma tylu przedmiotów w magazynie.");
             }
 
-            var existingCartItem = cart.CartItems.FirstOrDefault(ci => ci.ItemId == item.Id);
+            var existingCartItem = cartItems.FirstOrDefault(ci => ci.ItemId == item.Id);
 
             if (existingCartItem != null)
             {
                 var cartItem = await _cartItemRepository.GetCartItem(existingCartItem.Id);
                 cartItem.Quantity = existingCartItem.Quantity + 1;
                 cartItem.UnitPrice = cartItem.Quantity * item.Price;
-                cart.CartTotal = item.Price * cartItem.Quantity;
                 await _cartRepository.Commit();
             }
             else
             {
-                cart.CartTotal = cart.CartTotal + item.Price;
-
                 var cartItem = new CartItem
                 {
-                    Cart = cart,
                     Item = item,
                     CartId = cartId,
                     Quantity = 1,
                     UnitPrice = 1 * item.Price,
                     ItemId = item.Id
                 };
-                await _cartRepository.AddToCart(cart, cartItem);
+                await _cartRepository.AddToCart(cartItem);
             }
 
             return Unit.Value;

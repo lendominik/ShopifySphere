@@ -7,7 +7,6 @@ using Shop.Infrastructure.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Shop.Infrastructure.Repositories
@@ -20,49 +19,52 @@ namespace Shop.Infrastructure.Repositories
         {
             _dbContext = dbContext;
         }
-        public async Task<Cart> GetCart(string cartId)
-        {
-            var cart = await _dbContext.Carts
-            .Include(c => c.CartItems)
-                .ThenInclude(ci => ci.Item)
-            .FirstOrDefaultAsync(c => c.Id == cartId);
 
-            return cart;
-        }
-        public async Task AddToCart(Cart cart, CartItem cartItem)
+        public async Task<List<CartItem>> GetCartItems(string cartId)
         {
-            cart.CartItems.Add(cartItem);
+            if (string.IsNullOrWhiteSpace(cartId))
+            {
+                throw new ArgumentException("Invalid cartId");
+            }
+
+            var cartItems = await _dbContext.CartItems
+                .Include(c => c.Item)
+                .Where(c => c.CartId == cartId)
+                .ToListAsync();
+
+            return cartItems;
+        }
+
+        public async Task AddToCart(CartItem cartItem)
+        {
+            if (cartItem == null)
+            {
+                throw new ArgumentNullException(nameof(cartItem));
+            }
+
+            _dbContext.CartItems.Add(cartItem);
             await _dbContext.SaveChangesAsync();
         }
-        public async Task SaveCartToDatabase(Cart cart)
-        {
-            _dbContext.Carts.Add(cart);
-            await _dbContext.SaveChangesAsync();
-        }
+
         public async Task<string> GetCartId(IHttpContextAccessor httpContextAccessor)
         {
+            if (httpContextAccessor == null)
+            {
+                throw new ArgumentNullException(nameof(httpContextAccessor));
+            }
+
             var session = httpContextAccessor.HttpContext.Session;
             var cartId = session.GetString("CartSessionKey");
 
             if (string.IsNullOrWhiteSpace(cartId))
             {
-                Guid tempCartId = Guid.NewGuid();
-                cartId = tempCartId.ToString();
-
-                var newCart = new Cart
-                {
-                    Id = cartId,
-                    CartTotal = 0
-                };
-
+                cartId = Guid.NewGuid().ToString();
                 session.SetString("CartSessionKey", cartId);
-
-                _dbContext.Carts.Add(newCart);
-                await _dbContext.SaveChangesAsync();
             }
 
             return cartId;
         }
+
         public async Task Commit()
         {
             await _dbContext.SaveChangesAsync();

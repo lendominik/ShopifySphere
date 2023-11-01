@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using Shop.Domain.Entities;
 using Shop.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -25,9 +26,28 @@ namespace Shop.Application.Cart.Queries.GetCart
         public async Task<CartDto> Handle(GetCartQuery request, CancellationToken cancellationToken)
         {
             var cartId = await _cartRepository.GetCartId(_httpContextAccessor);
-            var cart = await _cartRepository.GetCart(cartId);
-            var cartDto = _mapper.Map<CartDto>(cart);
+
+            await Console.Out.WriteLineAsync(cartId);
+
+            var cartItems = await _cartRepository.GetCartItems(cartId);
+
+            var cartDto = new CartDto
+            {
+                CartItems = cartItems,
+                CartTotal = CalculateCartTotal(cartItems),
+                Id = cartId
+            };
+           
             return cartDto;
+        }
+        private decimal CalculateCartTotal(List<CartItem> cartItems)
+        {
+            decimal total = 0;
+            foreach (var cartItem in cartItems)
+            {
+                total += cartItem.UnitPrice;
+            }
+            return total;
         }
     }
 }

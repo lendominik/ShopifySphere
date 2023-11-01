@@ -35,8 +35,6 @@ namespace Shop.Application.Mappings
 
             CreateMap<ItemDto, EditItemCommand>();
 
-            CreateMap<Domain.Entities.Cart, CartDto>();
-
             CreateMap<Domain.Entities.Order, OrderDto>();
 
             CreateMap<CreateOrderCommand, Domain.Entities.Order>();

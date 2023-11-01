@@ -16,7 +16,6 @@ namespace Shop.Infrastructure.Persistence
         {
 
         }
-        public DbSet<Cart> Carts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Item> Items { get; set; }
@@ -37,13 +36,6 @@ namespace Shop.Infrastructure.Persistence
                     .HasForeignKey(ci => ci.ItemId);
             });
 
-            modelBuilder.Entity<Cart>(entity =>
-            {
-                entity.HasMany(c => c.CartItems)
-                    .WithOne(ci => ci.Cart) 
-                    .HasForeignKey(ci => ci.CartId);
-
-            });
 
             modelBuilder.Entity<CartItem>(entity =>
             {

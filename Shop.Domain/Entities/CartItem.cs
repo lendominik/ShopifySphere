@@ -11,7 +11,6 @@ namespace Shop.Domain.Entities
         public int Id { get; set; }
         public int Quantity { get; set; }
         public decimal UnitPrice { get; set; }
-        public Cart Cart { get; set; }
         public string CartId { get; set; }
         public Item Item { get; set; }
         public int ItemId { get; set; }
