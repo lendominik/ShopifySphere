@@ -13,20 +13,18 @@ namespace Shop.Application.Cart.Commands.RemoveFromCart
     public class RemoveFromCartCommandHandler : IRequestHandler<RemoveFromCartCommand>
     {
         private readonly ICartItemRepository _cartItemRepository;
-        private readonly ICartRepository _cartRepository;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public RemoveFromCartCommandHandler(ICartItemRepository cartItemRepository, ICartRepository cartRepository, IHttpContextAccessor httpContextAccessor)
+        public RemoveFromCartCommandHandler(ICartItemRepository cartItemRepository, IHttpContextAccessor httpContextAccessor)
         {
             _cartItemRepository = cartItemRepository;
-            _cartRepository = cartRepository;
             _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<Unit> Handle(RemoveFromCartCommand request, CancellationToken cancellationToken)
         {
             var cartItem = await _cartItemRepository.GetCartItem(request.Id);
-            var cartId = await _cartRepository.GetCartId(_httpContextAccessor);
+            var cartId = await _cartItemRepository.GetCartId(_httpContextAccessor);
 
             if (cartId == null || cartItem == null)
             {

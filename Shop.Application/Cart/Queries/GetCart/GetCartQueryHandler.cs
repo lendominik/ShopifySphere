@@ -13,23 +13,23 @@ namespace Shop.Application.Cart.Queries.GetCart
 {
     public class GetCartQueryHandler : IRequestHandler<GetCartQuery, CartDto>
     {
-        private readonly ICartRepository _cartRepository;
+        private readonly ICartItemRepository _cartItemRepository;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IMapper _mapper;
 
-        public GetCartQueryHandler(ICartRepository cartRepository, IHttpContextAccessor httpContextAccessor, IMapper mapper)
+        public GetCartQueryHandler(ICartItemRepository cartItemRepository, IHttpContextAccessor httpContextAccessor, IMapper mapper)
         {
-            _cartRepository = cartRepository;
+            _cartItemRepository = cartItemRepository;
             _httpContextAccessor = httpContextAccessor;
             _mapper = mapper;
         }
         public async Task<CartDto> Handle(GetCartQuery request, CancellationToken cancellationToken)
         {
-            var cartId = await _cartRepository.GetCartId(_httpContextAccessor);
+            var cartId = await _cartItemRepository.GetCartId(_httpContextAccessor);
 
             await Console.Out.WriteLineAsync(cartId);
 
-            var cartItems = await _cartRepository.GetCartItems(cartId);
+            var cartItems = await _cartItemRepository.GetCartItems(cartId);
 
             var cartDto = new CartDto
             {

@@ -15,19 +15,17 @@ namespace Shop.Application.Cart.Commands.ChangingCartItemQuantity
     public class ChangingCartItemQuantityCommandHandler : IRequestHandler<ChangingCartItemQuantityCommand>
     {
         private readonly ICartItemRepository _cartItemRepository;
-        private readonly ICartRepository _cartRepository;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public ChangingCartItemQuantityCommandHandler(ICartItemRepository cartItemRepository, ICartRepository cartRepository, IHttpContextAccessor httpContextAccessor)
+        public ChangingCartItemQuantityCommandHandler(ICartItemRepository cartItemRepository, IHttpContextAccessor httpContextAccessor)
         {
             _cartItemRepository = cartItemRepository;
-            _cartRepository = cartRepository;
             _httpContextAccessor = httpContextAccessor;
         }
         public async Task<Unit> Handle(ChangingCartItemQuantityCommand request, CancellationToken cancellationToken)
         {
             var cartItem = await _cartItemRepository.GetCartItem(request.Id);
-            var cartId = await _cartRepository.GetCartId(_httpContextAccessor);
+            var cartId = await _cartItemRepository.GetCartId(_httpContextAccessor);
 
             if (cartId == null || cartItem == null)
             {

@@ -13,23 +13,24 @@ namespace Shop.Application.Order.Commands.CreateOrder
 {
     public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand>
     {
+        
         private readonly IOrderRepository _orderRepository;
-        private readonly ICartRepository _cartRepository;
+        private readonly ICartItemRepository _cartItemRepository;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IMapper _mapper;
 
-        public CreateOrderCommandHandler(IOrderRepository orderRepository, IHttpContextAccessor httpContextAccessor,ICartRepository cartRepository, IMapper mapper)
+        public CreateOrderCommandHandler(IOrderRepository orderRepository, IHttpContextAccessor httpContextAccessor,ICartItemRepository cartItemRepository, IMapper mapper)
         {
             _orderRepository = orderRepository;
-            _cartRepository = cartRepository;
+            _cartItemRepository = cartItemRepository;
             _httpContextAccessor = httpContextAccessor;
             _mapper = mapper;
         }
 
         public async Task<Unit> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
-            var cartId = await _cartRepository.GetCartId(_httpContextAccessor);
-            var cartItems = await _cartRepository.GetCartItems(cartId);
+            var cartId = await _cartItemRepository.GetCartId(_httpContextAccessor);
+            var cartItems = await _cartItemRepository.GetCartItems(cartId);
 
             var order = _mapper.Map<Domain.Entities.Order>(request);
 
@@ -37,8 +38,11 @@ namespace Shop.Application.Order.Commands.CreateOrder
             order.CartTotal = CalculateCartTotal(cartItems);
             order.OrderDate = DateTime.Now;
 
+            //MECHANIZM ODEJMOWANIA PRZEDMIOTOW ZAMOWIONYCH Z MAGAZYNNU 
+            //trzeba uwzględnić, że zamówienie nie mogło nie zostać opłacone - czyli najpierw PayPal trzeba podpiąć
+
             await _orderRepository.Create(order);
-            await _cartRepository.RemoveCartItemsByCartId(cartId);
+            await _cartItemRepository.RemoveCartItemsByCartId(cartId);
 
             return Unit.Value;
         }

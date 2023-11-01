@@ -80,5 +80,61 @@ namespace Shop.Infrastructure.Repositories
             _dbContext.CartItems.Update(cartItem);
             await _dbContext.SaveChangesAsync();
         }
+        public async Task<List<CartItem>> GetCartItems(string cartId)
+        {
+            if (string.IsNullOrWhiteSpace(cartId))
+            {
+                throw new ArgumentException("Invalid cartId");
+            }
+
+            var cartItems = await _dbContext.CartItems
+                .Include(c => c.Item)
+                .Where(c => c.CartId == cartId)
+                .ToListAsync();
+
+            return cartItems;
+        }
+
+        public async Task AddToCart(CartItem cartItem)
+        {
+            if (cartItem == null)
+            {
+                throw new ArgumentNullException(nameof(cartItem));
+            }
+
+            _dbContext.CartItems.Add(cartItem);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<string> GetCartId(IHttpContextAccessor httpContextAccessor)
+        {
+            if (httpContextAccessor == null)
+            {
+                throw new ArgumentNullException(nameof(httpContextAccessor));
+            }
+
+            var session = httpContextAccessor.HttpContext.Session;
+            var cartId = session.GetString("CartSessionKey");
+
+            if (string.IsNullOrWhiteSpace(cartId))
+            {
+                cartId = Guid.NewGuid().ToString();
+                session.SetString("CartSessionKey", cartId);
+            }
+
+            return cartId;
+        }
+        public async Task RemoveCartItemsByCartId(string cartId)
+        {
+            var cartItems = await _dbContext.CartItems
+                .Where(c => c.CartId == cartId)
+                .ToListAsync();
+
+            if (cartItems != null && cartItems.Any())
+            {
+                _dbContext.CartItems.RemoveRange(cartItems);
+                await _dbContext.SaveChangesAsync();
+            }
+        }
     }
 }

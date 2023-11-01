@@ -13,14 +13,12 @@ namespace Shop.Application.Cart.Commands.AddToCart
 {
     public class AddToCartCommandHandler : IRequestHandler<AddToCartCommand>
     {
-        private readonly ICartRepository _cartRepository;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IItemRepository _itemRepository;
         private readonly ICartItemRepository _cartItemRepository;
 
-        public AddToCartCommandHandler(ICartRepository cartRepository, IItemRepository itemRepository, ICartItemRepository cartItemRepository, IHttpContextAccessor httpContextAccessor)
+        public AddToCartCommandHandler(IItemRepository itemRepository, ICartItemRepository cartItemRepository, IHttpContextAccessor httpContextAccessor)
         {
-            _cartRepository = cartRepository;
             _httpContextAccessor = httpContextAccessor;
             _itemRepository = itemRepository;
             _cartItemRepository = cartItemRepository;
@@ -28,8 +26,8 @@ namespace Shop.Application.Cart.Commands.AddToCart
 
         public async Task<Unit> Handle(AddToCartCommand request, CancellationToken cancellationToken)
         {
-            var cartId = await _cartRepository.GetCartId(_httpContextAccessor);
-            var cartItems = await _cartRepository.GetCartItems(cartId);
+            var cartId = await _cartItemRepository.GetCartId(_httpContextAccessor);
+            var cartItems = await _cartItemRepository.GetCartItems(cartId);
             var item = await _itemRepository.GetByEncodedName(request.EncodedName);
 
             if(cartId == null || item == null)
@@ -49,7 +47,7 @@ namespace Shop.Application.Cart.Commands.AddToCart
                 var cartItem = await _cartItemRepository.GetCartItem(existingCartItem.Id);
                 cartItem.Quantity = existingCartItem.Quantity + 1;
                 cartItem.UnitPrice = cartItem.Quantity * item.Price;
-                await _cartRepository.Commit();
+                await _cartItemRepository.Commit();
             }
             else
             {
@@ -61,7 +59,7 @@ namespace Shop.Application.Cart.Commands.AddToCart
                     UnitPrice = 1 * item.Price,
                     ItemId = item.Id
                 };
-                await _cartRepository.AddToCart(cartItem);
+                await _cartItemRepository.AddToCart(cartItem);
             }
 
             return Unit.Value;
