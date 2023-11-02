@@ -136,5 +136,16 @@ namespace Shop.Infrastructure.Repositories
                 await _dbContext.SaveChangesAsync();
             }
         }
+        public async Task<decimal> CalculateCartTotal(List<CartItem> cartItems)
+        {
+            if (cartItems == null)
+            {
+                return 0;
+            }
+
+            decimal total = cartItems.Sum(item => item.UnitPrice);
+
+            return total;
+        }
     }
 }

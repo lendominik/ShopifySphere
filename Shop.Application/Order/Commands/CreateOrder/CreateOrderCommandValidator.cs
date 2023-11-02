@@ -34,6 +34,8 @@ namespace Shop.Application.Order.Commands.CreateOrder
                 .NotEmpty();
 
             RuleFor(o => o.PhoneNumber)
+                .MinimumLength(8)
+                .MaximumLength(12)
                 .NotEmpty();
         }
     }

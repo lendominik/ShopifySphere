@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using Shop.Application.ApplicationUser;
 using Shop.Application.Exceptions;
 using Shop.Domain.Entities;
 using Shop.Domain.Interfaces;
@@ -17,13 +18,15 @@ namespace Shop.Application.Order.Commands.CreateOrder
         
         private readonly IOrderRepository _orderRepository;
         private readonly ICartItemRepository _cartItemRepository;
+        private readonly IItemRepository _itemRepository;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IMapper _mapper;
 
-        public CreateOrderCommandHandler(IOrderRepository orderRepository, IHttpContextAccessor httpContextAccessor,ICartItemRepository cartItemRepository, IMapper mapper)
+        public CreateOrderCommandHandler(IOrderRepository orderRepository, IItemRepository itemRepository ,IHttpContextAccessor httpContextAccessor,ICartItemRepository cartItemRepository, IMapper mapper)
         {
             _orderRepository = orderRepository;
             _cartItemRepository = cartItemRepository;
+            _itemRepository = itemRepository;
             _httpContextAccessor = httpContextAccessor;
             _mapper = mapper;
         }
@@ -39,29 +42,23 @@ namespace Shop.Application.Order.Commands.CreateOrder
             }
 
             var order = _mapper.Map<Domain.Entities.Order>(request);
-
+ 
             order.CartItems = cartItems;
-            order.CartTotal = CalculateCartTotal(cartItems);
+            order.CartTotal = await _cartItemRepository.CalculateCartTotal(cartItems);
             order.OrderDate = DateTime.Now;
 
-            //MECHANIZM ODEJMOWANIA PRZEDMIOTOW ZAMOWIONYCH Z MAGAZYNNU 
-            //trzeba uwzględnić, że zamówienie nie mogło nie zostać opłacone - czyli najpierw PayPal trzeba podpiąć
+            foreach( var cartItem in cartItems)
+            {
+                var item = await _itemRepository.GetByEncodedName(cartItem.Item.EncodedName);
+                await _itemRepository.DeductStockQuantity(item, cartItem.Quantity);
+            }
+
+            //tu musi być sprawdzenie czy produkt został opłacony!
 
             await _orderRepository.Create(order);
             await _cartItemRepository.RemoveCartItemsByCartId(cartId);
 
             return Unit.Value;
-        }
-        public decimal CalculateCartTotal(List<CartItem> cartItems)
-        {
-            if (cartItems == null)
-            {
-                return 0; 
-            }
-
-            decimal total = cartItems.Sum(item => item.UnitPrice);
-
-            return total;
         }
     }
 }

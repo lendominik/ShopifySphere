@@ -20,5 +20,6 @@ namespace Shop.Domain.Interfaces
         Task RemoveCartItemsByCartId(string cartId);
         Task<List<CartItem>> GetCartItems(string cartId);
         Task<string?> GetCartId(IHttpContextAccessor httpContextAccessor);
+        Task<decimal> CalculateCartTotal(List<CartItem> cartItems);
     }
 }

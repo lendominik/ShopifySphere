@@ -18,7 +18,20 @@ namespace Shop.Infrastructure.Repositories
         {
             _dbContext = dbContext;
         }
+        public async Task<bool> DeductStockQuantity(Item item, int quantityToDeduct)
+        { 
+            if (item.StockQuantity < quantityToDeduct)
+            {
+                //brak wystarczającej ilości produktów w magazynie
+                return false;
+            }
 
+            item.StockQuantity -= quantityToDeduct;
+
+            await Commit();
+
+            return true;
+        }
         public async Task Create(Item item)
         {
             _dbContext.Items.Add(item);
@@ -48,5 +61,6 @@ namespace Shop.Infrastructure.Repositories
             _dbContext.Items.Remove(item);
             await _dbContext.SaveChangesAsync();
         }
+        
     }
 }

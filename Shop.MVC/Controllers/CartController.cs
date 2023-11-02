@@ -67,6 +67,7 @@ namespace Shop.MVC.Controllers
         {
             return View();
         }
+        [Authorize]
         [HttpPost]
         [Route("Cart/CreateOrder")]
         public async Task<IActionResult> CreateOrder(string cartId, CreateOrderCommand command)

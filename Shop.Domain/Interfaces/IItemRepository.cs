@@ -15,6 +15,6 @@ namespace Shop.Domain.Interfaces
         Task<Item> GetByName(string name);
         Task Commit();
         Task Delete(Item item);
-
+        Task<bool> DeductStockQuantity(Item item, int quantityToDeduct);
     }
 }
