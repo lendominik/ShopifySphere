@@ -28,6 +28,7 @@ namespace Shop.Application.Extensions
             services.AddScoped<IUserContext, UserContext>();
             services.AddMediatR(typeof(GetAllItemsQuery));
             services.AddMediatR(typeof(GetCartQuery));
+
             services.AddMediatR(typeof(CreateOrderCommand));
 
             services.AddHttpContextAccessor();
