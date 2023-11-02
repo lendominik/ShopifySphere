@@ -36,7 +36,7 @@ namespace Shop.Application.Order.Commands.CreateOrder
             var cartId = await _cartItemRepository.GetCartId(_httpContextAccessor);
             var cartItems = await _cartItemRepository.GetCartItems(cartId);
 
-            if (cartItems == null)
+            if (cartItems == null || cartItems.Count == 0)
             {
                 throw new NotFoundException("Koszyk jest pusty.");
             }
@@ -50,7 +50,12 @@ namespace Shop.Application.Order.Commands.CreateOrder
             foreach( var cartItem in cartItems)
             {
                 var item = await _itemRepository.GetByEncodedName(cartItem.Item.EncodedName);
-                await _itemRepository.DeductStockQuantity(item, cartItem.Quantity);
+                var deducted =  await _itemRepository.DeductStockQuantity(item, cartItem.Quantity);
+
+                if (!deducted)
+                {
+                    throw new NotFoundException("Ktoś wykupił przedmioty w Twoim koszu.");
+                }
             }
 
             //tu musi być sprawdzenie czy produkt został opłacony!
