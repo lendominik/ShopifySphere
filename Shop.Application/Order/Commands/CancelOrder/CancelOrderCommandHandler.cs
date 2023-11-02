@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Shop.Application.Exceptions;
 using Shop.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,18 @@ namespace Shop.Application.Order.Commands.CancelOrder
 
         public async Task<Unit> Handle(CancelOrderCommand request, CancellationToken cancellationToken)
         {
+            var order = await _orderRepository.GetOrderById(request.OrderId);
+
+            if(order == null)
+            {
+                throw new NotFoundException("Zamówienie o podanym ID nie istnieje.");
+            }
+
+            if(order.OrderStatus != Domain.Entities.OrderStatus.Pending)
+            {
+                throw new Exception("Nie można anulować zamówienia będącego w trakcie realizacji.");
+            }
+
             await _orderRepository.CancelOrder(request.OrderId);
 
             return Unit.Value;

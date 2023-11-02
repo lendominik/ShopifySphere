@@ -45,6 +45,12 @@ namespace Shop.Infrastructure.Repositories
             return orders;
         }
 
+        public async Task<Order> GetOrderById(int orderId)
+        {
+            var order = await _dbContext.Orders.Where(o => o.Id == orderId).FirstOrDefaultAsync();
+            return order;
+        }
+
         public async Task<List<Order>> GetUserOrders(string email)
         {
             var orders = await _dbContext.Orders.Where(o => o.Email == email).ToListAsync();
