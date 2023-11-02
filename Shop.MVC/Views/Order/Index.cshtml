@@ -72,9 +72,21 @@
                         @Html.DisplayFor(modelItem => item.OrderStatus)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                        @if (item.OrderStatus.ToString() == "Pending") 
+                        {
+                            <form asp-action="Cancel" method="post">
+                                <input type="hidden" name="OrderId" value="@item.Id" />
+                                <button type="submit" class="btn btn-warning">Anuluj zamówienie</button>
+                            </form>
+                        }
+                        else if (item.OrderStatus.ToString() == "Cancelled")
+                        {
+                            <a class="btn btn-danger">Zamówienie anulowane.</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-danegr">Zamówienie jest realizowane.</a>
+                        }
                     </td>
                 </tr>
             }

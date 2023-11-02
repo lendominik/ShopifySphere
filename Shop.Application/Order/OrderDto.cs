@@ -1,4 +1,5 @@
-﻿using Shop.Domain.Entities;
+﻿using Microsoft.AspNetCore.Components.Web;
+using Shop.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace Shop.Application.Order
 {
     public class OrderDto
     { 
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

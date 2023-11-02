@@ -19,6 +19,13 @@ namespace Shop.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
+        public async Task CancelOrder(int orderId)
+        {
+            var order = await _dbContext.Orders.FirstOrDefaultAsync(o => o.Id == orderId);
+            order.OrderStatus = OrderStatus.Cancelled;
+            await _dbContext.SaveChangesAsync();
+        }
+
         public async Task Create(Order order)
         {
             _dbContext.Orders.Add(order);
