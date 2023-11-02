@@ -1,4 +1,5 @@
-﻿using Shop.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Shop.Domain.Entities;
 using Shop.Domain.Interfaces;
 using Shop.Infrastructure.Persistence;
 using System;
@@ -22,6 +23,12 @@ namespace Shop.Infrastructure.Repositories
         {
             _dbContext.Orders.Add(order);
             await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<List<Order>> GetUserOrders(string email)
+        {
+            var orders = await _dbContext.Orders.Where(o => o.Email == email).ToListAsync();
+            return orders;
         }
     }
 }

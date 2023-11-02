@@ -40,6 +40,11 @@ namespace Shop.Application.Cart.Commands.AddToCart
                 throw new OutOfStockException("Nie ma tylu przedmiotów w magazynie.");
             }
 
+            if(item.StockQuantity < 1)
+            {
+                throw new OutOfStockException("Nie ma tylu przedmiotów w magazynie.");
+            }
+
             var existingCartItem = cartItems.FirstOrDefault(ci => ci.ItemId == item.Id);
 
             if (existingCartItem != null)

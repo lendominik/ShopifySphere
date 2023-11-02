@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Order\Queries\" />
+    <Folder Include="Order\Queries\GetAllOrders\" />
   </ItemGroup>
 
 </Project>
