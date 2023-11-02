@@ -8,6 +8,7 @@ using Shop.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -42,7 +43,9 @@ namespace Shop.Application.Order.Commands.CreateOrder
             }
 
             var order = _mapper.Map<Domain.Entities.Order>(request);
- 
+
+            order.OrderStatus = OrderStatus.Pending;
+            order.Email  = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Email);
             order.CartItems = cartItems;
             order.CartTotal = await _cartItemRepository.CalculateCartTotal(cartItems);
             order.OrderDate = DateTime.Now;

@@ -11,10 +11,6 @@ namespace Shop.Application.Order.Commands.CreateOrder
     {
         public CreateOrderCommandValidator()
         {
-            RuleFor(o => o.Email)
-                .EmailAddress()
-                .NotEmpty();
-
             RuleFor(o => o.Street)
                 .NotEmpty();
 

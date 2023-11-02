@@ -63,6 +63,7 @@ namespace Shop.MVC.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        [Authorize]
         public async Task<IActionResult> CreateOrder()
         {
             return View();
