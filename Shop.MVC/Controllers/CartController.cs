@@ -34,6 +34,7 @@ namespace Shop.MVC.Controllers
 
             return View(items);
         }
+
         [HttpPost]
         [Route("Cart/AddItem")]
         public async Task<IActionResult> Create(AddToCartCommand command)

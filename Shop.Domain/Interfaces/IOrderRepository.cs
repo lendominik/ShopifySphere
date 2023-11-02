@@ -11,6 +11,9 @@ namespace Shop.Domain.Interfaces
     {
         Task Create(Domain.Entities.Order order);
         Task<List<Order>> GetUserOrders(string email);
+        Task<List<Order>> GetAllOrders();
         Task CancelOrder(int orderId);
+        Task CompleteOrder(int orderId);
+        Task ShipOrder(int orderId);
     }
 }

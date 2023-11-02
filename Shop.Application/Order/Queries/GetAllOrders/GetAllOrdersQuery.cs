@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shop.Application.Order.Queries.GetUserOrders
+namespace Shop.Application.Order.Queries.GetAllOrders
 {
-    public class GetUserOrdersQuery : IRequest<List<OrderDto>>
+    public class GetAllOrdersQuery : IRequest<List<OrderDto>>
     {
-
     }
 }

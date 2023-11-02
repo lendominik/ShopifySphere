@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shop.Application.Order.Queries.GetUserOrders
+namespace Shop.Application.Order.Commands.ShipOrder
 {
-    public class GetUserOrdersQuery : IRequest<List<OrderDto>>
+    public class ShipOrderCommand : IRequest
     {
-
+        public int OrderId { get; set; }
     }
 }

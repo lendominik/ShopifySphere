@@ -41,8 +41,14 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="Index">Historia zamówień</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="Index">Twoje zamówienia</a>
                         </li>
+                        @if (User.IsInRole("Owner"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="All">Panel zarządzania zamówieniami</a>
+                            </li>
+                        }   
                         }
                     </ul>
                     <partial name="_LoginPartial" />

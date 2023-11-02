@@ -26,16 +26,36 @@ namespace Shop.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
+        public async Task CompleteOrder(int orderId)
+        {
+            var order = await _dbContext.Orders.FirstOrDefaultAsync(o => o.Id == orderId);
+            order.OrderStatus = OrderStatus.Delivered;
+            await _dbContext.SaveChangesAsync();
+        }
+
         public async Task Create(Order order)
         {
             _dbContext.Orders.Add(order);
             await _dbContext.SaveChangesAsync();
         }
 
+        public async Task<List<Order>> GetAllOrders()
+        {
+            var orders = await _dbContext.Orders.ToListAsync();
+            return orders;
+        }
+
         public async Task<List<Order>> GetUserOrders(string email)
         {
             var orders = await _dbContext.Orders.Where(o => o.Email == email).ToListAsync();
             return orders;
+        }
+
+        public async Task ShipOrder(int orderId)
+        {
+            var order = await _dbContext.Orders.FirstOrDefaultAsync(o => o.Id == orderId);
+            order.OrderStatus = OrderStatus.Shipped;
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

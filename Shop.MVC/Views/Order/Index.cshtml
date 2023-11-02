@@ -69,12 +69,9 @@
                         @Html.DisplayFor(modelItem => item.PostalCode)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.OrderStatus)
-                    </td>
-                    <td>
                         @if (item.OrderStatus.ToString() == "Pending") 
                         {
-                            <form asp-action="Cancel" method="post">
+                            <form asp-action="CancelUserOrder" method="post">
                                 <input type="hidden" name="OrderId" value="@item.Id" />
                                 <button type="submit" class="btn btn-warning">Anuluj zamówienie</button>
                             </form>
@@ -83,10 +80,16 @@
                         {
                             <a class="btn btn-danger">Zamówienie anulowane.</a>
                         }
+                        else if(item.OrderStatus.ToString() == "Shipped")
+                        {
+                            <a class="btn btn-info">Zamówienie jest realizowane.</a>
+                        }
                         else
                         {
-                            <a class="btn btn-danegr">Zamówienie jest realizowane.</a>
+                            <button type="submit" class="btn btn-success">Zamówienie zrealizowane.</button>
                         }
+
+                                         
                     </td>
                 </tr>
             }
