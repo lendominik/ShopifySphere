@@ -26,8 +26,6 @@ namespace Shop.Application.Category.Commands.EditCategory
 
             category.Description = request.Description;
 
-            category.EncodeName();
-
             await _categoryRepository.Commit();
 
             return Unit.Value;

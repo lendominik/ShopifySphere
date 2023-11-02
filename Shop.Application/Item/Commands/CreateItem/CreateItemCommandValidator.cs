@@ -23,6 +23,22 @@ namespace Shop.Application.Item.Commands.CreateItem
                         context.AddFailure("Przedmiot o tej nazwie istnieje już w bazie danych.");
                     }
                 });
+
+            RuleFor(c => c.Description)
+                .NotEmpty()
+                .MinimumLength(8);
+
+            RuleFor(c => c.Price)
+                .NotEmpty();
+
+            RuleFor(c => c.StockQuantity)
+                .NotEmpty();
+
+            RuleFor(c => c.CategoryEncodedName)
+                .NotEmpty();
+
+            RuleFor(c => c.ProductImage)
+                .NotEmpty();
         }
     }
 }

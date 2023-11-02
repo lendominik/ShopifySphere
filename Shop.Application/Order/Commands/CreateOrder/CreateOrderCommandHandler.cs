@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using Shop.Application.Exceptions;
 using Shop.Domain.Entities;
 using Shop.Domain.Interfaces;
 using System;
@@ -31,6 +32,11 @@ namespace Shop.Application.Order.Commands.CreateOrder
         {
             var cartId = await _cartItemRepository.GetCartId(_httpContextAccessor);
             var cartItems = await _cartItemRepository.GetCartItems(cartId);
+
+            if (cartItems == null)
+            {
+                throw new NotFoundException("Koszyk jest pusty.");
+            }
 
             var order = _mapper.Map<Domain.Entities.Order>(request);
 
