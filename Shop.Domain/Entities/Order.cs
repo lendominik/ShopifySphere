@@ -17,7 +17,7 @@ namespace Shop.Domain.Entities
     {
         public int Id { get; set; }
         public decimal CartTotal { get; set; }
-        public List<CartItem> CartItems { get; set; } = new List<CartItem>();
+        public List<CartItem> CartItems { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

@@ -69,6 +69,7 @@
                         @Html.DisplayFor(modelItem => item.PostalCode)
                     </td>
                     <td>
+                        <a class="btn btn-primary" asp-controller="Order" asp-action="Details" asp-route-orderId="@item.Id">Szczegóły</a>
                         @if (item.OrderStatus.ToString() == "Pending") 
                         {
                             <form asp-action="CancelUserOrder" method="post">
@@ -87,9 +88,7 @@
                         else
                         {
                             <button type="submit" class="btn btn-success">Zamówienie zrealizowane.</button>
-                        }
-
-                                         
+                        }                       
                     </td>
                 </tr>
             }

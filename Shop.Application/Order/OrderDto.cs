@@ -19,6 +19,8 @@ namespace Shop.Application.Order
         public string Street { get; set; }
         public string Address { get; set; }
         public string PostalCode { get; set; }
+
+        public List<CartItem> CartItems { get; set; }
         public OrderStatus OrderStatus { get; set; }
     }
 }

@@ -4,11 +4,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Application.Cart.Queries.GetCart;
 using Shop.Application.Item.Commands.DeleteItem;
+using Shop.Application.Item.Queries.GetItem;
 using Shop.Application.Order.Commands.CancelOrder;
 using Shop.Application.Order.Commands.CompleteOrderCommand;
 using Shop.Application.Order.Commands.ShipOrder;
 using Shop.Application.Order.Queries.GetAllOrders;
 using Shop.Application.Order.Queries.GetUserOrders;
+using Shop.Application.Order.Queries.OrderDetails;
 using Shop.MVC.Extensions;
 
 namespace Shop.MVC.Controllers
@@ -106,6 +108,13 @@ namespace Shop.MVC.Controllers
             var items = await _mediator.Send(new GetAllOrdersQuery());
 
             return View("AllOrders", items);
+        }
+        [Route("Order/{orderId}/Details")]
+        public async Task<IActionResult> Details(int orderId)
+        {
+            var item = await _mediator.Send(new OrderDetailsQuery(orderId));
+
+            return View(item);
         }
     }
 }

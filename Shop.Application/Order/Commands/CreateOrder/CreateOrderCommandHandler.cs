@@ -50,7 +50,7 @@ namespace Shop.Application.Order.Commands.CreateOrder
             order.CartTotal = await _cartItemRepository.CalculateCartTotal(cartItems);
             order.OrderDate = DateTime.Now;
 
-            foreach( var cartItem in cartItems)
+            foreach( var cartItem in order.CartItems)
             {
                 var item = await _itemRepository.GetByEncodedName(cartItem.Item.EncodedName);
                 var deducted =  await _itemRepository.DeductStockQuantity(item, cartItem.Quantity);
@@ -64,7 +64,6 @@ namespace Shop.Application.Order.Commands.CreateOrder
             //tu musi być sprawdzenie czy produkt został opłacony!
 
             await _orderRepository.Create(order);
-            await _cartItemRepository.RemoveCartItemsByCartId(cartId);
 
             return Unit.Value;
         }

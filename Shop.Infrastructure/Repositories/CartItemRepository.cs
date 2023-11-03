@@ -147,5 +147,12 @@ namespace Shop.Infrastructure.Repositories
 
             return total;
         }
+
+        public async Task<List<CartItem>> GetCartItemsByOrderId(int orderId)
+        {
+            var cartItems = await _dbContext.CartItems.Include(ci => ci.Item).Where(c => c.CartId == orderId.ToString()).ToListAsync();
+
+            return cartItems;
+        }
     }
 }

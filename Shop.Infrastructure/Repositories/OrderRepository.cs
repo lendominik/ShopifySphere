@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Shop.Domain.Entities;
 using Shop.Domain.Interfaces;
 using Shop.Infrastructure.Persistence;
@@ -18,7 +19,11 @@ namespace Shop.Infrastructure.Repositories
         {
             _dbContext = dbContext;
         }
-
+        //public async Task<List<CartItem>> GetOrderCartItems(int orderId)
+        //{
+        //    var cartItems = await _dbContext.CartItems.Where(o => o. == orderId).ToListAsync();
+        //    return cartItems;
+        //}
         public async Task CancelOrder(int orderId)
         {
             var order = await _dbContext.Orders.FirstOrDefaultAsync(o => o.Id == orderId);
@@ -47,7 +52,7 @@ namespace Shop.Infrastructure.Repositories
 
         public async Task<Order> GetOrderById(int orderId)
         {
-            var order = await _dbContext.Orders.Where(o => o.Id == orderId).FirstOrDefaultAsync();
+            var order = await _dbContext.Orders.Include(order => order.CartItems).ThenInclude(cartItem => cartItem.Item).Where(o => o.Id == orderId).FirstOrDefaultAsync();
             return order;
         }
 

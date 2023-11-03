@@ -12,6 +12,7 @@ namespace Shop.Domain.Interfaces
     {
         Task Create(Domain.Entities.CartItem cartItem);
         Task<CartItem> GetCartItem(int cartItemId);
+        Task<List<CartItem>> GetCartItemsByOrderId(int orderId);
         Task Delete(CartItem cartItem);
         Task UpdateCartItemQuantity(CartItem cartItem, int quantity);
         Task UpdateCartItem(CartItem cartItem);
