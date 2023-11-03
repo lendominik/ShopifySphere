@@ -37,8 +37,6 @@ namespace Shop.Application.Item.Commands.CreateItem
             RuleFor(c => c.CategoryEncodedName)
                 .NotEmpty();
 
-            RuleFor(c => c.ProductImage)
-                .NotEmpty();
         }
     }
 }

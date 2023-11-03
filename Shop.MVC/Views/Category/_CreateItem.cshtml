@@ -13,7 +13,7 @@
 <div class="modal fade" id="createItemModal" tabindex="-1" aria-labelledby="createItemModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form asp-action="CreateItem">
+            <form asp-action="CreateItem" enctype="multipart/form-data">
 
                 <input asp-for="@Model.CategoryEncodedName" class="form-control" type="hidden" />
 
@@ -32,10 +32,10 @@
                     <input class="form-control" type="text" asp-for="StockQuantity">
                     <span asp-validation-for="StockQuantity" class="text-danger"></span>
                 </div>
-                <div class="form-group mb-3">
-                    <label class="control-label" asp-for="ProductImage">Zdjęcie</label>
-                    <input class="form-control" type="text" asp-for="ProductImage">
-                    <span asp-validation-for="ProductImage" class="text-danger"></span>
+                <div class="form-control mb-3" >
+                    <label class="control-label" asp-for="Image"></label>
+                    <input class="form-control" asp-for="Image">
+                    <span asp-validation-for="Image" class="text-danger"></span>
                 </div>
                 <div class="form-group mb-3">
                     <label class="control-label" asp-for="Price">Cena</label>

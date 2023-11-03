@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\Shop.MVC.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\Dominik\\Desktop\\shopmvc\\Shop.MVC\\wwwroot\\Images\\0b96c57e-9a97-4805-8202-728a9c1afbf5-ziemniak.jpg",
+      "PackagePath": "staticwebassets\\Images\\0b96c57e-9a97-4805-8202-728a9c1afbf5-ziemniak.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Dominik\\Desktop\\shopmvc\\Shop.MVC\\wwwroot\\Images\\6a2aff69-8d0d-45d2-a405-87b1dadb1a5d-ziemniak.jpg",
+      "PackagePath": "staticwebassets\\Images\\6a2aff69-8d0d-45d2-a405-87b1dadb1a5d-ziemniak.jpg"
+    },
+    {
       "Id": "C:\\Users\\Dominik\\Desktop\\shopmvc\\Shop.MVC\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

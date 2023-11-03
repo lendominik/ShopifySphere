@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\js\Shop\" />
+    <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 
 </Project>

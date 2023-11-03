@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,6 @@ namespace Shop.Application.Item.Commands.EditItem
 {
     public class EditItemCommand : ItemDto, IRequest
     {
+        public IFormFile Image { get; set; }
     }
 }

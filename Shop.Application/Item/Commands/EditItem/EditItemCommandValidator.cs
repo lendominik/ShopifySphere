@@ -14,8 +14,6 @@ namespace Shop.Application.Item.Commands.EditItem
             RuleFor(c => c.Price)
                 .NotEmpty();
 
-            RuleFor(c => c.ProductImage) 
-                .NotEmpty();
 
             RuleFor(c => c.StockQuantity) 
                 .NotEmpty();

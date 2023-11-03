@@ -10,6 +10,7 @@ using Shop.Application.Category.Queries.GetAllCategories;
 using Shop.Application.Category.Queries.GetCategory;
 using Shop.Application.Item.Commands.CreateItem;
 using Shop.Application.Item.Queries.GetAllItems;
+using Shop.Domain.Entities;
 using Shop.MVC.Extensions;
 
 namespace Shop.MVC.Controllers
@@ -58,6 +59,7 @@ namespace Shop.MVC.Controllers
         [Route("Category/CreateItem")]
         public async Task<IActionResult> CreateItem(CreateItemCommand command)
         {
+
             if (!ModelState.IsValid)
             {
                 this.SetNotification("error", $"Nie udało się dodać nowego przedmiotu do wybranej kategorii");
