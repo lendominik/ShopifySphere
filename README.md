@@ -7,7 +7,6 @@
 * [Użyte technologie](#użyte-technologie)
 * [Wyróżniające elementy](#wyróżniające-elementy)
 * [Zdjęcia](#zdjęcia)
-* [Jak używać](#jak-używać)
 * [Status projektu](#status-projektu)
 * [Kontakt](#kontakt)
 
@@ -70,8 +69,6 @@
 ![image](https://github.com/lendominik/ShopMVC/assets/138286618/25e30a89-a01c-4494-9dce-0e6da8fb1e32)
 ### Przykładowy widok historii zamówień
 ![image](https://github.com/lendominik/ShopMVC/assets/138286618/0d10a74d-df5a-43e9-9ae6-054c1ea269b9)
-
-
 
 ## Status projektu
 Do skończenia projektu pozostaje dodać metody płatności.
