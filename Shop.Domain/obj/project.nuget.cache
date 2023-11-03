@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tz+86H7w5FpvogD0FcqTd2Ll7PvdkXKTJcRiK9W4LHYw7A7KjKBYOJuOR0LHONg9XS+rY1L4+keNlTfsfAjFfA==",
+  "dgSpecHash": "bt8KNC0CtUrFBm9nHTDZDHfEiajRpA8mj0xJQH/FYmgTG3bTgxDf4UpMkKYgibbWGLBgmuxRWeeHsWdO3to+Rw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dominik\\Desktop\\shopmvc\\Shop.Domain\\Shop.Domain.csproj",
+  "projectFilePath": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Domain\\Shop.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dominik\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Dominik\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
@@ -58,8 +58,10 @@
     "C:\\Users\\Dominik\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "C:\\Users\\Dominik\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\Dominik\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\Dominik\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\Dominik\\.nuget\\packages\\pagedlist\\1.17.0\\pagedlist.1.17.0.nupkg.sha512",
     "C:\\Users\\Dominik\\.nuget\\packages\\pagedlist.mvc\\4.5.0\\pagedlist.mvc.4.5.0.nupkg.sha512",
+    "C:\\Users\\Dominik\\.nuget\\packages\\stripe.net\\43.1.0\\stripe.net.43.1.0.nupkg.sha512",
     "C:\\Users\\Dominik\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\Dominik\\.nuget\\packages\\system.configuration.configurationmanager\\6.0.1\\system.configuration.configurationmanager.6.0.1.nupkg.sha512",
     "C:\\Users\\Dominik\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",

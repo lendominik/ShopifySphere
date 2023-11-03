@@ -17,7 +17,8 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.13",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.13",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
-          "PagedList.Mvc": "4.5.0"
+          "PagedList.Mvc": "4.5.0",
+          "Stripe.net": "43.1.0"
         },
         "runtime": {
           "Shop.Domain.dll": {}
@@ -569,6 +570,14 @@
           }
         }
       },
+      "Newtonsoft.Json/12.0.3": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.3.23909"
+          }
+        }
+      },
       "PagedList/1.17.0": {
         "runtime": {
           "lib/net40/PagedList.dll": {
@@ -585,6 +594,18 @@
           "lib/net40/PagedList.Mvc.dll": {
             "assemblyVersion": "4.5.0.0",
             "fileVersion": "4.5.0.0"
+          }
+        }
+      },
+      "Stripe.net/43.1.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3",
+          "System.Configuration.ConfigurationManager": "6.0.1"
+        },
+        "runtime": {
+          "lib/net6.0/Stripe.net.dll": {
+            "assemblyVersion": "43.1.0.0",
+            "fileVersion": "43.1.0.0"
           }
         }
       },
@@ -1150,6 +1171,13 @@
       "path": "mono.texttemplating/2.2.1",
       "hashPath": "mono.texttemplating.2.2.1.nupkg.sha512"
     },
+    "Newtonsoft.Json/12.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
+      "path": "newtonsoft.json/12.0.3",
+      "hashPath": "newtonsoft.json.12.0.3.nupkg.sha512"
+    },
     "PagedList/1.17.0": {
       "type": "package",
       "serviceable": true,
@@ -1163,6 +1191,13 @@
       "sha512": "sha512-D0M4qW2g4a9cwG8ozIKUnJheCrm5GpFTceqUl63AXWaAVnTgk+TysZYUOGMsBRuzid8aF+/E8b0bXM6+90jiEw==",
       "path": "pagedlist.mvc/4.5.0",
       "hashPath": "pagedlist.mvc.4.5.0.nupkg.sha512"
+    },
+    "Stripe.net/43.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yPHXg2+LoGBtX2Qhoa5hIVGtGZPZk2NJsmVEF7oWhWbnLl3KXLs6A7TzY8O7PH4FwJ7eQpO7liOtpdF8IPoEgg==",
+      "path": "stripe.net/43.1.0",
+      "hashPath": "stripe.net.43.1.0.nupkg.sha512"
     },
     "System.CodeDom/4.4.0": {
       "type": "package",

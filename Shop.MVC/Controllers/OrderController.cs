@@ -11,7 +11,9 @@ using Shop.Application.Order.Commands.ShipOrder;
 using Shop.Application.Order.Queries.GetAllOrders;
 using Shop.Application.Order.Queries.GetUserOrders;
 using Shop.Application.Order.Queries.OrderDetails;
+using Shop.Domain.Entities;
 using Shop.MVC.Extensions;
+using Stripe.Checkout;
 
 namespace Shop.MVC.Controllers
 {
@@ -90,6 +92,48 @@ namespace Shop.MVC.Controllers
             var items = await _mediator.Send(new GetAllOrdersQuery());
 
             return View("AllOrders", items);
+        }
+        public async Task<IActionResult> CheckOut(int orderId)
+        {
+            var query = new OrderDetailsQuery ( orderId );
+
+            var orderDto = await _mediator.Send(query);
+
+            var domain = "http://localhost:7109/";
+
+            var productList = orderDto.CartItems;
+
+            var options = new SessionCreateOptions
+            {
+                SuccessUrl = domain + "Order/Confirmation",
+                CancelUrl = domain + "Order/Login",
+                LineItems = new List<SessionLineItemOptions>(),
+                Mode = "payment"
+            };
+
+            foreach (var item in productList)
+            {
+                var sessionListItem = new SessionLineItemOptions
+                {
+                    PriceData = new SessionLineItemPriceDataOptions
+                    {
+                        UnitAmount = (long)item.Item.Price * 100, 
+                        Currency = "pln", 
+                        ProductData = new SessionLineItemPriceDataProductDataOptions
+                        {
+                            Name = item.Item.Name,
+                            Description = item.Item.Description
+                        },
+                    },
+                    Quantity = item.Quantity
+                };
+                options.LineItems.Add(sessionListItem);
+            }
+
+            var service = new SessionService();
+            Session session = service.Create(options);
+
+            return Redirect(session.Url);
         }
         [Authorize(Roles = "Owner")]
         [HttpPost]

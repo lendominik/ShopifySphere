@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Http;
 using Shop.Application.Middlewares;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,6 +53,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
+
 
 app.UseAuthorization();
 

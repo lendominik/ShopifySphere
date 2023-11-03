@@ -20,7 +20,8 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "7.0.9",
           "PagedList.Mvc": "4.5.0",
           "Shop.Application": "1.0.0",
-          "Shop.Infrastructure": "1.0.0"
+          "Shop.Infrastructure": "1.0.0",
+          "Stripe.net": "43.1.0"
         },
         "runtime": {
           "Shop.MVC.dll": {}
@@ -1929,6 +1930,18 @@
       "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
       "runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
       "runtime.ubuntu.16.10-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
+      "Stripe.net/43.1.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1",
+          "System.Configuration.ConfigurationManager": "6.0.1"
+        },
+        "runtime": {
+          "lib/net6.0/Stripe.net.dll": {
+            "assemblyVersion": "43.1.0.0",
+            "fileVersion": "43.1.0.0"
+          }
+        }
+      },
       "System.AppContext/4.3.0": {
         "dependencies": {
           "System.Runtime": "4.3.0"
@@ -2726,7 +2739,8 @@
           "Microsoft.Extensions.Configuration": "7.0.0",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "PagedList.Mvc": "4.5.0",
-          "Shop.Domain": "1.0.0"
+          "Shop.Domain": "1.0.0",
+          "Stripe.net": "43.1.0"
         },
         "runtime": {
           "Shop.Application.dll": {}
@@ -2742,7 +2756,8 @@
           "Microsoft.AspNetCore.Identity.UI": "7.0.13",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.13",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
-          "PagedList.Mvc": "4.5.0"
+          "PagedList.Mvc": "4.5.0",
+          "Stripe.net": "43.1.0"
         },
         "runtime": {
           "Shop.Domain.dll": {}
@@ -2760,7 +2775,8 @@
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "Newtonsoft.Json": "13.0.1",
           "PagedList.Mvc": "4.5.0",
-          "Shop.Application": "1.0.0"
+          "Shop.Application": "1.0.0",
+          "Stripe.net": "43.1.0"
         },
         "runtime": {
           "Shop.Infrastructure.dll": {}
@@ -3879,6 +3895,13 @@
       "sha512": "sha512-VB5cn/7OzUfzdnC8tqAIMQciVLiq2epm2NrAm1E9OjNRyG4lVhfR61SMcLizejzQP8R8Uf/0l5qOIbUEi+RdEg==",
       "path": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "hashPath": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512"
+    },
+    "Stripe.net/43.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yPHXg2+LoGBtX2Qhoa5hIVGtGZPZk2NJsmVEF7oWhWbnLl3KXLs6A7TzY8O7PH4FwJ7eQpO7liOtpdF8IPoEgg==",
+      "path": "stripe.net/43.1.0",
+      "hashPath": "stripe.net.43.1.0.nupkg.sha512"
     },
     "System.AppContext/4.3.0": {
       "type": "package",

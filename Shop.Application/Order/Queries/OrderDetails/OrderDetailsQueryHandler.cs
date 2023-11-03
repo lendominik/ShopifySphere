@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Query.Internal;
+using Shop.Application.Exceptions;
 using Shop.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -25,8 +26,12 @@ namespace Shop.Application.Order.Queries.OrderDetails
         }
         public async Task<OrderDto> Handle(OrderDetailsQuery request, CancellationToken cancellationToken)
         {
-            await Console.Out.WriteLineAsync("HANDLER"); await Console.Out.WriteLineAsync("HANDLER"); await Console.Out.WriteLineAsync("HANDLER"); await Console.Out.WriteLineAsync("HANDLER");
             var order = await _orderRepository.GetOrderById(request.OrderId);
+
+            if(order == null || order.CartItems == null)
+            {
+                throw new NotFoundException("Nie znaleziono takiego zamówienia.");
+            }
 
             var orderDto = _mapper.Map<OrderDto>(order);
 

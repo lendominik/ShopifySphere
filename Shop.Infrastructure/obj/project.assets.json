@@ -914,7 +914,7 @@
       "Microsoft.Win32.SystemEvents/6.0.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/Microsoft.Win32.SystemEvents.dll": {
             "related": ".xml"
           }
         },
@@ -987,6 +987,23 @@
           }
         }
       },
+      "Stripe.net/43.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3",
+          "System.Configuration.ConfigurationManager": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/Stripe.net.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Stripe.net.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "System.CodeDom/4.4.0": {
         "type": "package",
         "compile": {
@@ -1005,7 +1022,7 @@
           "System.Security.Permissions": "6.0.0"
         },
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/System.Configuration.ConfigurationManager.dll": {
             "related": ".xml"
           }
         },
@@ -1043,7 +1060,7 @@
           "Microsoft.Win32.SystemEvents": "6.0.0"
         },
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/System.Drawing.Common.dll": {
             "related": ".xml"
           }
         },
@@ -1187,7 +1204,7 @@
       "System.Security.AccessControl/6.0.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/System.Security.AccessControl.dll": {
             "related": ".xml"
           }
         },
@@ -1257,7 +1274,7 @@
           "System.Windows.Extensions": "6.0.0"
         },
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/System.Security.Permissions.dll": {
             "related": ".xml"
           }
         },
@@ -1387,7 +1404,7 @@
           "System.Drawing.Common": "6.0.0"
         },
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/System.Windows.Extensions.dll": {
             "related": ".xml"
           }
         },
@@ -1418,7 +1435,8 @@
           "Microsoft.Extensions.Configuration": "7.0.0",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "PagedList.Mvc": "4.5.0",
-          "Shop.Domain": "1.0.0"
+          "Shop.Domain": "1.0.0",
+          "Stripe.net": "43.1.0"
         },
         "compile": {
           "bin/placeholder/Shop.Application.dll": {}
@@ -1439,7 +1457,8 @@
           "Microsoft.AspNetCore.Identity.UI": "7.0.13",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.13",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
-          "PagedList.Mvc": "4.5.0"
+          "PagedList.Mvc": "4.5.0",
+          "Stripe.net": "43.1.0"
         },
         "compile": {
           "bin/placeholder/Shop.Domain.dll": {}
@@ -2866,6 +2885,29 @@
         "pagedlist.mvc.nuspec"
       ]
     },
+    "Stripe.net/43.1.0": {
+      "sha512": "yPHXg2+LoGBtX2Qhoa5hIVGtGZPZk2NJsmVEF7oWhWbnLl3KXLs6A7TzY8O7PH4FwJ7eQpO7liOtpdF8IPoEgg==",
+      "type": "package",
+      "path": "stripe.net/43.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "icon.png",
+        "lib/net461/Stripe.net.dll",
+        "lib/net461/Stripe.net.xml",
+        "lib/net5.0/Stripe.net.dll",
+        "lib/net5.0/Stripe.net.xml",
+        "lib/net6.0/Stripe.net.dll",
+        "lib/net6.0/Stripe.net.xml",
+        "lib/netcoreapp3.1/Stripe.net.dll",
+        "lib/netcoreapp3.1/Stripe.net.xml",
+        "lib/netstandard2.0/Stripe.net.dll",
+        "lib/netstandard2.0/Stripe.net.xml",
+        "stripe.net.43.1.0.nupkg.sha512",
+        "stripe.net.nuspec"
+      ]
+    },
     "System.CodeDom/4.4.0": {
       "sha512": "2sCCb7doXEwtYAbqzbF/8UAeDRMNmPaQbU2q50Psg1J9KzumyVVCgKQY8s53WIPTufNT0DpSe9QRvVjOzfDWBA==",
       "type": "package",
@@ -3781,7 +3823,8 @@
       "Microsoft.Extensions.DependencyInjection >= 7.0.0",
       "Newtonsoft.Json >= 13.0.1",
       "PagedList.Mvc >= 4.5.0",
-      "Shop.Application >= 1.0.0"
+      "Shop.Application >= 1.0.0",
+      "Stripe.net >= 43.1.0"
     ]
   },
   "packageFolders": {
@@ -3792,11 +3835,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dominik\\Desktop\\shopmvc\\Shop.Infrastructure\\Shop.Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Infrastructure\\Shop.Infrastructure.csproj",
       "projectName": "Shop.Infrastructure",
-      "projectPath": "C:\\Users\\Dominik\\Desktop\\shopmvc\\Shop.Infrastructure\\Shop.Infrastructure.csproj",
+      "projectPath": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Infrastructure\\Shop.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\Dominik\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dominik\\Desktop\\shopmvc\\Shop.Infrastructure\\obj\\",
+      "outputPath": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -3819,8 +3862,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\Dominik\\Desktop\\shopmvc\\Shop.Application\\Shop.Application.csproj": {
-              "projectPath": "C:\\Users\\Dominik\\Desktop\\shopmvc\\Shop.Application\\Shop.Application.csproj"
+            "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Application\\Shop.Application.csproj": {
+              "projectPath": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Application\\Shop.Application.csproj"
             }
           }
         }
@@ -3880,6 +3923,10 @@
           "PagedList.Mvc": {
             "target": "Package",
             "version": "[4.5.0, )"
+          },
+          "Stripe.net": {
+            "target": "Package",
+            "version": "[43.1.0, )"
           }
         },
         "imports": [
