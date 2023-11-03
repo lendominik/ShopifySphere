@@ -1,4 +1,4 @@
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/eba2c823-93cc-45ba-8752-fdbe43914bba)# ShopMVC
+# ShopMVC
 > Aplikacja sklepu internetowego oparta na platformie ASP.NET Core MVC umożliwia użytkownikom przeglądanie dostępnej listy przedmiotów, wykonywanie wyszukiwania, filtrowanie wyników, sortowanie ich według różnych kryteriów, wybieranie produktów oraz dokonywanie zakupów online.
 > plikacja umożliwia administratorom zarządzanie kategoriami, produktami oraz monitorowanie statusu zamówień składanych przez klientów. Dzięki tej aplikacji, administratorzy mogą dodawać, edytować i usuwać kategorie produktów, zarządzać dostępnymi przedmiotami w sklepie, a także aktualizować status zamówień składanych przez klientów.
 > 
