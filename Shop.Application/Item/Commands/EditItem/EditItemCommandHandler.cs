@@ -33,7 +33,7 @@ namespace Shop.Application.Item.Commands.EditItem
             }
 
             item.Description = request.Description;
-                item.Price = request.Price;
+            item.Price = request.Price;
             item.StockQuantity = request.StockQuantity;
 
             await _itemRepository.Commit();

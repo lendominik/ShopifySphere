@@ -64,6 +64,7 @@ namespace Shop.Application.Order.Commands.CreateOrder
             //tu musi być sprawdzenie czy produkt został opłacony!
 
             await _orderRepository.Create(order);
+            await _cartItemRepository.RemoveCartItemsByCartId(cartId);
 
             return Unit.Value;
         }

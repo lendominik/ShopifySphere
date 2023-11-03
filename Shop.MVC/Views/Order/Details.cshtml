@@ -69,7 +69,6 @@
                         @Html.DisplayFor(modelItem => Model.PostalCode)
                     </td>
                     <td>
-                        <a class="btn btn-primary" asp-controller="Order" asp-action="Details" asp-route-orderId="@Model.Id">Szczegóły</a>
                         @if (Model.OrderStatus.ToString() == "Pending")
                         {
                             <form asp-action="CancelUserOrder" method="post">
