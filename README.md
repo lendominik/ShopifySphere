@@ -7,7 +7,6 @@
 * [Użyte technologie](#użyte-technologie)
 * [Wyróżniające elementy](#wyróżniające-elementy)
 * [Zdjęcia](#zdjęcia)
-* [Ustawienia](#ustawienia)
 * [Jak używać](#jak-używać)
 * [Status projektu](#status-projektu)
 * [Kontakt](#kontakt)
@@ -67,23 +66,13 @@
 ![image](https://github.com/lendominik/ShopMVC/assets/138286618/4a32e229-7a9b-4a07-8813-0f906d1f097f)
 ![image](https://github.com/lendominik/ShopMVC/assets/138286618/a7ca57a0-9af5-429f-bcf6-d5e8d534116b)
 ![image](https://github.com/lendominik/ShopMVC/assets/138286618/471a42e5-cf37-475e-99e4-edcefc0f96d3)
-### Wido kdla zwykłego użytkownika, bez roli "Owner"
+### Widok dla zwykłego użytkownika, bez roli "Owner"
 ![image](https://github.com/lendominik/ShopMVC/assets/138286618/25e30a89-a01c-4494-9dce-0e6da8fb1e32)
 
 
 
+## Status projektu
+Do skończenia projektu pozostaje dodać metody płatności.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Kontakt
+Email: len.dominik13@gmail.com
