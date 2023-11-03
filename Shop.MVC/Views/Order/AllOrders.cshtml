@@ -10,36 +10,38 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                <a>ID zamówienia</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FirstName)
+                <a>Imie</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LastName)
+                <a>Nazwisko</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                <a>Email</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PhoneNumber)
+                <a>Numer telefonu</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.City)
+                <a>Miasto</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Street)
+                <a>Ulica</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Address)
+                <a>Numer domu</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PostalCode)
+                <a>Kod pocztowy</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OrderStatus)
+                <a>Szczegóły zamówienia</a>
             </th>
-            <th></th><th></th>
+            <th>
+                <a>Status zamówienia</a>
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -73,7 +75,7 @@
                 @Html.DisplayFor(modelItem => item.PostalCode)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OrderStatus)
+                <a class="btn btn-primary" asp-controller="Order" asp-action="Details" asp-route-orderId="@item.Id">Szczegóły</a>
             </td>
             <td>
                     @if (User.IsInRole("Owner"))
@@ -112,9 +114,7 @@
                         }
                     }
             </td>
-            <td>
-                    <a class="btn btn-primary" asp-controller="Order" asp-action="Details" asp-route-orderId="@item.Id">Szczegóły</a>
-            </td>
+            
         </tr>
 }
     </tbody>

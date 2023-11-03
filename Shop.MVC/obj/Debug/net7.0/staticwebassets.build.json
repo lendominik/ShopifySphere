@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ajmkoCAZxReqEZkTgS22h86SuZ5rtGkrtpfNTE2BfMs=",
+  "Hash": "MHWOSSFI1sXflZSQWYHYDoZ356yERzuZ3ARdqQm/e5E=",
   "Source": "Shop.MVC",
   "BasePath": "_content/Shop.MVC",
   "Mode": "Default",
@@ -1105,6 +1105,23 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
+      "Identity": "C:\\Users\\Dominik\\Desktop\\shopmvc\\Shop.MVC\\wwwroot\\Images\\0151da86-aa7f-45a4-a893-7abd686577df-ziemniak.jpg",
+      "SourceId": "Shop.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Dominik\\Desktop\\shopmvc\\Shop.MVC\\wwwroot\\",
+      "BasePath": "_content/Shop.MVC",
+      "RelativePath": "Images/0151da86-aa7f-45a4-a893-7abd686577df-ziemniak.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\0151da86-aa7f-45a4-a893-7abd686577df-ziemniak.jpg"
+    },
+    {
       "Identity": "C:\\Users\\Dominik\\Desktop\\shopmvc\\Shop.MVC\\wwwroot\\Images\\0b96c57e-9a97-4805-8202-728a9c1afbf5-ziemniak.jpg",
       "SourceId": "Shop.MVC",
       "SourceType": "Discovered",
@@ -1120,6 +1137,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\0b96c57e-9a97-4805-8202-728a9c1afbf5-ziemniak.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Dominik\\Desktop\\shopmvc\\Shop.MVC\\wwwroot\\Images\\1e5d491f-e962-4dbd-8441-92638b6f62fc-ziemniak.jpg",
+      "SourceId": "Shop.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Dominik\\Desktop\\shopmvc\\Shop.MVC\\wwwroot\\",
+      "BasePath": "_content/Shop.MVC",
+      "RelativePath": "Images/1e5d491f-e962-4dbd-8441-92638b6f62fc-ziemniak.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\1e5d491f-e962-4dbd-8441-92638b6f62fc-ziemniak.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Dominik\\Desktop\\shopmvc\\Shop.MVC\\wwwroot\\Images\\3ec57dab-c320-46f1-9de9-8cd107b83b05-ziemniak.jpg",
+      "SourceId": "Shop.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Dominik\\Desktop\\shopmvc\\Shop.MVC\\wwwroot\\",
+      "BasePath": "_content/Shop.MVC",
+      "RelativePath": "Images/3ec57dab-c320-46f1-9de9-8cd107b83b05-ziemniak.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\3ec57dab-c320-46f1-9de9-8cd107b83b05-ziemniak.jpg"
     },
     {
       "Identity": "C:\\Users\\Dominik\\Desktop\\shopmvc\\Shop.MVC\\wwwroot\\Images\\6a2aff69-8d0d-45d2-a405-87b1dadb1a5d-ziemniak.jpg",

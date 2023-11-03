@@ -35,9 +35,11 @@
                     <a>Kod pocztowy</a>
                 </th>
                 <th>
+                    <a>Szczegóły zamówienia</a>
+                </th>
+                <th>
                     <a>Status zamówienia</a>
                 </th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -70,6 +72,8 @@
                     </td>
                     <td>
                         <a class="btn btn-primary" asp-controller="Order" asp-action="Details" asp-route-orderId="@item.Id">Szczegóły</a>
+                    </td>
+                    <td>
                         @if (item.OrderStatus.ToString() == "Pending") 
                         {
                             <form asp-action="CancelUserOrder" method="post">
