@@ -17,5 +17,6 @@ namespace Shop.Domain.Interfaces
         Task CompleteOrder(int orderId);
         Task ShipOrder(int orderId);
         Task SetOrderPaidStauts(Order order);
+        Task Commit();
     }
 }

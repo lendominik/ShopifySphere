@@ -63,22 +63,20 @@ namespace Shop.Infrastructure.Repositories
         }
 
         public async Task SetOrderPaidStauts(Order order)
-        {
-            if (order != null)
-            {
-                order.IsPaid = true;
-                _dbContext.Update(order); 
-                await _dbContext.SaveChangesAsync();
-            }
-            await Console.Out.WriteLineAsync(order.IsPaid.ToString()); await Console.Out.WriteLineAsync(order.IsPaid.ToString()); await Console.Out.WriteLineAsync(order.IsPaid.ToString());
-            await Console.Out.WriteLineAsync(order.IsPaid.ToString()); await Console.Out.WriteLineAsync(order.IsPaid.ToString()); await Console.Out.WriteLineAsync(order.IsPaid.ToString());
-            await Console.Out.WriteLineAsync(order.IsPaid.ToString()); await Console.Out.WriteLineAsync(order.IsPaid.ToString()); await Console.Out.WriteLineAsync(order.IsPaid.ToString());
+        { 
+            order.IsPaid = true;
+            await Commit();
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task ShipOrder(int orderId)
         {
             var order = await _dbContext.Orders.FirstOrDefaultAsync(o => o.Id == orderId);
             order.OrderStatus = OrderStatus.Shipped;
+            await _dbContext.SaveChangesAsync();
+        }
+        public async Task Commit()
+        {
             await _dbContext.SaveChangesAsync();
         }
     }

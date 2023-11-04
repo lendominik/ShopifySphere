@@ -94,8 +94,9 @@ namespace Shop.MVC.Controllers
 
             return View("AllOrders", items);
         }
+        [Authorize]
         [Route("Order/Success")]
-        public IActionResult Success()
+        public async Task<IActionResult> Success()
         {
             if (TempData.ContainsKey("Session") && TempData["Session"] != null)
             {
@@ -113,7 +114,7 @@ namespace Shop.MVC.Controllers
                         OrderId = orderId
                     };
 
-                    _mediator.Send(query);
+                    await _mediator.Send(query);
 
                     return View("Success");
                 }
@@ -121,6 +122,7 @@ namespace Shop.MVC.Controllers
 
             return View("Cancel");
         }
+        [Authorize]
         [Route("Order/Cancel")]
         public IActionResult Cancel()
         {

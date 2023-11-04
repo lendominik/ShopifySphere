@@ -132,7 +132,7 @@
 @if (Model.IsPaid == false)
 {
     <p>
-        <a asp-action="CheckOut" asp-controller="Order" asp-route-orderId="@Model.Id">Opłać</a>
+        <a asp-action="CheckOut" asp-controller="Order" class="btn btn-success" asp-route-orderId="@Model.Id">Opłać</a>
     </p>
 }
 

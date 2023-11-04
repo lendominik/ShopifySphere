@@ -35,6 +35,9 @@
                     <a>Kod pocztowy</a>
                 </th>
                 <th>
+                    Opłacone
+                </th>
+                <th>
                     <a>Szczegóły zamówienia</a>
                 </th>
                 <th>
@@ -71,27 +74,41 @@
                         @Html.DisplayFor(modelItem => item.PostalCode)
                     </td>
                     <td>
+                        @if (item.IsPaid == true)
+                        {
+                            <a class="btn btn-info">Tak</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-danger">Nie</a>
+                        }
+                    </td>
+                    <td>
                         <a class="btn btn-primary" asp-controller="Order" asp-action="Details" asp-route-orderId="@item.Id">Szczegóły</a>
                     </td>
                     <td>
-                        @if (item.OrderStatus.ToString() == "Pending") 
+                        @if (item.OrderStatus.ToString() == "Pending" && item.IsPaid == false) 
                         {
                             <form asp-action="CancelUserOrder" method="post">
                                 <input type="hidden" name="OrderId" value="@item.Id" />
                                 <button type="submit" class="btn btn-warning">Anuluj zamówienie</button>
                             </form>
                         }
+                        else if(item.OrderStatus.ToString() == "Pending")
+                        {
+                            <a class="btn btn-danger">Przyjęto zamówienie</a>
+                        }
                         else if (item.OrderStatus.ToString() == "Cancelled")
                         {
-                            <a class="btn btn-danger">Zamówienie anulowane.</a>
+                            <a class="btn btn-danger">Zamówienie anulowane</a>
                         }
                         else if(item.OrderStatus.ToString() == "Shipped")
                         {
-                            <a class="btn btn-info">Zamówienie jest realizowane.</a>
+                            <a class="btn btn-info">Zamówienie jest realizowane</a>
                         }
                         else
                         {
-                            <button type="submit" class="btn btn-success">Zamówienie zrealizowane.</button>
+                            <button type="submit" class="btn btn-success">Zamówienie zrealizowane</button>
                         }                       
                     </td>
                 </tr>
