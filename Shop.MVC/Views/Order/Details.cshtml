@@ -69,7 +69,14 @@
                         @Html.DisplayFor(modelItem => Model.PostalCode)
                     </td>
                     <td>
-                        @if (Model.OrderStatus.ToString() == "Pending")
+                        @if (Model.OrderStatus.ToString() == "Unpaid")
+                        {
+                            <form asp-action="CancelUserOrder" method="post">
+                                <input type="hidden" name="OrderId" value="@Model.Id" />
+                                <button type="submit" class="btn btn-warning">Anuluj zamówienie</button>
+                            </form>
+                        }
+                        else if (Model.OrderStatus.ToString() == "Pending")
                         {
                             <form asp-action="CancelUserOrder" method="post">
                                 <input type="hidden" name="OrderId" value="@Model.Id" />
