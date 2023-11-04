@@ -37,6 +37,9 @@
                         <a>Kod pocztowy</a>
                     </th>
                     <th>
+                        <a>Opłacone</a>
+                    </th>
+                    <th>
                         <a>Status zamówienia</a>
                     </th>
                     <th></th>
@@ -69,14 +72,17 @@
                         @Html.DisplayFor(modelItem => Model.PostalCode)
                     </td>
                     <td>
-                        @if (Model.OrderStatus.ToString() == "Unpaid")
+                        @if (Model.IsPaid == true)
                         {
-                            <form asp-action="CancelUserOrder" method="post">
-                                <input type="hidden" name="OrderId" value="@Model.Id" />
-                                <button type="submit" class="btn btn-warning">Anuluj zamówienie</button>
-                            </form>
+                            <a class="btn btn-info">Opłacone</a>
                         }
-                        else if (Model.OrderStatus.ToString() == "Pending")
+                        else
+                        {
+                            <a class="btn btn-danger">Nie opłacone</a>
+                        }
+                    </td>
+                    <td>
+                        @if (Model.OrderStatus.ToString() == "Pending")
                         {
                             <form asp-action="CancelUserOrder" method="post">
                                 <input type="hidden" name="OrderId" value="@Model.Id" />
@@ -123,9 +129,12 @@
     </table>
 </div>
 
-<p>
-    <a asp-action="CheckOut" asp-controller="Order" asp-route-orderId="@Model.Id">Opłać</a>
-</p>
+@if (Model.IsPaid == false)
+{
+    <p>
+        <a asp-action="CheckOut" asp-controller="Order" asp-route-orderId="@Model.Id">Opłać</a>
+    </p>
+}
 
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |

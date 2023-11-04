@@ -44,6 +44,7 @@ namespace Shop.Application.Order.Commands.CreateOrder
 
             var order = _mapper.Map<Domain.Entities.Order>(request);
 
+            order.IsPaid = false;
             order.OrderStatus = OrderStatus.Pending;
             order.Email  = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Email);
             order.CartItems = cartItems;

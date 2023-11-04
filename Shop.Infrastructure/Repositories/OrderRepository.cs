@@ -62,6 +62,19 @@ namespace Shop.Infrastructure.Repositories
             return orders;
         }
 
+        public async Task SetOrderPaidStauts(Order order)
+        {
+            if (order != null)
+            {
+                order.IsPaid = true;
+                _dbContext.Update(order); 
+                await _dbContext.SaveChangesAsync();
+            }
+            await Console.Out.WriteLineAsync(order.IsPaid.ToString()); await Console.Out.WriteLineAsync(order.IsPaid.ToString()); await Console.Out.WriteLineAsync(order.IsPaid.ToString());
+            await Console.Out.WriteLineAsync(order.IsPaid.ToString()); await Console.Out.WriteLineAsync(order.IsPaid.ToString()); await Console.Out.WriteLineAsync(order.IsPaid.ToString());
+            await Console.Out.WriteLineAsync(order.IsPaid.ToString()); await Console.Out.WriteLineAsync(order.IsPaid.ToString()); await Console.Out.WriteLineAsync(order.IsPaid.ToString());
+        }
+
         public async Task ShipOrder(int orderId)
         {
             var order = await _dbContext.Orders.FirstOrDefaultAsync(o => o.Id == orderId);

@@ -7,6 +7,7 @@ using Shop.Application.Item.Commands.DeleteItem;
 using Shop.Application.Item.Queries.GetItem;
 using Shop.Application.Order.Commands.CancelOrder;
 using Shop.Application.Order.Commands.CompleteOrderCommand;
+using Shop.Application.Order.Commands.SetOrderPaidStatus;
 using Shop.Application.Order.Commands.ShipOrder;
 using Shop.Application.Order.Queries.GetAllOrders;
 using Shop.Application.Order.Queries.GetUserOrders;
@@ -93,20 +94,52 @@ namespace Shop.MVC.Controllers
 
             return View("AllOrders", items);
         }
+        [Route("Order/Success")]
+        public IActionResult Success()
+        {
+            if (TempData.ContainsKey("Session") && TempData["Session"] != null)
+            {
+                var sessionId = TempData["Session"].ToString();
+                var service = new SessionService();
+
+                if (!string.IsNullOrEmpty(sessionId))
+                {
+                    Session session = service.Get(sessionId);
+
+                    var orderId = (int)TempData["OrderId"];
+
+                    var query = new SetOrderPaidStatusCommand()
+                    {
+                        OrderId = orderId
+                    };
+
+                    _mediator.Send(query);
+
+                    return View("Success");
+                }
+            }
+
+            return View("Cancel");
+        }
+        [Route("Order/Cancel")]
+        public IActionResult Cancel()
+        {
+            return View("Cancel");
+        }
         public async Task<IActionResult> CheckOut(int orderId)
         {
-            var query = new OrderDetailsQuery ( orderId );
+            var query = new OrderDetailsQuery(orderId);
 
             var orderDto = await _mediator.Send(query);
 
-            var domain = "http://localhost:7109/";
+            var domain = "https://localhost:7109/";
 
             var productList = orderDto.CartItems;
 
             var options = new SessionCreateOptions
             {
-                SuccessUrl = domain + "Order/Confirmation",
-                CancelUrl = domain + "Order/Login",
+                SuccessUrl = domain + "Order/Success",
+                CancelUrl = domain + "Order/Cancel",
                 LineItems = new List<SessionLineItemOptions>(),
                 Mode = "payment"
             };
@@ -117,8 +150,8 @@ namespace Shop.MVC.Controllers
                 {
                     PriceData = new SessionLineItemPriceDataOptions
                     {
-                        UnitAmount = (long)item.Item.Price * 100, 
-                        Currency = "pln", 
+                        UnitAmount = (long)item.Item.Price * 100,
+                        Currency = "pln",
                         ProductData = new SessionLineItemPriceDataProductDataOptions
                         {
                             Name = item.Item.Name,
@@ -132,6 +165,11 @@ namespace Shop.MVC.Controllers
 
             var service = new SessionService();
             Session session = service.Create(options);
+
+            TempData["Session"] = session.Id;
+            TempData["OrderId"] = orderId;
+
+            Response.Headers.Add("Location", session.Url);
 
             return Redirect(session.Url);
         }

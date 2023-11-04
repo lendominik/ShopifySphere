@@ -1114,3 +1114,4 @@ C:\Users\Dominik\Desktop\shopmvc\Shop.MVC\bin\Debug\net7.0\FluentValidation.Depe
 C:\Users\Dominik\Desktop\shopmvc\Shop.MVC\bin\Debug\net7.0\libman.json
 C:\Users\Dominik\Desktop\shop\Shop.MVC\bin\Debug\net7.0\libman.json
 C:\Users\Dominik\Desktop\shop\Shop.MVC\bin\Debug\net7.0\Stripe.net.dll
+C:\Users\Dominik\Desktop\shopmvc\Shop.MVC\bin\Debug\net7.0\Stripe.net.dll
