@@ -36,6 +36,7 @@
 - W projekcie jest zastosowana autoryzacja za pomocą paczki Identity.UI, która zapewnia dostęp i widoczność określonych elementów tylko dla administratorów.
 - Możliwość logowania się za pomocą Facebook'a.
 - Dodawanie zdjęć przedmiotów z komputera.
+- System obsługi płatności
 
 
 ## Zdjęcia
