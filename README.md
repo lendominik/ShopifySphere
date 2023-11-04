@@ -74,10 +74,7 @@
 ![image](https://github.com/lendominik/ShopMVC/assets/138286618/4c1de18a-8d50-4c8e-9edf-5e6ccfc9cb9c)
 ![image](https://github.com/lendominik/ShopMVC/assets/138286618/564bde60-d79b-4d28-9417-39c083457b63)
 ![image](https://github.com/lendominik/ShopMVC/assets/138286618/929dc831-0cfb-4dc2-ae3b-c6b971c7411b)
-
-
-
-
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/ac331545-e00c-4622-965b-2186589ae2f0)
 
 ## Kontakt
 Email: len.dominik13@gmail.com
