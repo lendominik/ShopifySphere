@@ -1,4 +1,4 @@
-# ShopMVC
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/8ac0e465-b597-4368-9235-45d306e310a7)# ShopMVC
 > Aplikacja sklepu internetowego oparta na platformie ASP.NET Core MVC umożliwia użytkownikom przeglądanie dostępnej listy przedmiotów, wykonywanie wyszukiwania, filtrowanie wyników, sortowanie ich według różnych kryteriów, wybieranie produktów oraz dokonywanie zakupów online.
 > plikacja umożliwia administratorom zarządzanie kategoriami, produktami oraz monitorowanie statusu zamówień składanych przez klientów. Dzięki tej aplikacji, administratorzy mogą dodawać, edytować i usuwać kategorie produktów, zarządzać dostępnymi przedmiotami w sklepie, a także aktualizować status zamówień składanych przez klientów.
 > 
@@ -69,6 +69,15 @@
 ![image](https://github.com/lendominik/ShopMVC/assets/138286618/25e30a89-a01c-4494-9dce-0e6da8fb1e32)
 ### Przykładowy widok historii zamówień
 ![image](https://github.com/lendominik/ShopMVC/assets/138286618/0d10a74d-df5a-43e9-9ae6-054c1ea269b9)
+### System płatności
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/37ac7233-7ddd-4be2-8aa0-351a41d4291f)
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/4c1de18a-8d50-4c8e-9edf-5e6ccfc9cb9c)
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/564bde60-d79b-4d28-9417-39c083457b63)
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/929dc831-0cfb-4dc2-ae3b-c6b971c7411b)
+
+
+
+
 
 ## Kontakt
 Email: len.dominik13@gmail.com
