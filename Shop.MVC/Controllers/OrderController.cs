@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Application.Cart.Queries.GetCart;
 using Shop.Application.Item.Commands.DeleteItem;
+using Shop.Application.Item.Queries.GetAllItems;
 using Shop.Application.Item.Queries.GetItem;
 using Shop.Application.Order.Commands.CancelOrder;
 using Shop.Application.Order.Commands.CompleteOrderCommand;
@@ -15,6 +16,8 @@ using Shop.Application.Order.Queries.OrderDetails;
 using Shop.Domain.Entities;
 using Shop.MVC.Extensions;
 using Stripe.Checkout;
+using System.Drawing.Printing;
+using System.Globalization;
 
 namespace Shop.MVC.Controllers
 {
@@ -36,11 +39,16 @@ namespace Shop.MVC.Controllers
         }
         [Authorize(Roles = "Owner")]
         [Route("Order/All")]
-        public async Task<IActionResult> AllOrders()
+        public async Task<IActionResult> AllOrders(int PageNumber, int PageSize, string searchPhrase)
         {
-            var items = await _mediator.Send(new GetAllOrdersQuery());
+            var orders = await _mediator.Send(new GetAllOrdersQuery
+            {
+                PageNumber = PageNumber,
+                PageSize = PageSize,
+                SearchPhrase = searchPhrase,
+            });
 
-            return View(items);
+            return View(orders);
         }
         [Authorize]
         [HttpPost]

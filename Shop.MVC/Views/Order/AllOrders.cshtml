@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Shop.Application.Order.OrderDto>
+﻿@model Shop.Application.Order.PagedResult
 
 @{
     ViewData["Title"] = "AllOrders";
@@ -6,135 +6,172 @@
 
 <h1>Panel zarządzania zamówieniami</h1>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                <a>ID zamówienia</a>
-            </th>
-            <th>
-                <a>Imie</a>
-            </th>
-            <th>
-                <a>Nazwisko</a>
-            </th>
-            <th>
-                <a>Email</a>
-            </th>
-            <th>
-                <a>Numer telefonu</a>
-            </th>
-            <th>
-                <a>Miasto</a>
-            </th>
-            <th>
-                <a>Ulica</a>
-            </th>
-            <th>
-                <a>Numer domu</a>
-            </th>
-            <th>
-                <a>Kod pocztowy</a>
-            </th>
-            <th>
-                <a>Data złożenia</a>
-            </th>
-            <th>
-                Opłacone
-            </th>
-            <th>
-                <a>Szczegóły zamówienia</a>
-            </th>
-            <th>
-                <a>Status zamówienia</a>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Street)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostalCode)
-            </td>
-            <td>
-                <a>@item.OrderDate</a>
-            </td>
-            <td>
-                @if (item.IsPaid == true)
+<div>
+    <a><b>Łączna liczba zamówień w bazie: @Model.TotalItemsCount</b></a>
+</div>
+
+<form method="post" action="/Order/All">
+    <div class="form-group">
+        <label for="searchPhrase">Wyszukaj:</label>
+        <input type="text" class="form-control" id="searchPhrase" name="searchPhrase" placeholder="Wpisz frazę..." />
+    </div>
+    <button type="submit" class="btn btn-primary">Szukaj</button>
+</form>
+
+
+<div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        <a>Imie</a>
+                    </th>
+                    <th>
+                        <a>Nazwisko</a>
+                    </th>
+                    <th>
+                        <a>Adres email</a>
+                    </th>
+                    <th>
+                        <a>Numer telefonu</a>
+                    </th>
+                    <th>
+                        <a>Miasto</a>
+                    </th>
+                    <th>
+                        <a>Ulica</a>
+                    </th>
+                    <th>
+                        <a>Adres</a>
+                    </th>
+                    <th>
+                        <a>Kod pocztowy</a>
+                    </th>
+                    <th>
+                        <a>Data złożenia</a>
+                    </th>
+                    <th>
+                        <a>Opłacone</a>
+                    </th>
+                    <th>
+                        <a>Szczegóły zamówienia</a>
+                    </th>
+                    <th>
+                        <a>Status zamówienia</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Orders)
                 {
-                <a class="btn btn-info">Tak</a>
-                }
-                else
-                {
-                <a class="btn btn-danger">Nie</a>
-                }
-            </td>
-            <td>
-                <a class="btn btn-primary" asp-controller="Order" asp-action="Details" asp-route-orderId="@item.Id">Szczegóły</a>
-            </td>
-            <td>
-                    @if (User.IsInRole("Owner"))
-                    {
-                        @if (item.OrderStatus.ToString() == "Pending")
-                        {
-                            <form asp-action="CancelOrderByAdmin" method="post">
-                                <input type="hidden" name="OrderId" value="@item.Id" />
-                                <button type="submit" class="btn btn-warning">Anuluj zamówienie</button>
-                            </form>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.City)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Street)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PostalCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelTime => item.OrderDate)
+                        </td>
+                        <td>
+                            @if (item.IsPaid == true)
+                            {
+                                <a class="btn btn-info">Tak</a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-danger">Nie</a>
+                            }
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" asp-controller="Order" asp-action="Details" asp-route-orderId="@item.Id">Szczegóły</a>
+                        </td>
+                        <td>
                             @if (User.IsInRole("Owner"))
                             {
-                                <form asp-action="Ship" method="post">
-                                    <input type="hidden" name="OrderId" value="@item.Id" />
-                                    <button type="submit" class="btn btn-warning">Oznacz jako wysłane</button>
-                                </form>
-                            }
+                                @if (item.OrderStatus.ToString() == "Pending")
+                                {
+                                    <form asp-action="CancelOrderByAdmin" method="post">
+                                        <input type="hidden" name="OrderId" value="@item.Id" />
+                                        <button type="submit" class="btn btn-warning">Anuluj zamówienie</button>
+                                    </form>
+                                    @if (User.IsInRole("Owner"))
+                                    {
+                                        <form asp-action="Ship" method="post">
+                                            <input type="hidden" name="OrderId" value="@item.Id" />
+                                            <button type="submit" class="btn btn-warning">Oznacz jako wysłane</button>
+                                        </form>
+                                    }
 
-                        }
-                        else if (item.OrderStatus.ToString() == "Cancelled")
-                        {
-                            <a class="btn btn-danger">Zamówienie anulowane.</a>
-                        }
-                        else if (item.OrderStatus.ToString() == "Shipped")
-                        {
-                            <a class="btn btn-info">Zamówienie jest realizowane.</a>
-                        
-                                <form asp-action="Complete" method="post">
-                                    <input type="hidden" name="OrderId" value="@item.Id" />
-                                    <button type="submit" class="btn btn-warning">Oznacz jako zrealizowane.</button>
-                                </form>
-                        }
-                        else
-                        {
-                            <button type="submit" class="btn btn-success">Zamówienie zrealizowane.</button>
-                        }
+                                }
+                                else if (item.OrderStatus.ToString() == "Cancelled")
+                                {
+                                    <a class="btn btn-danger">Zamówienie anulowane.</a>
+                                }
+                                else if (item.OrderStatus.ToString() == "Shipped")
+                                {
+                                    <a class="btn btn-info">Zamówienie jest realizowane.</a>
+
+                                    <form asp-action="Complete" method="post">
+                                        <input type="hidden" name="OrderId" value="@item.Id" />
+                                        <button type="submit" class="btn btn-warning">Oznacz jako zrealizowane.</button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-success">Zamówienie zrealizowane.</button>
+                                }
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="row">
+            <div class="col-md-12">
+                <p>Wyświetlane elementy od @Model.ItemsFrom do @Model.ItemsTo z @Model.TotalItemsCount</p>
+                <ul class="pagination">
+                    @for (var i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(Model.CurrentPage == i ? "active" : "")">
+                            <a class="page-link" href="@Url.Action("AllOrders", new { PageNumber = i, PageSize = Model.PageSize, searchPhrase = ViewData["SearchPhrase"], selectedCategory = ViewData["SelectedCategory"] })">@i</a>
+                        </li>
                     }
-            </td>
-            
-        </tr>
-}
-    </tbody>
-</table>
+                </ul>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div>
+            <p>Tylko zalogowani użytkownicy mogą wyświetlać historię zamówień.</p>
+        </div>
+    }
+
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

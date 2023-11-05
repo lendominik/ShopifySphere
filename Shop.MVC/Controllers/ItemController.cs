@@ -34,8 +34,6 @@ namespace Shop.MVC.Controllers
                 SelectedCategory = SelectedCategory
             });
 
-            await Console.Out.WriteLineAsync(PageNumber +" "+PageSize);
-
             return View(items);
         }
         [Authorize(Roles = "Owner")]
