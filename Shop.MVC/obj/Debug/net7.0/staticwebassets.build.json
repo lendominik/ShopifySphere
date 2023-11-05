@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "aw/3di5/v7WxDh2plJY4OIXocu0dE1PsbiobmbldOPQ=",
+  "Hash": "Y1zvS86R06hXkvxLQKNLjKxEg1yMlCwIeBrN5PtTI18=",
   "Source": "Shop.MVC",
   "BasePath": "_content/Shop.MVC",
   "Mode": "Default",
@@ -1171,6 +1171,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\3ec57dab-c320-46f1-9de9-8cd107b83b05-ziemniak.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Dominik\\Desktop\\shopmvc\\Shop.MVC\\wwwroot\\Images\\46f602ba-7630-455b-a08a-a83622d9e965-test.png",
+      "SourceId": "Shop.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Dominik\\Desktop\\shopmvc\\Shop.MVC\\wwwroot\\",
+      "BasePath": "_content/Shop.MVC",
+      "RelativePath": "Images/46f602ba-7630-455b-a08a-a83622d9e965-test.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\46f602ba-7630-455b-a08a-a83622d9e965-test.png"
     },
     {
       "Identity": "C:\\Users\\Dominik\\Desktop\\shopmvc\\Shop.MVC\\wwwroot\\Images\\6a2aff69-8d0d-45d2-a405-87b1dadb1a5d-ziemniak.jpg",

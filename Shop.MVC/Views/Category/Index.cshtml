@@ -1,5 +1,5 @@
-﻿
-@model IEnumerable<Shop.Application.Category.CategoryDto>
+﻿@model IEnumerable<Shop.Application.Category.CategoryDto>
+@using Shop.Application.Item.Commands.CreateItem;
 
 @{
     ViewData["Title"] = "Kategorie";
@@ -19,6 +19,8 @@
         <tr>
             <th>Nazwa kategorii</th>
             <th>Opis kategorii</th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -31,16 +33,20 @@
             <td>
                     @item.Description
             </td>
-                <td>
-                    @if (User.IsInRole("Owner"))
-                    {        
-                    <a class="btn btn-primary" asp-controller="Category" asp-action="Edit" asp-route-encodedName="@item.EncodedName">Edycja</a>
-                    <form asp-action="Delete" method="post">
-                        <input type="hidden" name="encodedName" value="@item.EncodedName" />
-                        <button type="submit" class="btn btn-danger">Usuń</button>
-                    </form>
-                    }
-                </td>
+            <td>
+                @if (User.IsInRole("Owner"))
+                {        
+                <a class="btn btn-primary" asp-controller="Category" asp-action="Edit" asp-route-encodedName="@item.EncodedName">Edycja</a>
+                <form asp-action="Delete" method="post">
+                    <input type="hidden" name="encodedName" value="@item.EncodedName" />
+                    <button type="submit" class="btn btn-danger">Usuń</button>
+                </form>
+                }
+                
+            </td>
+            <td>
+                    <partial name="_CreateItem" model="new CreateItemCommand() { CategoryEncodedName = @item.EncodedName }" />
+            </td>
         </tr>
 }
     </tbody>

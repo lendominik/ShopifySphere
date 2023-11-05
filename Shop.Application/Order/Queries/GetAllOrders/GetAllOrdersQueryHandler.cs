@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using Shop.Domain.Entities;
 using Shop.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,8 @@ namespace Shop.Application.Order.Queries.GetAllOrders
         public async Task<List<OrderDto>> Handle(GetAllOrdersQuery request, CancellationToken cancellationToken)
         {
             var orders = await _orderRepository.GetAllOrders();
+
+            orders = orders.AsQueryable().OrderByDescending(order => order.OrderDate).ToList();
 
             var orderDtos = _mapper.Map<List<OrderDto>>(orders);
 

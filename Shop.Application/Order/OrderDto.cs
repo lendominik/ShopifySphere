@@ -20,6 +20,7 @@ namespace Shop.Application.Order
         public string Address { get; set; }
         public string PostalCode { get; set; }
         public bool IsPaid { get; set; }
+        public DateTime OrderDate { get; set; }
         public List<CartItem> CartItems { get; set; }
         public OrderStatus OrderStatus { get; set; }
     }

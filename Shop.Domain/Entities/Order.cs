@@ -28,6 +28,6 @@ namespace Shop.Domain.Entities
         public string PostalCode { get; set; }
         public bool IsPaid { get; set; }
         public OrderStatus OrderStatus { get; set; }
-        public DateTime OrderDate { get; set; } = DateTime.Now;
+        public DateTime OrderDate { get; set; }
     }
 }

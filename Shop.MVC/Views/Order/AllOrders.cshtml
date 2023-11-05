@@ -37,6 +37,9 @@
                 <a>Kod pocztowy</a>
             </th>
             <th>
+                <a>Data złożenia</a>
+            </th>
+            <th>
                 Opłacone
             </th>
             <th>
@@ -78,16 +81,17 @@
                 @Html.DisplayFor(modelItem => item.PostalCode)
             </td>
             <td>
-                <td>
-                        @if (item.IsPaid == true)
-                        {
-                        <a class="btn btn-info">Opłacone</a>
-                        }
-                        else
-                        {
-                        <a class="btn btn-danger">Nie opłacone</a>
-                        }
-                </td>
+                <a>@item.OrderDate</a>
+            </td>
+            <td>
+                @if (item.IsPaid == true)
+                {
+                <a class="btn btn-info">Tak</a>
+                }
+                else
+                {
+                <a class="btn btn-danger">Nie</a>
+                }
             </td>
             <td>
                 <a class="btn btn-primary" asp-controller="Order" asp-action="Details" asp-route-orderId="@item.Id">Szczegóły</a>
