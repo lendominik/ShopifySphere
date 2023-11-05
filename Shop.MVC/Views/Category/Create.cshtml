@@ -37,45 +37,7 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-<script>
-    let nameInput = document.getElementById("nameInput");
-    let nameError = document.getElementById("nameError");
-    let descriptionInput = document.getElementById("descriptionInput");
-    let descriptionError = document.getElementById("descriptionError");
-    let submitButton = document.querySelector('input[type="submit"]');
 
-    const regName = /^[A-ZĘÓĄŚŁŻŹĆŃ]{1}[a-zżźęółśążźćń]{1,50}$/;
-    const regDescription = /^[A-ZĘÓĄŚŁŻŹĆŃ]{1}[a-zżźęółśążźćń]{1,50}$/;
-
-    let isValid = true;
-
-    submitButton.addEventListener("click", function (event) {
-        event.preventDefault();
-        isValid = true;
-
-        if (!regName.test(nameInput.value)) {
-            nameError.textContent = "Nazwa kategorii musi się zaczynać z wielkiej litery i mieć maksymalnie 50 znaków długości.";
-            nameError.style.display = "block";
-            isValid = false;
-        } else {
-            nameError.style.display = "none";
-        }
-
-        if (!regDescription.test(descriptionInput.value)) {
-            descriptionError.textContent = "Opis kategorii musi się zaczynać z wielkiej litery i mieć maksymalnie 200 znaków długości.";
-            descriptionError.style.display = "block";
-            isValid = false;
-        } else {
-            descriptionError.style.display = "none";
-        }
-
-
-        if (isValid) {
-            this.form.submit();
-        }
-    });
-
-</script>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

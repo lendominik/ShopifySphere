@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dominik\\Desktop\\Shop\\Shop.Application\\Shop.Application.csproj": {}
+    "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Application\\Shop.Application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dominik\\Desktop\\Shop\\Shop.Application\\Shop.Application.csproj": {
+    "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Application\\Shop.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dominik\\Desktop\\Shop\\Shop.Application\\Shop.Application.csproj",
+        "projectUniqueName": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Application\\Shop.Application.csproj",
         "projectName": "Shop.Application",
-        "projectPath": "C:\\Users\\Dominik\\Desktop\\Shop\\Shop.Application\\Shop.Application.csproj",
+        "projectPath": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Application\\Shop.Application.csproj",
         "packagesPath": "C:\\Users\\Dominik\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Dominik\\Desktop\\Shop\\Shop.Application\\obj\\",
         "projectStyle": "PackageReference",
@@ -34,8 +34,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Dominik\\Desktop\\Shop\\Shop.Domain\\Shop.Domain.csproj": {
-                "projectPath": "C:\\Users\\Dominik\\Desktop\\Shop\\Shop.Domain\\Shop.Domain.csproj"
+              "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Domain\\Shop.Domain.csproj": {
+                "projectPath": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Domain\\Shop.Domain.csproj"
               }
             }
           }
@@ -103,6 +103,10 @@
             "Stripe.net": {
               "target": "Package",
               "version": "[43.1.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.6.1, )"
             }
           },
           "imports": [
@@ -125,12 +129,12 @@
         }
       }
     },
-    "C:\\Users\\Dominik\\Desktop\\Shop\\Shop.Domain\\Shop.Domain.csproj": {
+    "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Domain\\Shop.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dominik\\Desktop\\Shop\\Shop.Domain\\Shop.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Domain\\Shop.Domain.csproj",
         "projectName": "Shop.Domain",
-        "projectPath": "C:\\Users\\Dominik\\Desktop\\Shop\\Shop.Domain\\Shop.Domain.csproj",
+        "projectPath": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Domain\\Shop.Domain.csproj",
         "packagesPath": "C:\\Users\\Dominik\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Dominik\\Desktop\\Shop\\Shop.Domain\\obj\\",
         "projectStyle": "PackageReference",
@@ -212,6 +216,10 @@
             "Stripe.net": {
               "target": "Package",
               "version": "[43.1.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.6.1, )"
             }
           },
           "imports": [

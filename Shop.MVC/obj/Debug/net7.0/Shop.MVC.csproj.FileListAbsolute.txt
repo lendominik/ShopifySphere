@@ -1115,3 +1115,7 @@ C:\Users\Dominik\Desktop\shopmvc\Shop.MVC\bin\Debug\net7.0\libman.json
 C:\Users\Dominik\Desktop\shop\Shop.MVC\bin\Debug\net7.0\libman.json
 C:\Users\Dominik\Desktop\shop\Shop.MVC\bin\Debug\net7.0\Stripe.net.dll
 C:\Users\Dominik\Desktop\shopmvc\Shop.MVC\bin\Debug\net7.0\Stripe.net.dll
+C:\Users\Dominik\Desktop\shop\Shop.MVC\bin\Debug\net7.0\xunit.abstractions.dll
+C:\Users\Dominik\Desktop\shop\Shop.MVC\bin\Debug\net7.0\xunit.assert.dll
+C:\Users\Dominik\Desktop\shop\Shop.MVC\bin\Debug\net7.0\xunit.core.dll
+C:\Users\Dominik\Desktop\shop\Shop.MVC\bin\Debug\net7.0\xunit.execution.dotnet.dll

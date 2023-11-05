@@ -22,6 +22,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.9" />
     <PackageReference Include="PagedList.Mvc" Version="4.5.0" />
     <PackageReference Include="Stripe.net" Version="43.1.0" />
+    <PackageReference Include="xunit" Version="2.6.1" />
   </ItemGroup>
 
   <ItemGroup>
