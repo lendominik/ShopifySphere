@@ -156,7 +156,7 @@
                     @for (var i = 1; i <= Model.TotalPages; i++)
                     {
                         <li class="page-item @(Model.CurrentPage == i ? "active" : "")">
-                            <a class="page-link" href="@Url.Action("AllOrders", new { PageNumber = i, PageSize = Model.PageSize, searchPhrase = ViewData["SearchPhrase"], selectedCategory = ViewData["SelectedCategory"] })">@i</a>
+                            <a class="page-link" href="@Url.Action("AllOrders", new { PageNumber = i, PageSize = Model.PageSize, searchPhrase = ViewData["SearchPhrase"]})">@i</a>
                         </li>
                     }
                 </ul>

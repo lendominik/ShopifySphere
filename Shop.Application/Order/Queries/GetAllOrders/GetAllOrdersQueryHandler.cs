@@ -43,6 +43,9 @@ namespace Shop.Application.Order.Queries.GetAllOrders
                 r.Email.ToLower().Contains(request.SearchPhrase.ToLower())).ToList();
             }
 
+
+            orders = orders.OrderByDescending(order => order.OrderDate).ToList();
+
             var ordersCount = orders.Count();
             var ordersToDisplay = orders.Skip((request.PageNumber - 1) * request.PageSize).Take(request.PageSize).ToList();
 
