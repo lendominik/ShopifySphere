@@ -76,27 +76,23 @@
 ### Widok w szczegółach zamówienia po jego opłaceniu
 ![image](https://github.com/lendominik/ShopMVC/assets/138286618/e9976362-eba8-434d-9e32-72de2c5ce59b)
 
+### Widok listy zamówień - gdy zamówienie opłacimy nie ma możliwości jego anulownia
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/9147e0ef-e036-41e2-84ab-4d30149b56f4)
 
-### Widok w sekcji Zamówienia, użytkownik ma możliwość anulowanie swojego zamówienia
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/e5520bf7-aece-489c-af50-8da7b7d0b457)
-### Widok w sekcji Szczegóły, użytkownik dostaje szczegóły dotyczące wysyłki i listę zamówionych przedmiotów
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/5a274aa7-9542-4440-8ad8-70c04bd65264)
-### Anulowanie zamówienia
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/23c7d40b-fae6-4840-9046-b81c64eb2094)
+### Widok po anulowaniu zamówienia
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/961415e0-ece1-460a-9132-3332a33a503e)
+
 ### Panel zarządzania zamówieniami - widoczny tylko dla użytkowników mających rolę "Owner". Administrator ma możliwość ustawieniu statusu zamówienia, widać to poniżej na zdjęciach
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/4a32e229-7a9b-4a07-8813-0f906d1f097f)
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/a7ca57a0-9af5-429f-bcf6-d5e8d534116b)
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/471a42e5-cf37-475e-99e4-edcefc0f96d3)
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/17532726-3c77-4938-995d-8b54a1478525)
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/de6f07dd-9857-4e58-8915-a53fe9ee2e73)
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/840b041d-e6ec-4ed3-8030-4e3b6d385ec3)
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/f0a3efed-3cbc-4f30-86f3-fdb69d8ce219)
+
+
 ### Widok dla zwykłego użytkownika, bez roli "Owner"
 ![image](https://github.com/lendominik/ShopMVC/assets/138286618/25e30a89-a01c-4494-9dce-0e6da8fb1e32)
-### Przykładowy widok historii zamówień
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/0d10a74d-df5a-43e9-9ae6-054c1ea269b9)
-### System płatności
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/37ac7233-7ddd-4be2-8aa0-351a41d4291f)
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/4c1de18a-8d50-4c8e-9edf-5e6ccfc9cb9c)
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/564bde60-d79b-4d28-9417-39c083457b63)
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/929dc831-0cfb-4dc2-ae3b-c6b971c7411b)
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/ac331545-e00c-4622-965b-2186589ae2f0)
+
+
 
 ## Kontakt
 Email: len.dominik13@gmail.com
