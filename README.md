@@ -84,7 +84,8 @@
 ![image](https://github.com/lendominik/ShopMVC/assets/138286618/961415e0-ece1-460a-9132-3332a33a503e)
 
 ### Panel zarządzania zamówieniami - widoczny tylko dla użytkowników mających rolę "Owner". Administrator ma możliwość ustawieniu statusu zamówienia, widać to poniżej na zdjęciach
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/17532726-3c77-4938-995d-8b54a1478525)
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/b0143241-5d62-47c6-93c9-66b3d01af77d)
+
 ![image](https://github.com/lendominik/ShopMVC/assets/138286618/de6f07dd-9857-4e58-8915-a53fe9ee2e73)
 ![image](https://github.com/lendominik/ShopMVC/assets/138286618/840b041d-e6ec-4ed3-8030-4e3b6d385ec3)
 ![image](https://github.com/lendominik/ShopMVC/assets/138286618/f0a3efed-3cbc-4f30-86f3-fdb69d8ce219)
