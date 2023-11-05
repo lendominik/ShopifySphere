@@ -26,6 +26,7 @@
 - Git
 - Clean Architecture
 - Stripe
+- xUnit 
 
 ## Wyróżniające elementy
 - Kosz z zakupami użytkownika przechowywany jest w sesji, a do bazy trafia dopiero po złożeniu zamówienia.
