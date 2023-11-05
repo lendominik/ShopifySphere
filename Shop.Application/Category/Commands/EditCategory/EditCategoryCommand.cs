@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace Shop.Application.Category.Commands.EditCategory
 {
-    public class EditCategoryCommand : CategoryDto, IRequest
+    public class EditCategoryCommand : IRequest
     {
+        public string Description { get; set; }
+        public string EncodedName { get; set; }
     }
 }
