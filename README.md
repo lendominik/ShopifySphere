@@ -41,21 +41,42 @@
 
 ## Zdjęcia
 ### Sekcja kategorie
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/2e6bf791-1a7c-4149-979b-9e5818a15c32)
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/0c2055dc-1f59-4149-ad04-dcb049d00c85)
+
 ### Sekcja Kategorie -> Edycja kategorii
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/75e5df42-d40e-4932-a126-76d062e198c5)
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/6c15ff24-ba74-41fc-8331-799f589a8d97)
+
 ### Sekcja Kategorie -> Edycja kategorii -> Dodaj nowy przedmiot
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/f0ee3d06-a1e1-48d2-838b-f6504dfe71ab)
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/580d0caf-d268-4655-87bf-3bf5909d32fc)
+
 ### Notyfikacja po dodaniu przedmiotu
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/fef5bea9-b9ac-4c73-95ef-291674014736)
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/153474db-fe3e-4d4a-b09d-e8967bbee2ca)
+
 ### Lista przedmiotów
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/6f4f8577-5756-4752-9421-d0e10fef0266)
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/cf022e0f-0eb3-4f87-b142-1c02e851babb)
+
 ### Koszyk po dodaniu przedmiotu do koszyka
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/9cba0d7b-a4fe-4d9c-a6fe-60f2c66c35ba)
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/95e38f3d-9cfe-47a0-951f-07f5937cc81f)
+
+### Zmiana ilości w koszyku
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/ff245260-3a2f-49c4-b71d-101801514df5)
+
 ### Panel składania zamówienia
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/dbba5cab-090b-45b8-a76c-adb4c8969ad7)
-### Widok po złożeniu zamówienia - automatyczne czyszczenie dotychczasowego koszyka
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/90bcbd41-637d-40df-ace9-001efc672167)
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/0f0fad50-e9c1-4163-96bd-7cea566dfbfa)
+
+### Widok ze szczegółami po złożeniu zamówienia - automatyczne przekierowanie
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/362673b9-410a-4aa7-b2e5-592564f4d639)
+
+### Widok po kliknięciu opcji "OPŁAĆ" - automatycznie obsługiwane przez Stripe
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/9d3e4cd0-546c-435f-ab47-e94126539da2)
+
+### Widok po opłaceniu zamówienia
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/57c12df2-98fc-4e4f-a70b-fe20523b6e66)
+
+### Widok w szczegółach zamówienia po jego opłaceniu
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/e9976362-eba8-434d-9e32-72de2c5ce59b)
+
+
 ### Widok w sekcji Zamówienia, użytkownik ma możliwość anulowanie swojego zamówienia
 ![image](https://github.com/lendominik/ShopMVC/assets/138286618/e5520bf7-aece-489c-af50-8da7b7d0b457)
 ### Widok w sekcji Szczegóły, użytkownik dostaje szczegóły dotyczące wysyłki i listę zamówionych przedmiotów
