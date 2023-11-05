@@ -90,9 +90,9 @@
 
 
 ### Widok dla zwykłego użytkownika, bez roli "Owner"
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/25e30a89-a01c-4494-9dce-0e6da8fb1e32)
 
-
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/246a9266-1996-4466-a7ce-bf046ef075a4)
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/9875f3ab-3106-4926-8a2b-2838c08f1e91)
 
 ## Kontakt
 Email: len.dominik13@gmail.com
