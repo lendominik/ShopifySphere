@@ -62,9 +62,10 @@ namespace Shop.Application.Order.Commands.CreateOrder
                 }
             }
 
-            //tu musi być sprawdzenie czy produkt został opłacony!
-
             await _orderRepository.Create(order);
+
+            var newOrderId = order.Id;
+            request.OrderId = newOrderId;
 
             return Unit.Value;
         }

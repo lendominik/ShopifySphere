@@ -86,7 +86,9 @@ namespace Shop.MVC.Controllers
             this.SetNotification("success", $"Zamówienie przyjęto do realizacji!");
             await _mediator.Send(command);
 
-            return RedirectToAction(nameof(Index));
+            var newOrderId = command.OrderId;
+
+            return RedirectToAction("Details", "Orderg", new { orderId = newOrderId });
         }
         [Route("Cart/Details")]
         public async Task<IActionResult> Details(GetCartQuery command)
