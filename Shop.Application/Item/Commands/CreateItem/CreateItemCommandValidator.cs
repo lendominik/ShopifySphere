@@ -26,7 +26,8 @@ namespace Shop.Application.Item.Commands.CreateItem
 
             RuleFor(c => c.Description)
                 .NotEmpty()
-                .MinimumLength(8);
+                .MinimumLength(8)
+                .NotNull();
 
             RuleFor(c => c.Price)
                 .NotEmpty();
@@ -35,7 +36,7 @@ namespace Shop.Application.Item.Commands.CreateItem
                 .NotEmpty();
 
             RuleFor(c => c.CategoryEncodedName)
-                .NotEmpty();
+                .NotEmpty().NotNull();
 
         }
     }

@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿ using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
