@@ -88,7 +88,7 @@ namespace Shop.MVC.Controllers
 
             var newOrderId = command.OrderId;
 
-            return RedirectToAction("Details", "Orderg", new { orderId = newOrderId });
+            return RedirectToAction("Details", "Order", new { orderId = newOrderId });
         }
         [Route("Cart/Details")]
         public async Task<IActionResult> Details(GetCartQuery command)

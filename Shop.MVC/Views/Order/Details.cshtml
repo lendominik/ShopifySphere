@@ -39,9 +39,6 @@
                     <th>
                         <a>Opłacone</a>
                     </th>
-                    <th>
-                        <a>Status zamówienia</a>
-                    </th>
                     <th></th>
                 </tr>
             </thead>
@@ -82,25 +79,7 @@
                         }
                     </td>
                     <td>
-                        @if (Model.OrderStatus.ToString() == "Pending")
-                        {
-                            <form asp-action="CancelUserOrder" method="post">
-                                <input type="hidden" name="OrderId" value="@Model.Id" />
-                                <button type="submit" class="btn btn-warning">Anuluj zamówienie</button>
-                            </form>
-                        }
-                        else if (Model.OrderStatus.ToString() == "Cancelled")
-                        {
-                            <a class="btn btn-danger">Zamówienie anulowane.</a>
-                        }
-                        else if (Model.OrderStatus.ToString() == "Shipped")
-                        {
-                            <a class="btn btn-info">Zamówienie jest realizowane.</a>
-                        }
-                        else
-                        {
-                            <button type="submit" class="btn btn-success">Zamówienie zrealizowane.</button>
-                        }
+                        
                     </td>
                 </tr>
             </tbody>
@@ -132,7 +111,27 @@
 @if (Model.IsPaid == false)
 {
     <p>
-        <a asp-action="CheckOut" asp-controller="Order" class="btn btn-success" asp-route-orderId="@Model.Id">Opłać</a>
+        
+        @if (Model.OrderStatus.ToString() == "Pending")
+        {
+            <a asp-action="CheckOut" asp-controller="Order" class="btn btn-success" asp-route-orderId="@Model.Id">Opłać</a>
+            <form asp-action="CancelUserOrder" method="post">
+                <input type="hidden" name="OrderId" value="@Model.Id" />
+                <button type="submit" class="btn btn-warning">Anuluj zamówienie</button>
+            </form>
+        }
+        else if (Model.OrderStatus.ToString() == "Cancelled")
+        {
+            <a class="btn btn-danger">Zamówienie anulowane.</a>
+        }
+        else if (Model.OrderStatus.ToString() == "Shipped")
+        {
+            <a class="btn btn-info">Zamówienie jest realizowane.</a>
+        }
+        else
+        {
+            <button type="submit" class="btn btn-success">Zamówienie zrealizowane.</button>
+        }
     </p>
 }
 
