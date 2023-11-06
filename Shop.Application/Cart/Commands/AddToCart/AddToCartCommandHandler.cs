@@ -26,7 +26,20 @@ namespace Shop.Application.Cart.Commands.AddToCart
 
         public async Task<Unit> Handle(AddToCartCommand request, CancellationToken cancellationToken)
         {
-            var cartId = await _cartItemRepository.GetCartId(_httpContextAccessor);
+            if (_httpContextAccessor == null)
+            {
+                throw new ArgumentNullException(nameof(_httpContextAccessor));
+            }
+
+            var session = _httpContextAccessor.HttpContext.Session;
+            var cartId = session.GetString("CartSessionKey");
+
+            if (string.IsNullOrWhiteSpace(cartId))
+            {
+                cartId = Guid.NewGuid().ToString();
+                session.SetString("CartSessionKey", cartId);
+            } 
+
             var cartItems = await _cartItemRepository.GetCartItems(cartId);
             var item = await _itemRepository.GetByEncodedName(request.EncodedName);
 

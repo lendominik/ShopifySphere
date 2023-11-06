@@ -22,7 +22,6 @@ namespace Shop.Infrastructure.Repositories
         { 
             if (item.StockQuantity < quantityToDeduct)
             {
-                //brak wystarczającej ilości produktów w magazynie
                 return false;
             }
 

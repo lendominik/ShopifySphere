@@ -19,11 +19,6 @@ namespace Shop.Infrastructure.Repositories
         {
             _dbContext = dbContext;
         }
-        //public async Task<List<CartItem>> GetOrderCartItems(int orderId)
-        //{
-        //    var cartItems = await _dbContext.CartItems.Where(o => o. == orderId).ToListAsync();
-        //    return cartItems;
-        //}
         public async Task CancelOrder(int orderId)
         {
             var order = await _dbContext.Orders.FirstOrDefaultAsync(o => o.Id == orderId);

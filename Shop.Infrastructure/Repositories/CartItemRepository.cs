@@ -105,25 +105,6 @@ namespace Shop.Infrastructure.Repositories
             _dbContext.CartItems.Add(cartItem);
             await _dbContext.SaveChangesAsync();
         }
-
-        public async Task<string> GetCartId(IHttpContextAccessor httpContextAccessor)
-        {
-            if (httpContextAccessor == null)
-            {
-                throw new ArgumentNullException(nameof(httpContextAccessor));
-            }
-
-            var session = httpContextAccessor.HttpContext.Session;
-            var cartId = session.GetString("CartSessionKey");
-
-            if (string.IsNullOrWhiteSpace(cartId))
-            {
-                cartId = Guid.NewGuid().ToString();
-                session.SetString("CartSessionKey", cartId);
-            }
-
-            return cartId;
-        }
         public async Task RemoveCartItemsByCartId(string cartId)
         {
             var cartItems = await _dbContext.CartItems

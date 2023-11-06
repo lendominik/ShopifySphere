@@ -25,9 +25,19 @@ namespace Shop.Application.Cart.Queries.GetCart
         }
         public async Task<CartDto> Handle(GetCartQuery request, CancellationToken cancellationToken)
         {
-            var cartId = await _cartItemRepository.GetCartId(_httpContextAccessor);
+            if (_httpContextAccessor == null)
+            {
+                throw new ArgumentNullException(nameof(_httpContextAccessor));
+            }
 
-            await Console.Out.WriteLineAsync(cartId);
+            var session = _httpContextAccessor.HttpContext.Session;
+            var cartId = session.GetString("CartSessionKey");
+
+            if (string.IsNullOrWhiteSpace(cartId))
+            {
+                cartId = Guid.NewGuid().ToString();
+                session.SetString("CartSessionKey", cartId);
+            }
 
             var cartItems = await _cartItemRepository.GetCartItems(cartId);
 

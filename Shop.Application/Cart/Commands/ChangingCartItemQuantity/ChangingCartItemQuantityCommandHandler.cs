@@ -25,7 +25,19 @@ namespace Shop.Application.Cart.Commands.ChangingCartItemQuantity
         public async Task<Unit> Handle(ChangingCartItemQuantityCommand request, CancellationToken cancellationToken)
         {
             var cartItem = await _cartItemRepository.GetCartItem(request.Id);
-            var cartId = await _cartItemRepository.GetCartId(_httpContextAccessor);
+            if (_httpContextAccessor == null)
+            {
+                throw new ArgumentNullException(nameof(_httpContextAccessor));
+            }
+
+            var session = _httpContextAccessor.HttpContext.Session;
+            var cartId = session.GetString("CartSessionKey");
+
+            if (string.IsNullOrWhiteSpace(cartId))
+            {
+                cartId = Guid.NewGuid().ToString();
+                session.SetString("CartSessionKey", cartId);
+            }
 
             if (cartId == null || cartItem == null)
             {
