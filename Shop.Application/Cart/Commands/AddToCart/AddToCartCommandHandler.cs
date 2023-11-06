@@ -58,7 +58,7 @@ namespace Shop.Application.Cart.Commands.AddToCart
                 throw new OutOfStockException("Nie ma tylu przedmiotów w magazynie.");
             }
 
-            var existingCartItem = cartItems.FirstOrDefault(ci => ci.ItemId == item.Id);
+            var existingCartItem = cartItems.FirstOrDefault(ci => ci.ItemId == item.Id && ci.CartId == cartId);
 
             if (existingCartItem != null)
             {

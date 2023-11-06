@@ -61,7 +61,7 @@ namespace Shop.Application.Order.Commands.CreateOrder
             order.OrderStatus = OrderStatus.Pending;
             order.Email  = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Email);
             order.CartItems = cartItems;
-            order.CartTotal = await _cartItemRepository.CalculateCartTotal(cartItems);
+            order.CartTotal = CalculateCartTotal(cartItems);
             order.OrderDate = DateTime.Now;
 
             foreach( var cartItem in order.CartItems)
@@ -81,6 +81,17 @@ namespace Shop.Application.Order.Commands.CreateOrder
             request.OrderId = newOrderId;
 
             return Unit.Value;
+        }
+        private decimal CalculateCartTotal(List<CartItem> cartItems)
+        {
+            if (cartItems == null)
+            {
+                return 0;
+            }
+
+            decimal total = cartItems.Sum(item => item.UnitPrice);
+
+            return total;
         }
     }
 }
