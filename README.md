@@ -63,7 +63,7 @@
 ![image](https://github.com/lendominik/ShopMVC/assets/138286618/ff245260-3a2f-49c4-b71d-101801514df5)
 
 ### Panel składania zamówienia
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/0f0fad50-e9c1-4163-96bd-7cea566dfbfa)
+![image](https://github.com/lendominik/ShopMVC/assets/138286618/b59f0163-43d1-4ea3-b845-2e1fbb8f3a59)
 
 ### Widok ze szczegółami po złożeniu zamówienia - automatyczne przekierowanie
 ![image](https://github.com/lendominik/ShopMVC/assets/138286618/362673b9-410a-4aa7-b2e5-592564f4d639)
