@@ -11,6 +11,7 @@ using Shop.Application.Order.Commands.CompleteOrderCommand;
 using Shop.Application.Order.Commands.SetOrderPaidStatus;
 using Shop.Application.Order.Commands.ShipOrder;
 using Shop.Application.Order.Queries.GetAllOrders;
+using Shop.Application.Order.Queries.GetPaymentSession;
 using Shop.Application.Order.Queries.GetUserOrders;
 using Shop.Application.Order.Queries.OrderDetails;
 using Shop.Domain.Entities;
@@ -138,43 +139,12 @@ namespace Shop.MVC.Controllers
         }
         public async Task<IActionResult> CheckOut(int orderId)
         {
-            var query = new OrderDetailsQuery(orderId);
-
-            var orderDto = await _mediator.Send(query);
-
-            var domain = "https://localhost:7109/";
-
-            var productList = orderDto.CartItems;
-
-            var options = new SessionCreateOptions
+            var query = new GetPaymentSessionQuery
             {
-                SuccessUrl = domain + "Order/Success",
-                CancelUrl = domain + "Order/Cancel",
-                LineItems = new List<SessionLineItemOptions>(),
-                Mode = "payment"
+                OrderId = orderId
             };
 
-            foreach (var item in productList)
-            {
-                var sessionListItem = new SessionLineItemOptions
-                {
-                    PriceData = new SessionLineItemPriceDataOptions
-                    {
-                        UnitAmount = (long)item.Item.Price * 100,
-                        Currency = "pln",
-                        ProductData = new SessionLineItemPriceDataProductDataOptions
-                        {
-                            Name = item.Item.Name,
-                            Description = item.Item.Description
-                        },
-                    },
-                    Quantity = item.Quantity
-                };
-                options.LineItems.Add(sessionListItem);
-            }
-
-            var service = new SessionService();
-            Session session = service.Create(options);
+            var session = await _mediator.Send(query);
 
             TempData["Session"] = session.Id;
             TempData["OrderId"] = orderId;
