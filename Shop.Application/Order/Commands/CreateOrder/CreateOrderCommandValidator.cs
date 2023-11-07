@@ -32,7 +32,7 @@ namespace Shop.Application.Order.Commands.CreateOrder
 
             RuleFor(o => o.PhoneNumber)
                 .NotEmpty().WithMessage("Numer telefonu nie może być pusty.")
-                .Matches(@"^\d{3}-\d{3}-\d{3}$").WithMessage("Niepoprawny format numeru telefonowego (123-456-789).");
+                .Matches(@"^\d{3}-\d{3}-\d{3}$").WithMessage("Niepoprawny format numeru telefonu (123-456-789).");
         }
     }
 }
