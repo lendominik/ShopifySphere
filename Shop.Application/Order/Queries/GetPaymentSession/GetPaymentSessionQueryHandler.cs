@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Shop.Application.Exceptions;
 using Shop.Application.Order.Queries.OrderDetails;
 using Shop.Domain.Entities;
 using Shop.Domain.Interfaces;
@@ -21,11 +22,16 @@ namespace Shop.Application.Order.Queries.GetPaymentSession
         }
         public async Task<Session> Handle(GetPaymentSessionQuery request, CancellationToken cancellationToken)
         {
-            var orderDto = await _orderRepository.GetOrderById(request.OrderId);
+            var order = await _orderRepository.GetOrderById(request.OrderId);
+
+            if (order == null)
+            {
+                throw new NotFoundException("Nie znaleziono podanego koszyka.");
+            }
 
             var domain = "https://localhost:7109/";
 
-            var productList = orderDto.CartItems;
+            var productList = order.CartItems;
 
             var options = new SessionCreateOptions
             {
