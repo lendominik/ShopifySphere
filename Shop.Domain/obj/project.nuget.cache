@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yFQqXT4NyiLxQ2meyWT3Rmlpoe+nTCmUpsejDyqu5Pi2S44a6Fs5KkWxnfgaYHmtIuHbQgvuYmeRU3egP+Ms3Q==",
+  "dgSpecHash": "4M6gHD+scZ8k+B9Y1nQ5H9gm/vxNFzhpE27eyhEWiTj41zkctxJtEwlsIzTmzaBSqcXiSv1gvSmrfRmvofIEEw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dominik\\Desktop\\ShopMVC\\Shop.Domain\\Shop.Domain.csproj",
+  "projectFilePath": "C:\\Users\\Dominik\\Desktop\\Shop\\Shop.Domain\\Shop.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dominik\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Dominik\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

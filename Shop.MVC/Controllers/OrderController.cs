@@ -40,13 +40,14 @@ namespace Shop.MVC.Controllers
         }
         [Authorize(Roles = "Owner")]
         [Route("Order/All")]
-        public async Task<IActionResult> AllOrders(int PageNumber, int PageSize, string searchPhrase)
+        public async Task<IActionResult> AllOrders(int PageNumber, int PageSize, string searchPhrase, string orderStatus)
         {
             var orders = await _mediator.Send(new GetAllOrdersQuery
             {
                 PageNumber = PageNumber,
                 PageSize = PageSize,
                 SearchPhrase = searchPhrase,
+                Status = orderStatus
             });
 
             return View(orders);

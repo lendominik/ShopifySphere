@@ -18,6 +18,14 @@
     <button type="submit" class="btn btn-primary">Szukaj</button>
 </form>
 
+<form method="post" action="/Order/All">
+    <div class="button-group">
+        <button type="submit" name="orderStatus" value="Pending" class="button">Złożone Zamówienia</button>
+        <button type="submit" name="orderStatus" value="Cancelled" class="button">Anulowane Zamówienia</button>
+        <button type="submit" name="orderStatus" value="Shipped" class="button">Wysłane Zamówienia</button>
+        <button type="submit" name="orderStatus" value="Delivered" class="button">Zrealizowane Zamówienia</button>
+    </div>
+</form>
 
 <div>
     @if (User.Identity.IsAuthenticated)
@@ -156,7 +164,7 @@
                     @for (var i = 1; i <= Model.TotalPages; i++)
                     {
                         <li class="page-item @(Model.CurrentPage == i ? "active" : "")">
-                            <a class="page-link" href="@Url.Action("AllOrders", new { PageNumber = i, PageSize = Model.PageSize, searchPhrase = ViewData["SearchPhrase"]})">@i</a>
+                            <a class="page-link" href="@Url.Action("AllOrders", new { PageNumber = i, PageSize = Model.PageSize, searchPhrase = ViewData["SearchPhrase"], orderStatus = ViewData["orderStatus"]})">@i</a>
                         </li>
                     }
                 </ul>

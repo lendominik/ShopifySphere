@@ -14,5 +14,6 @@ namespace Shop.Application.Order.Queries.GetAllOrders
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
         public string? SearchPhrase { get; set; }
+        public string? Status { get; set; }
     }
 }
