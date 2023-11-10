@@ -20,7 +20,7 @@ namespace Shop.Infrastructure.Extensions
         public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<ShopDbContext>(options => options.UseSqlServer(
-                configuration.GetConnectionString("FootballClub")));
+                configuration.GetConnectionString("ShopDbContext")));
 
             services.AddHttpContextAccessor();
 
