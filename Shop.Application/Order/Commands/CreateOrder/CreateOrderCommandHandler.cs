@@ -83,6 +83,8 @@ namespace Shop.Application.Order.Commands.CreateOrder
                 {
                     throw new OutOfStockException("Nie ma tylu przedmiotów w magazynie.");
                 }
+
+                item.Item.StockQuantity = item.Item.StockQuantity - item.Quantity;
             }
 
             await _orderRepository.Create(order);
