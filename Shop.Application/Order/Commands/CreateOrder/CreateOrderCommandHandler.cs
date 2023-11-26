@@ -77,7 +77,13 @@ namespace Shop.Application.Order.Commands.CreateOrder
                 Street = request.Street
             };
 
-            // sprawdzenie czy przedmioty dalej dostępne.
+            foreach (var item in cartItems)
+            {
+                if (item.Item.StockQuantity < item.Quantity || item.Item.StockQuantity < 0 || item.Quantity <= 0)
+                {
+                    throw new OutOfStockException("Nie ma tylu przedmiotów w magazynie.");
+                }
+            }
 
             await _orderRepository.Create(order);
 
