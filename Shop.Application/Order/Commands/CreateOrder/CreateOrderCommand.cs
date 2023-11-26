@@ -9,7 +9,5 @@ namespace Shop.Application.Order.Commands.CreateOrder
 {
     public class CreateOrderCommand : OrderDto, IRequest
     {
-        public string CartId { get; set; }
-        public int OrderId { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using Shop.Domain.Entities;
 using Shop.Domain.Interfaces;
 using System;
@@ -13,13 +14,11 @@ namespace Shop.Application.Cart.Queries.GetCart
 {
     public class GetCartQueryHandler : IRequestHandler<GetCartQuery, CartDto>
     {
-        private readonly ICartItemRepository _cartItemRepository;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IMapper _mapper;
 
-        public GetCartQueryHandler(ICartItemRepository cartItemRepository, IHttpContextAccessor httpContextAccessor, IMapper mapper)
+        public GetCartQueryHandler(IHttpContextAccessor httpContextAccessor, IMapper mapper)
         {
-            _cartItemRepository = cartItemRepository;
             _httpContextAccessor = httpContextAccessor;
             _mapper = mapper;
         }
@@ -39,12 +38,19 @@ namespace Shop.Application.Cart.Queries.GetCart
                 session.SetString("CartSessionKey", cartId);
             }
 
-            var cartItems = await _cartItemRepository.GetCartItems(cartId);
+            var cart = session.GetString("Cart");
+
+            var items = new List<CartItem>();
+
+            if(cart != null )
+            {
+                items = JsonConvert.DeserializeObject<List<CartItem>>(cart);
+            }
 
             var cartDto = new CartDto
             {
-                CartItems = cartItems,
-                CartTotal = CalculateCartTotal(cartItems),
+                CartItems = items,
+                CartTotal = CalculateCartTotal(items),
                 Id = cartId
             };
            

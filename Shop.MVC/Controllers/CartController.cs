@@ -74,9 +74,6 @@ namespace Shop.MVC.Controllers
         [Route("Cart/CreateOrder")]
         public async Task<IActionResult> CreateOrder(string cartId, CreateOrderCommand command)
         {
-            command.CartId = cartId;
-
-
             if (!ModelState.IsValid)
             {
                 this.SetNotification("error", $"Wystąpił błąd podczas składania zamówienia.");
@@ -86,9 +83,7 @@ namespace Shop.MVC.Controllers
             this.SetNotification("success", $"Zamówienie przyjęto do realizacji!");
             await _mediator.Send(command);
 
-            var newOrderId = command.OrderId;
-
-            return RedirectToAction("Details", "Order", new { orderId = newOrderId });
+            return RedirectToAction("Index", "Order");
         }
         [Route("Cart/Details")]
         public async Task<IActionResult> Details(GetCartQuery command)

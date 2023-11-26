@@ -39,6 +39,8 @@ namespace Shop.Infrastructure.Persistence
             modelBuilder.Entity<CartItem>(entity =>
             {
                 entity.HasKey(ci => ci.Id);
+                entity.Property(c => c.Id)
+    .               ValueGeneratedOnAdd();
             });
 
             modelBuilder.Entity<Category>(a =>

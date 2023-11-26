@@ -45,7 +45,7 @@ namespace Shop.Infrastructure.Repositories
 
         public async Task<Item> GetByEncodedName(string encodedName)
         {
-            var item = await _dbContext.Items.FirstAsync(e => e.EncodedName == encodedName);
+            var item = await _dbContext.Items.FirstOrDefaultAsync(e => e.EncodedName == encodedName);
 
             return item;
         }

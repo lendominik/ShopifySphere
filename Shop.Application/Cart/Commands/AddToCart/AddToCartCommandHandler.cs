@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Shop.Application.Exceptions;
+using Newtonsoft.Json;
 
 namespace Shop.Application.Cart.Commands.AddToCart
 {
@@ -15,13 +16,11 @@ namespace Shop.Application.Cart.Commands.AddToCart
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IItemRepository _itemRepository;
-        private readonly ICartItemRepository _cartItemRepository;
 
-        public AddToCartCommandHandler(IItemRepository itemRepository, ICartItemRepository cartItemRepository, IHttpContextAccessor httpContextAccessor)
+        public AddToCartCommandHandler(IHttpContextAccessor httpContextAccessor, IItemRepository itemRepository)
         {
             _httpContextAccessor = httpContextAccessor;
             _itemRepository = itemRepository;
-            _cartItemRepository = cartItemRepository;
         }
 
         public async Task<Unit> Handle(AddToCartCommand request, CancellationToken cancellationToken)
@@ -38,34 +37,45 @@ namespace Shop.Application.Cart.Commands.AddToCart
             {
                 cartId = Guid.NewGuid().ToString();
                 session.SetString("CartSessionKey", cartId);
-            } 
+            }
 
-            var cartItems = await _cartItemRepository.GetCartItems(cartId);
+            var cart = session.GetString("Cart");
+            var items = new List<CartItem>();
+
+            if(cart != null )
+            {
+               items = JsonConvert.DeserializeObject<List<CartItem>>(cart);
+            }
+            
             var item = await _itemRepository.GetByEncodedName(request.EncodedName);
 
-            if(cartId == null || item == null)
+            await Console.Out.WriteLineAsync(request.EncodedName); await Console.Out.WriteLineAsync(request.EncodedName); await Console.Out.WriteLineAsync(request.EncodedName);
+            await Console.Out.WriteLineAsync(request.EncodedName); await Console.Out.WriteLineAsync(request.EncodedName); await Console.Out.WriteLineAsync(request.EncodedName);
+            await Console.Out.WriteLineAsync(request.EncodedName); await Console.Out.WriteLineAsync(request.EncodedName); await Console.Out.WriteLineAsync(request.EncodedName);
+
+            if (items == null)
             {
-                throw new NotFoundException("Nie znaleziono kosza użytkownika lub podanego przedmiotu.");
+                items = new List<CartItem>();
             }
 
-            if(request.Quantity > item.StockQuantity)
+            if(item == null)
+            {
+                throw new NotFoundException("Nie znaleziono podanego przedmiotu.");
+            }
+
+            if (request.Quantity > item.StockQuantity || item.StockQuantity < 1)
             {
                 throw new OutOfStockException("Nie ma tylu przedmiotów w magazynie.");
             }
 
-            if(item.StockQuantity < 1)
-            {
-                throw new OutOfStockException("Nie ma tylu przedmiotów w magazynie.");
-            }
+            var existingCartItem = items.FirstOrDefault(ci => ci.ItemId == item.Id && ci.CartId == cartId);
 
-            var existingCartItem = cartItems.FirstOrDefault(ci => ci.ItemId == item.Id && ci.CartId == cartId);
-
-            if (existingCartItem != null)
+            if(existingCartItem != null)
             {
-                var cartItem = await _cartItemRepository.GetCartItem(existingCartItem.Id);
-                cartItem.Quantity = existingCartItem.Quantity + 1;
-                cartItem.UnitPrice = cartItem.Quantity * item.Price;
-                await _cartItemRepository.Commit();
+                existingCartItem.Quantity = existingCartItem.Quantity + 1;
+                existingCartItem.UnitPrice = item.Price * existingCartItem.Quantity;
+                var serializedCartItems = JsonConvert.SerializeObject(items);
+                session.SetString("Cart", serializedCartItems);
             }
             else
             {
@@ -75,9 +85,12 @@ namespace Shop.Application.Cart.Commands.AddToCart
                     CartId = cartId,
                     Quantity = 1,
                     UnitPrice = 1 * item.Price,
-                    ItemId = item.Id
+                    ItemId = item.Id,
                 };
-                await _cartItemRepository.AddToCart(cartItem);
+                items.Add(cartItem);
+
+                var serializedCartItems = JsonConvert.SerializeObject(items);
+                session.SetString("Cart", serializedCartItems);
             }
 
             return Unit.Value;

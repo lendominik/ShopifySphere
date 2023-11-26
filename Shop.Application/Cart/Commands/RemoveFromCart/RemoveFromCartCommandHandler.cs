@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using Shop.Application.Exceptions;
+using Shop.Domain.Entities;
 using Shop.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -12,12 +14,10 @@ namespace Shop.Application.Cart.Commands.RemoveFromCart
 {
     public class RemoveFromCartCommandHandler : IRequestHandler<RemoveFromCartCommand>
     {
-        private readonly ICartItemRepository _cartItemRepository;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public RemoveFromCartCommandHandler(ICartItemRepository cartItemRepository, IHttpContextAccessor httpContextAccessor)
+        public RemoveFromCartCommandHandler(IHttpContextAccessor httpContextAccessor)
         {
-            _cartItemRepository = cartItemRepository;
             _httpContextAccessor = httpContextAccessor;
         }
 
@@ -37,14 +37,20 @@ namespace Shop.Application.Cart.Commands.RemoveFromCart
                 session.SetString("CartSessionKey", cartId);
             }
 
-            var cartItem = await _cartItemRepository.GetCartItem(request.Id);
+            var cart = session.GetString("Cart");
+            var items = JsonConvert.DeserializeObject<List<CartItem>>(cart);
+
+            var cartItem = items.FirstOrDefault(i => i.Id == request.Id);
 
             if (cartId == null || cartItem == null)
             {
                 throw new NotFoundException("Nie znaleziono kosza użytkownika lub podanego przedmiotu.");
             }
 
-            await _cartItemRepository.Delete(cartItem);
+            items.Remove(cartItem);
+
+            var serializedCartItems = JsonConvert.SerializeObject(items);
+            session.SetString("Cart", serializedCartItems);
 
             return Unit.Value;
         }

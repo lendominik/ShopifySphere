@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Shop.Application.Exceptions;
 using Shop.Domain.Entities;
 using Shop.Domain.Interfaces;
@@ -14,17 +15,14 @@ namespace Shop.Application.Cart.Commands.ChangingCartItemQuantity
 {
     public class ChangingCartItemQuantityCommandHandler : IRequestHandler<ChangingCartItemQuantityCommand>
     {
-        private readonly ICartItemRepository _cartItemRepository;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public ChangingCartItemQuantityCommandHandler(ICartItemRepository cartItemRepository, IHttpContextAccessor httpContextAccessor)
+        public ChangingCartItemQuantityCommandHandler(IHttpContextAccessor httpContextAccessor)
         {
-            _cartItemRepository = cartItemRepository;
             _httpContextAccessor = httpContextAccessor;
         }
         public async Task<Unit> Handle(ChangingCartItemQuantityCommand request, CancellationToken cancellationToken)
         {
-            var cartItem = await _cartItemRepository.GetCartItem(request.Id);
             if (_httpContextAccessor == null)
             {
                 throw new ArgumentNullException(nameof(_httpContextAccessor));
@@ -33,29 +31,20 @@ namespace Shop.Application.Cart.Commands.ChangingCartItemQuantity
             var session = _httpContextAccessor.HttpContext.Session;
             var cartId = session.GetString("CartSessionKey");
 
-            if (string.IsNullOrWhiteSpace(cartId))
-            {
-                cartId = Guid.NewGuid().ToString();
-                session.SetString("CartSessionKey", cartId);
-            }
+            var cart = session.GetString("Cart");
 
-            if (cartId == null || cartItem == null)
-            {
-                throw new NotFoundException("Nie znaleziono kosza użytkownika lub podanego przedmiotu.");
-            }
+            var items = JsonConvert.DeserializeObject<List<CartItem>>(cart);
 
-            if (request.Quantity > cartItem.Item.StockQuantity)
-            {
-                throw new OutOfStockException("Nie ma tylu przedmiotów w magazynie.");
-            }
+            var item = items.FirstOrDefault(i => i.Id == request.Id);
 
-            decimal unitPrice = cartItem.UnitPrice / cartItem.Quantity;
+            decimal unitPrice = item.UnitPrice / item.Quantity;
 
-            cartItem.Quantity = request.Quantity;
+            item.Quantity = request.Quantity;
 
-            cartItem.UnitPrice = unitPrice * request.Quantity;
+            item.UnitPrice = unitPrice * request.Quantity;
 
-            await _cartItemRepository.UpdateCartItem(cartItem);
+            var serializedCartItems = JsonConvert.SerializeObject(items);
+            session.SetString("Cart", serializedCartItems);
 
             return Unit.Value;
         }

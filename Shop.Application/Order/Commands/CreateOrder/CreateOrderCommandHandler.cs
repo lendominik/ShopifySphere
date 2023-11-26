@@ -1,10 +1,14 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Shop.Application.ApplicationUser;
 using Shop.Application.Exceptions;
 using Shop.Domain.Entities;
 using Shop.Domain.Interfaces;
+using Stripe.Issuing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,43 +46,40 @@ namespace Shop.Application.Order.Commands.CreateOrder
             var session = _httpContextAccessor.HttpContext.Session;
             var cartId = session.GetString("CartSessionKey");
 
-            if (string.IsNullOrWhiteSpace(cartId))
-            {
-                cartId = Guid.NewGuid().ToString();
-                session.SetString("CartSessionKey", cartId);
-            }
+            var cart = session.GetString("Cart");
 
-            var cartItems = await _cartItemRepository.GetCartItems(cartId);
+            var cartItems = JsonConvert.DeserializeObject<List<CartItem>>(cart);
 
             if (cartItems == null || cartItems.Count == 0)
             {
                 throw new NotFoundException("Koszyk jest pusty.");
             }
 
-            var order = _mapper.Map<Domain.Entities.Order>(request);
-
-            order.IsPaid = false;
-            order.OrderStatus = OrderStatus.Pending;
-            order.Email  = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Email);
-            order.CartItems = cartItems;
-            order.CartTotal = CalculateCartTotal(cartItems);
-            order.OrderDate = DateTime.Now;
-
-            foreach( var cartItem in order.CartItems)
+            foreach (var cartItem in cartItems)
             {
-                var item = await _itemRepository.GetByEncodedName(cartItem.Item.EncodedName);
-                var deducted =  await _itemRepository.DeductStockQuantity(item, cartItem.Quantity);
-
-                if (!deducted)
-                {
-                    throw new NotFoundException("Ktoś wykupił przedmioty w Twoim koszu.");
-                }
+                await _cartItemRepository.Create(cartItem);
             }
 
-            await _orderRepository.Create(order);
+            var order = new Domain.Entities.Order()
+            {
+                Address = request.Address,
+                IsPaid = false,
+                CartItems = cartItems,
+                CartTotal = CalculateCartTotal(cartItems),
+                City = request.City,
+                Email = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Email),
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                OrderDate = DateTime.Now,
+                OrderStatus = OrderStatus.Pending,
+                PhoneNumber = request.PhoneNumber,
+                PostalCode = request.PostalCode,
+                Street = request.Street
+            };
 
-            var newOrderId = order.Id;
-            request.OrderId = newOrderId;
+            // sprawdzenie czy przedmioty dalej dostępne.
+
+            await _orderRepository.Create(order);
 
             return Unit.Value;
         }

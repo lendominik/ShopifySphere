@@ -20,11 +20,7 @@ namespace Shop.Infrastructure.Repositories
 
         public async Task Create(CartItem cartItem)
         {
-            if (cartItem == null)
-            {
-                throw new ArgumentNullException(nameof(cartItem));
-            }
-
+            _dbContext.Items.Attach(cartItem.Item);
             _dbContext.CartItems.Add(cartItem);
             await _dbContext.SaveChangesAsync();
         }
@@ -94,7 +90,11 @@ namespace Shop.Infrastructure.Repositories
 
             return cartItems;
         }
-
+        public async Task AddCartItems(List<CartItem> cartItems)
+        {
+            _dbContext.CartItems.AddRange(cartItems);
+            await _dbContext.SaveChangesAsync();
+        }
         public async Task AddToCart(CartItem cartItem)
         {
             if (cartItem == null)
