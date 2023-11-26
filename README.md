@@ -67,6 +67,7 @@
 ![image](https://github.com/lendominik/ShopifySphere/assets/138286618/8ed962ff-dcfd-4433-aabb-1fd5a5a0e49f)
 
 ### Panel widoczny tylko dla administratorów, zawiera wszystkie zamówienia i pozwala nimi zarządzać
+#### Gdy użytkownik nie ma roli 'Owner' to nie widzi zakładki z tym panelem.
 ![image](https://github.com/lendominik/ShopifySphere/assets/138286618/d6f2cc7c-63d6-4668-a2cb-ce9df87e0e2b)
 
 ![image](https://github.com/lendominik/ShopifySphere/assets/138286618/5505f8cc-5782-4088-a0cd-a583b8a2a365)
