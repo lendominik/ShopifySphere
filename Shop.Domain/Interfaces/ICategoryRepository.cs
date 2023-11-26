@@ -9,11 +9,11 @@ namespace Shop.Domain.Interfaces
 {
     public interface ICategoryRepository
     {
-        Task<IEnumerable<Domain.Entities.Category>> GetAll();
-        Task Create(Domain.Entities.Category category);
-        Task<Domain.Entities.Category> GetByEncodedName(string encodedName);
-        Task Delete(Domain.Entities.Category category);
-        Task<Category?> GetByName(string name);
+        Task<IEnumerable<Category>> GetAll();
+        Task Create(Category category);
+        Task Delete(Category category);
+        Task<Category> GetByEncodedName(string encodedName);
+        Task<Category> GetByName(string name);
         Task Commit();
     }
 }

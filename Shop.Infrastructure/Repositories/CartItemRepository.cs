@@ -17,7 +17,6 @@ namespace Shop.Infrastructure.Repositories
             _dbContext = dbContext;
             _httpContextAccessor = httpContextAccessor;
         }
-
         public async Task Create(CartItem cartItem)
         {
             _dbContext.Items.Attach(cartItem.Item);

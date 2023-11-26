@@ -23,30 +23,20 @@ namespace Shop.Infrastructure.Repositories
             _dbContext.Categories.Add(category);
             await _dbContext.SaveChangesAsync();
         }
-
-        public async Task<IEnumerable<Category>> GetAll()
-            => await _dbContext.Categories.ToListAsync();
-
-        public async Task<Category> GetByEncodedName(string encodedName)
-        {
-            var category = await _dbContext.Categories.FirstAsync(e => e.EncodedName == encodedName);
-
-            return category;
-        }
-        public async Task Commit()
-        {
-            await _dbContext.SaveChangesAsync();
-        }
-        public async Task<Category?> GetByName(string name)
-        {
-            var category = await _dbContext.Categories.FirstOrDefaultAsync(e => e.Name == name);
-
-            return category;
-        }
         public async Task Delete(Category category)
         {
             _dbContext.Categories.Remove(category);
             await _dbContext.SaveChangesAsync();
         }
+        public async Task Commit()
+        {
+            await _dbContext.SaveChangesAsync();
+        }
+        public async Task<IEnumerable<Category>> GetAll()
+            => await _dbContext.Categories.ToListAsync();
+        public async Task<Category> GetByEncodedName(string encodedName)
+           => await _dbContext.Categories.FirstAsync(e => e.EncodedName == encodedName);
+        public async Task<Category?> GetByName(string name)
+            => await _dbContext.Categories.FirstOrDefaultAsync(e => e.Name == name);        
     }
 }
