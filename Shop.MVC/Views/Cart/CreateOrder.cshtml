@@ -12,8 +12,6 @@
         <form asp-action="CreateOrder">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <input asp-for="@Model.CartId" class="form-control" type="hidden" />
-
             <div class="form-group">
                 <label asp-for="FirstName" class="control-label">Imię</label>
                 <input asp-for="FirstName" class="form-control" />
