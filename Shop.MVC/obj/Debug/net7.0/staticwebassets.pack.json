@@ -33,6 +33,14 @@
       "PackagePath": "staticwebassets\\Images\\4db9501d-a777-4a13-9d1d-feb2921f46d2-okon.jpg"
     },
     {
+      "Id": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.MVC\\wwwroot\\Images\\54fb2b3c-5b9a-4c5c-9127-b46bb0f6896e-smartwatch1.jpg",
+      "PackagePath": "staticwebassets\\Images\\54fb2b3c-5b9a-4c5c-9127-b46bb0f6896e-smartwatch1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.MVC\\wwwroot\\Images\\5ef25598-27ac-44fa-8b26-822238699ed7-smartwatch3.jpg",
+      "PackagePath": "staticwebassets\\Images\\5ef25598-27ac-44fa-8b26-822238699ed7-smartwatch3.jpg"
+    },
+    {
       "Id": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.MVC\\wwwroot\\Images\\6a2aff69-8d0d-45d2-a405-87b1dadb1a5d-ziemniak.jpg",
       "PackagePath": "staticwebassets\\Images\\6a2aff69-8d0d-45d2-a405-87b1dadb1a5d-ziemniak.jpg"
     },
@@ -55,6 +63,10 @@
     {
       "Id": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.MVC\\wwwroot\\Images\\a907e5ce-0167-49e4-a09c-a53e761a631e-ogórek.jpg",
       "PackagePath": "staticwebassets\\Images\\a907e5ce-0167-49e4-a09c-a53e761a631e-ogórek.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.MVC\\wwwroot\\Images\\b91d300e-f7f0-41cc-8579-8715a954da5d-smartwatch2.jpg",
+      "PackagePath": "staticwebassets\\Images\\b91d300e-f7f0-41cc-8579-8715a954da5d-smartwatch2.jpg"
     },
     {
       "Id": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.MVC\\wwwroot\\Images\\be9429b4-304f-4ea8-8606-5d9c94296215-winogron.jpg",

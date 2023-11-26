@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "V+9B/VGcQTNhRJlgq4kpBkqSUzDWSdGTBgSlQsB0k84=",
+  "Hash": "t31YS/zKSPdHFHFqtkxF35ZEfUOJMRQZRUxsdC7Xbfs=",
   "Source": "Shop.MVC",
   "BasePath": "_content/Shop.MVC",
   "Mode": "Default",
@@ -1224,6 +1224,40 @@
       "OriginalItemSpec": "wwwroot\\Images\\4db9501d-a777-4a13-9d1d-feb2921f46d2-okon.jpg"
     },
     {
+      "Identity": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.MVC\\wwwroot\\Images\\54fb2b3c-5b9a-4c5c-9127-b46bb0f6896e-smartwatch1.jpg",
+      "SourceId": "Shop.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.MVC\\wwwroot\\",
+      "BasePath": "_content/Shop.MVC",
+      "RelativePath": "Images/54fb2b3c-5b9a-4c5c-9127-b46bb0f6896e-smartwatch1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\54fb2b3c-5b9a-4c5c-9127-b46bb0f6896e-smartwatch1.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.MVC\\wwwroot\\Images\\5ef25598-27ac-44fa-8b26-822238699ed7-smartwatch3.jpg",
+      "SourceId": "Shop.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.MVC\\wwwroot\\",
+      "BasePath": "_content/Shop.MVC",
+      "RelativePath": "Images/5ef25598-27ac-44fa-8b26-822238699ed7-smartwatch3.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\5ef25598-27ac-44fa-8b26-822238699ed7-smartwatch3.jpg"
+    },
+    {
       "Identity": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.MVC\\wwwroot\\Images\\6a2aff69-8d0d-45d2-a405-87b1dadb1a5d-ziemniak.jpg",
       "SourceId": "Shop.MVC",
       "SourceType": "Discovered",
@@ -1324,6 +1358,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\a907e5ce-0167-49e4-a09c-a53e761a631e-ogórek.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.MVC\\wwwroot\\Images\\b91d300e-f7f0-41cc-8579-8715a954da5d-smartwatch2.jpg",
+      "SourceId": "Shop.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.MVC\\wwwroot\\",
+      "BasePath": "_content/Shop.MVC",
+      "RelativePath": "Images/b91d300e-f7f0-41cc-8579-8715a954da5d-smartwatch2.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\b91d300e-f7f0-41cc-8579-8715a954da5d-smartwatch2.jpg"
     },
     {
       "Identity": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.MVC\\wwwroot\\Images\\be9429b4-304f-4ea8-8606-5d9c94296215-winogron.jpg",

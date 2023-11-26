@@ -1,77 +1,86 @@
 ﻿@model Shop.Application.Item.PagedResult;
 
-<h2>Lista Elementów</h2>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <form method="post" action="/Item/Index" class="flex-grow-1 me-2">
+        <div class="input-group">
+            <input type="text" class="form-control rounded-end" id="searchPhrase" name="searchPhrase" style="border-radius: 10px; font-size: 14px;" placeholder="Szukaj w ShopifySphere" />
+            <button type="submit" class="btn btn-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                </svg>
+            </button>
+        </div>
+    </form>
 
-<form method="post" action="/Item/Index">
-    <div class="form-group">
-        <label for="searchPhrase">Wyszukaj:</label>
-        <input type="text" class="form-control" id="searchPhrase" name="searchPhrase" placeholder="Wpisz frazę..." />
-    </div>
-    <button type="submit" class="btn btn-primary">Szukaj</button>
-</form>
-
-<form method="post" action="/Item/Index">
-    @using (Html.BeginForm("Index", "Item", FormMethod.Get))
-    {
-        <label for="SortBy">Sortuj według:</label>
-        <select id="SortBy" name="SortBy">
-            <option value="Name">Nazwa</option>
-            <option value="Category">Kategoria</option>
-            <option value="Price">Cena</option>
-        </select>
-
-        <label for="SortDirection">Kierunek:</label>
-        <select id="SortDirection" name="SortDirection">
-            <option value="ASC">Rosnąco</option>
-            <option value="DESC">Malejąco</option>
-        </select>
-        <button type="submit">Sortuj</button>
-    }
-</form>
-<form method="post" action="/Item/Index">
-        <label for="selectedCategory">Kategoria:</label>
-        <select id="selectedCategory" name="selectedCategory" >
-            @foreach (var category in Model.Categories)
-            {
-                <option value="@category.Name">@category.Name</option>
-            }
-        </select>
-
-        <button type="submit">Wyszukaj po kategorii</button>
-</form>
-
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Nazwa</th>
-            <th>Kategoria</th>
-            <th>Opis</th>
-            <th>Zdjęcie</th>
-            <th>Liczba w magazynie</th>
-            <th>Cena</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Items)
+    <form method="post" action="/Item/Index" class="flex-shrink-1">
+        @using (Html.BeginForm("Index", "Item", FormMethod.Get))
         {
-            <tr>
-                <td>@item.Name</td>
-                <td>@item.Category.Name</td>
-                <td>@item.Description</td>
-                <td><img src="~/Images/@item.ProductImage" width="100" height="100" asp-append-version="true"></td>
-                <td>@item.StockQuantity</td>
-                <td>@item.Price zł</td>
-                <td width="50px">
-                <a class="btn btn-primary" asp-controller="Item" asp-action="Details" asp-route-encodedName="@item.EncodedName">Szczegóły</a>
+            <label for="SortBy" class="form-label">Sortuj według:</label>
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    
+                    <select id="SortBy" name="SortBy" class="form-select">
+                        <option value="Name">Nazwa</option>
+                        <option value="Category">Kategoria</option>
+                        <option value="Price">Cena</option>
+                    </select>
+                </div>
+
+                <div class="col-auto">
+                    <select id="SortDirection" name="SortDirection" class="form-select">
+                        <option value="ASC">Rosnąco</option>
+                        <option value="DESC">Malejąco</option>
+                    </select>
+                </div>
+
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">Sortuj</button>
+                </div>
+            </div>
+        }
+    </form>
+</div>
+
+
+<form method="post" action="/Item/Index">
+    <div class="category-buttons">
+        @foreach (var category in Model.Categories)
+        {
+            <button type="submit" name="selectedCategory" value="@category.Name" class="btn btn-outline-primary">@category.Name</button>
+        }
+    </div>
+</form>
+
+<br />
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var item in Model.Items)
+    {
+        <div class="col">
+            <div class="card h-100">
+                <img src="~/Images/@item.ProductImage" class="card-img-top" alt="@item.Name">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Name</h5>
+                    <p class="card-text">@item.Description</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Ilość dostępnych: @item.StockQuantity</li>
+                    <li class="list-group-item">Cena: @item.Price zł</li>
+                </ul>
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <a href="@Url.Action("Details", "Item", new { encodedName = item.EncodedName })" class="btn btn-primary me-2">Szczegóły</a>
                     <form asp-controller="Cart" asp-action="AddItem" method="post">
                         <input type="hidden" name="encodedName" value="@item.EncodedName" />
                         <button type="submit" class="btn btn-danger">Dodaj do koszyka</button>
                     </form>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>
+
+
 
 <div class="row">
     <div class="col-md-12">
@@ -86,3 +95,25 @@
         </ul>
     </div>
 </div>
+
+<style>
+    .category-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px; /* Odstęp między przyciskami */
+        justify-content: space-between; /* Rozłożenie przycisków na pełną szerokość */
+        width: 100%;
+    }
+
+    .category-btn {
+        width: calc(33.33% - 5px); /* Szerokość przycisku (33.33% dla równego rozłożenia na trzy kolumny) */
+    }
+
+    .form-label {
+        margin-bottom: 0.5rem;
+    }
+
+    .col-auto {
+        margin-bottom: 1rem;
+    }
+</style>

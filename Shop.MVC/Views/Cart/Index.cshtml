@@ -13,47 +13,44 @@
 <div>
 @if (Model.CartItems != null && Model.CartItems.Any())
 {
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Nazwa</th>
-                <th>Cena za sztukę</th>
-                <th>Ilość</th>
-                <th>Cena za całość</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
+        <ul class="list-group mb-3">
             @foreach (var item in Model.CartItems)
             {
-                <tr>
-                    <td>@item.Item.Name</td>
-                    <td>@item.Item.Price zł</td>
-                    <td>
-                        <form asp-action="UpdateItemQuantity" method="post">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="fw-bold">@item.Item.Name</span>
+                        <br />
+                        Cena za sztukę: @item.Item.Price zł
+                    </div>
+                    <div>
+                        <form asp-action="UpdateItemQuantity" method="post" class="d-flex align-items-center">
                             <input type="hidden" name="Id" value="@item.Id" />
-                            <input type="number" name="Quantity" value="@item.Quantity" min="1" /> 
+                            <input type="number" name="Quantity" value="@item.Quantity" min="1" class="form-control me-2" style="width: 60px;" />
                             <button type="submit" class="btn btn-primary">Aktualizuj</button>
                         </form>
-                    </td>
-                    <td>
-                        @item.UnitPrice
-                    </td>
-                    <td>
+                    </div>
+                    <div>
+                        Cena za całość: @item.UnitPrice
+                    </div>
+                    <div>
+                        
                         <form asp-action="DeleteItem" method="post">
                             <input type="hidden" name="Id" value="@item.Id" />
-                            <button type="submit" class="btn btn-danger">Usuń</button>
+                            <button type="submit" class="btn btn-danger ms-2">Usuń z koszyka</button>
                         </form>
-                    </td>
-                </tr>
+                    </div>
+                </li>
             }
-    </table>
+        </ul>
 
-    <span>Koszt łącznie: @Model.CartTotal zł</span>
+        <div class="mb-3">
+            <span class="fw-bold">Koszt łącznie:</span> @Model.CartTotal zł
+        </div>
 
-    <p>
-            <a asp-action="CreateOrder" class="btn btn-success" asp-route-cartId="@Model.">Złóż zamówienie</a>
-    </p>
+        <div>
+            <a asp-action="CreateOrder" class="btn btn-success">Złóż zamówienie</a>
+        </div>
+
 }
 else
 {
