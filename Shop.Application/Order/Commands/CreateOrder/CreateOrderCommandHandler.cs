@@ -15,6 +15,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Xunit.Abstractions;
 
 namespace Shop.Application.Order.Commands.CreateOrder
 {
@@ -86,6 +87,9 @@ namespace Shop.Application.Order.Commands.CreateOrder
 
                 item.Item.StockQuantity = item.Item.StockQuantity - item.Quantity;
             }
+
+            var serializedCartItems = JsonConvert.SerializeObject(new List<CartItem>());
+            session.SetString("Cart", serializedCartItems);
 
             await _orderRepository.Create(order);
 
