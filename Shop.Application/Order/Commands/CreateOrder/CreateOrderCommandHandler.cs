@@ -65,7 +65,7 @@ namespace Shop.Application.Order.Commands.CreateOrder
                 Address = request.Address,
                 IsPaid = false,
                 CartItems = cartItems,
-                CartTotal = CalculateCartTotal(cartItems),
+                CartTotal = CalculateCartTotal.Calculate(cartItems),
                 City = request.City,
                 Email = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Email),
                 FirstName = request.FirstName,
@@ -90,17 +90,6 @@ namespace Shop.Application.Order.Commands.CreateOrder
             await _orderRepository.Create(order);
 
             return Unit.Value;
-        }
-        private decimal CalculateCartTotal(List<CartItem> cartItems)
-        {
-            if (cartItems == null)
-            {
-                return 0;
-            }
-
-            decimal total = cartItems.Sum(item => item.UnitPrice);
-
-            return total;
         }
     }
 }

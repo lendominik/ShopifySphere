@@ -10,16 +10,6 @@ namespace Shop.Domain.Interfaces
 {
     public interface ICartItemRepository
     {
-        Task Create(Domain.Entities.CartItem cartItem);
-        Task<CartItem> GetCartItem(Guid cartItemId);
-        Task<List<CartItem>> GetCartItemsByOrderId(int orderId);
-        Task Delete(CartItem cartItem);
-        Task UpdateCartItemQuantity(CartItem cartItem, int quantity);
-        Task UpdateCartItem(CartItem cartItem);
-        Task Commit();
-        Task AddToCart(CartItem cartItem);
-        Task RemoveCartItemsByCartId(string cartId);
-        Task<List<CartItem>> GetCartItems(string cartId);
-        Task AddCartItems(List<CartItem> cartItems);
+        Task Create(CartItem cartItem);
     }
 }
