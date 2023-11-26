@@ -25,12 +25,8 @@ namespace Shop.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<CartItem> GetCartItem(int cartItemId)
+        public async Task<CartItem> GetCartItem(Guid cartItemId)
         {
-            if (cartItemId <= 0)
-            {
-                throw new ArgumentException("Invalid cartItemId");
-            }
 
             var cartItem = await _dbContext.CartItems
                 .Include(c => c.Item)

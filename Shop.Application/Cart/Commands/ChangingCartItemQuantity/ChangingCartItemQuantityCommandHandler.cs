@@ -35,7 +35,7 @@ namespace Shop.Application.Cart.Commands.ChangingCartItemQuantity
 
             var items = JsonConvert.DeserializeObject<List<CartItem>>(cart);
 
-            var item = items.FirstOrDefault(i => i.Id == request.Id);
+            var item = items.LastOrDefault(i => i.Id == request.Id);
 
             decimal unitPrice = item.UnitPrice / item.Quantity;
 

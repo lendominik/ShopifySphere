@@ -11,7 +11,7 @@ namespace Shop.Domain.Interfaces
     public interface ICartItemRepository
     {
         Task Create(Domain.Entities.CartItem cartItem);
-        Task<CartItem> GetCartItem(int cartItemId);
+        Task<CartItem> GetCartItem(Guid cartItemId);
         Task<List<CartItem>> GetCartItemsByOrderId(int orderId);
         Task Delete(CartItem cartItem);
         Task UpdateCartItemQuantity(CartItem cartItem, int quantity);

@@ -8,7 +8,7 @@ namespace Shop.Domain.Entities
 {
     public class CartItem
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public int Quantity { get; set; }
         public decimal UnitPrice { get; set; }
         public string CartId { get; set; }

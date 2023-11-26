@@ -49,10 +49,6 @@ namespace Shop.Application.Cart.Commands.AddToCart
             
             var item = await _itemRepository.GetByEncodedName(request.EncodedName);
 
-            await Console.Out.WriteLineAsync(request.EncodedName); await Console.Out.WriteLineAsync(request.EncodedName); await Console.Out.WriteLineAsync(request.EncodedName);
-            await Console.Out.WriteLineAsync(request.EncodedName); await Console.Out.WriteLineAsync(request.EncodedName); await Console.Out.WriteLineAsync(request.EncodedName);
-            await Console.Out.WriteLineAsync(request.EncodedName); await Console.Out.WriteLineAsync(request.EncodedName); await Console.Out.WriteLineAsync(request.EncodedName);
-
             if (items == null)
             {
                 items = new List<CartItem>();
@@ -81,6 +77,7 @@ namespace Shop.Application.Cart.Commands.AddToCart
             {
                 var cartItem = new CartItem
                 {
+                    Id = Guid.NewGuid(),
                     Item = item,
                     CartId = cartId,
                     Quantity = 1,
