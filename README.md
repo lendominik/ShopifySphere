@@ -42,60 +42,38 @@
 
 
 ## Zdjęcia
-### Sekcja kategorie
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/0c2055dc-1f59-4149-ad04-dcb049d00c85)
+### Sekcja przedmioty
+![image](https://github.com/lendominik/ShopifySphere/assets/138286618/5005feb8-b6cf-4355-b2d7-f3a763085502)
 
-### Sekcja Kategorie -> Edycja kategorii
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/6c15ff24-ba74-41fc-8331-799f589a8d97)
+### Sekcja przedmioty w koszyku
+![image](https://github.com/lendominik/ShopifySphere/assets/138286618/645109f0-4b63-4838-a3ca-860b02f02ff7)
 
-### Sekcja Kategorie -> Edycja kategorii -> Dodaj nowy przedmiot
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/580d0caf-d268-4655-87bf-3bf5909d32fc)
+### Sekcja składania zamówienia
+![image](https://github.com/lendominik/ShopifySphere/assets/138286618/04caacd4-6afa-4e32-8bb0-1d29295c4173)
 
-### Notyfikacja po dodaniu przedmiotu
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/153474db-fe3e-4d4a-b09d-e8967bbee2ca)
+### Sekcja kategorii
+![image](https://github.com/lendominik/ShopifySphere/assets/138286618/01c3cd92-ff22-4e5d-9d81-5d5f7707ce64)
 
-### Lista przedmiotów
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/cf022e0f-0eb3-4f87-b142-1c02e851babb)
+### Sekcja dodawania nowego produktu do kategorii
+![image](https://github.com/lendominik/ShopifySphere/assets/138286618/c094a733-504b-4dd9-b3e5-e9bbf228e1bb)
 
-### Koszyk po dodaniu przedmiotu do koszyka
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/95e38f3d-9cfe-47a0-951f-07f5937cc81f)
+### Sekcja historii zamówień
+![image](https://github.com/lendominik/ShopifySphere/assets/138286618/32509139-6a71-4c24-b2ee-8f6a6b02f420)
 
-### Zmiana ilości w koszyku
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/ff245260-3a2f-49c4-b71d-101801514df5)
+### Sekcja szczegóły zamówienia
+![image](https://github.com/lendominik/ShopifySphere/assets/138286618/899a7559-c65d-4de2-a803-eb5221c2a581)
 
-### Panel składania zamówienia
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/53df5d29-9756-49f3-b163-f004a413a95f)
+### Sekcja - Opłać zamówienie
+![image](https://github.com/lendominik/ShopifySphere/assets/138286618/8ed962ff-dcfd-4433-aabb-1fd5a5a0e49f)
 
-### Widok ze szczegółami po złożeniu zamówienia - automatyczne przekierowanie
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/362673b9-410a-4aa7-b2e5-592564f4d639)
+### Panel widoczny tylko dla administratorów, zawiera wszystkie zamówienia i pozwala nimi zarządzać
+![image](https://github.com/lendominik/ShopifySphere/assets/138286618/d6f2cc7c-63d6-4668-a2cb-ce9df87e0e2b)
 
-### Widok po kliknięciu opcji "OPŁAĆ" - automatycznie obsługiwane przez Stripe
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/9d3e4cd0-546c-435f-ab47-e94126539da2)
+![image](https://github.com/lendominik/ShopifySphere/assets/138286618/5505f8cc-5782-4088-a0cd-a583b8a2a365)
 
-### Widok po opłaceniu zamówienia
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/57c12df2-98fc-4e4f-a70b-fe20523b6e66)
+![image](https://github.com/lendominik/ShopifySphere/assets/138286618/329ee09d-fc29-4f73-8bee-fe8342859b83)
 
-### Widok w szczegółach zamówienia po jego opłaceniu
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/e9976362-eba8-434d-9e32-72de2c5ce59b)
-
-### Widok listy zamówień - gdy zamówienie opłacimy nie ma możliwości jego anulownia
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/9147e0ef-e036-41e2-84ab-4d30149b56f4)
-
-### Widok po anulowaniu zamówienia
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/961415e0-ece1-460a-9132-3332a33a503e)
-
-### Panel zarządzania zamówieniami - widoczny tylko dla użytkowników mających rolę "Owner". Administrator ma możliwość ustawieniu statusu zamówienia, widać to poniżej na zdjęciach
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/b0143241-5d62-47c6-93c9-66b3d01af77d)
-
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/de6f07dd-9857-4e58-8915-a53fe9ee2e73)
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/840b041d-e6ec-4ed3-8030-4e3b6d385ec3)
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/f0a3efed-3cbc-4f30-86f3-fdb69d8ce219)
-
-
-### Widok dla zwykłego użytkownika, bez roli "Owner"
-
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/246a9266-1996-4466-a7ce-bf046ef075a4)
-![image](https://github.com/lendominik/ShopMVC/assets/138286618/9875f3ab-3106-4926-8a2b-2838c08f1e91)
+![image](https://github.com/lendominik/ShopifySphere/assets/138286618/67028bd7-669b-4754-bdab-bdb407b26c1a)
 
 ## Kontakt
 Email: len.dominik13@gmail.com
