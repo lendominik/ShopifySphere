@@ -7,50 +7,45 @@
 
 <h1>Kategorie</h1>
 
-@if(User.IsInRole("Owner"))
+@if (User.IsInRole("Owner"))
 {
     <p>
         <a class="btn btn-info" asp-action="Create">Dodaj nową</a>
     </p>
-}
 
-<div class="table-responsive">
-    <table class="table table-bordered table-striped">
-        <thead class="table-dark">
-            <tr>
-                <th>Nazwa kategorii</th>
-                <th>Opis kategorii</th>
-                <th>Edycja</th>
-                <th>Usuń</th>
-                <th>Dodaj nowy element</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
                 <tr>
-                    <td>@item.Name</td>
-                    <td>@item.Description</td>
-                    <td>
-                        @if (User.IsInRole("Owner"))
-                        {
+                    <th>Nazwa kategorii</th>
+                    <th>Opis kategorii</th>
+                    <th>Edycja</th>
+                    <th>Usuń</th>
+                    <th>Dodaj nowy element</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Description</td>
+                        <td>
                             <a class="btn btn-primary" asp-controller="Category" asp-action="Edit" asp-route-encodedName="@item.EncodedName">Edycja</a>
-                        }
-                    </td>
-                    <td>
-                        @if (User.IsInRole("Owner"))
-                        {
+                        </td>
+                        <td>
                             <form asp-action="Delete" method="post">
                                 <input type="hidden" name="encodedName" value="@item.EncodedName" />
                                 <button type="submit" class="btn btn-danger">Usuń</button>
                             </form>
-                        }
-                    </td>
-                    <td>
-                        <partial name="_CreateItem" model="new CreateItemCommand() { CategoryEncodedName = @item.EncodedName }" />
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+                        </td>
+                        <td>
+                            <partial name="_CreateItem" model="new CreateItemCommand() { CategoryEncodedName = @item.EncodedName }" />
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

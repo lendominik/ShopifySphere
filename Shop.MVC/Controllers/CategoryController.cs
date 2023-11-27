@@ -15,7 +15,7 @@ using Shop.MVC.Extensions;
 
 namespace Shop.MVC.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Owner")]
     public class CategoryController : Controller
     {
         private readonly IMediator _mediator;
@@ -37,7 +37,6 @@ namespace Shop.MVC.Controllers
         {
             return View();
         }
-        [Authorize(Roles = "Owner")]
         [HttpPost]
         [Route("Category/Create")]
         public async Task<IActionResult> Create(CreateCategoryCommand command)
@@ -54,7 +53,6 @@ namespace Shop.MVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [Authorize(Roles = "Owner")]
         [HttpPost]
         [Route("Category/CreateItem")]
         public async Task<IActionResult> CreateItem(CreateItemCommand command)
@@ -71,7 +69,6 @@ namespace Shop.MVC.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-        [Authorize(Roles = "Owner")]
         [Route("Category/{encodedName}/Edit")]
         public async Task<IActionResult> Edit(string encodedName)
         {
@@ -81,7 +78,6 @@ namespace Shop.MVC.Controllers
 
             return View(model);
         }
-        [Authorize(Roles = "Owner")]
         [HttpPost]
         [Route("Category/{encodedName}/Edit")]
         public async Task<IActionResult> Edit(EditCategoryCommand command)
@@ -97,7 +93,6 @@ namespace Shop.MVC.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-        [Authorize(Roles = "Owner")]
         [HttpPost]
         [Route("Category/Delete")]
         public async Task<IActionResult> Delete(DeleteCategoryCommand command)
