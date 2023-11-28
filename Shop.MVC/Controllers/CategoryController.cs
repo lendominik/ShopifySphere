@@ -23,7 +23,6 @@ namespace Shop.MVC.Controllers
             _mediator = mediator;
             _mapper = mapper;
         }
-        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var categories = await _mediator.Send(new GetAllCategoriesQuery());

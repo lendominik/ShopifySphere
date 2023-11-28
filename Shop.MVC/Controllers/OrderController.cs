@@ -15,6 +15,7 @@ using Stripe.Checkout;
 
 namespace Shop.MVC.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly IMediator _mediator;
@@ -45,7 +46,6 @@ namespace Shop.MVC.Controllers
 
             return View(orders);
         }
-        [Authorize]
         [HttpPost]
         [Route("Order/CancelUserOrder")]
         public async Task<IActionResult> CancelUserOrder(CancelOrderCommand command)
@@ -61,9 +61,9 @@ namespace Shop.MVC.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        [Authorize(Roles = "Owner")]
         [HttpPost]
         [Route("Order/CancelOrderByAdmin")]
-        [Authorize(Roles = "Owner")]
         public async Task<IActionResult> CancelOrderByAdmin(CancelOrderCommand command)
         {
             if (!ModelState.IsValid)
@@ -97,7 +97,6 @@ namespace Shop.MVC.Controllers
 
             return View("AllOrders", items);
         }
-        [Authorize]
         [Route("Order/Success")]
         public async Task<IActionResult> Success()
         {
@@ -125,7 +124,6 @@ namespace Shop.MVC.Controllers
 
             return View("Cancel");
         }
-        [Authorize]
         [Route("Order/Cancel")]
         public IActionResult Cancel()
         {
