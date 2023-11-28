@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.Application.Tests\\Shop.Application.Tests.csproj": {}
+    "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Application.Tests\\Shop.Application.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.Application.Tests\\Shop.Application.Tests.csproj": {
+    "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Application.Tests\\Shop.Application.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.Application.Tests\\Shop.Application.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Application.Tests\\Shop.Application.Tests.csproj",
         "projectName": "Shop.Application.Tests",
-        "projectPath": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.Application.Tests\\Shop.Application.Tests.csproj",
+        "projectPath": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Application.Tests\\Shop.Application.Tests.csproj",
         "packagesPath": "C:\\Users\\Dominik\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.Application.Tests\\obj\\",
+        "outputPath": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Application.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -34,8 +34,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.Application\\Shop.Application.csproj": {
-                "projectPath": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.Application\\Shop.Application.csproj"
+              "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Application\\Shop.Application.csproj": {
+                "projectPath": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Application\\Shop.Application.csproj"
               }
             }
           }
@@ -103,14 +103,14 @@
         }
       }
     },
-    "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.Application\\Shop.Application.csproj": {
+    "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Application\\Shop.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.Application\\Shop.Application.csproj",
+        "projectUniqueName": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Application\\Shop.Application.csproj",
         "projectName": "Shop.Application",
-        "projectPath": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.Application\\Shop.Application.csproj",
+        "projectPath": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Application\\Shop.Application.csproj",
         "packagesPath": "C:\\Users\\Dominik\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.Application\\obj\\",
+        "outputPath": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -133,8 +133,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.Domain\\Shop.Domain.csproj": {
-                "projectPath": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.Domain\\Shop.Domain.csproj"
+              "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Domain\\Shop.Domain.csproj": {
+                "projectPath": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Domain\\Shop.Domain.csproj"
               }
             }
           }
@@ -228,14 +228,14 @@
         }
       }
     },
-    "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.Domain\\Shop.Domain.csproj": {
+    "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Domain\\Shop.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.Domain\\Shop.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Domain\\Shop.Domain.csproj",
         "projectName": "Shop.Domain",
-        "projectPath": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.Domain\\Shop.Domain.csproj",
+        "projectPath": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Domain\\Shop.Domain.csproj",
         "packagesPath": "C:\\Users\\Dominik\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.Domain\\obj\\",
+        "outputPath": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

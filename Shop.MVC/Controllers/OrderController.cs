@@ -2,10 +2,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Shop.Application.Cart.Queries.GetCart;
-using Shop.Application.Item.Commands.DeleteItem;
-using Shop.Application.Item.Queries.GetAllItems;
-using Shop.Application.Item.Queries.GetItem;
 using Shop.Application.Order.Commands.CancelOrder;
 using Shop.Application.Order.Commands.CompleteOrderCommand;
 using Shop.Application.Order.Commands.SetOrderPaidStatus;
@@ -14,11 +10,8 @@ using Shop.Application.Order.Queries.GetAllOrders;
 using Shop.Application.Order.Queries.GetPaymentSession;
 using Shop.Application.Order.Queries.GetUserOrders;
 using Shop.Application.Order.Queries.OrderDetails;
-using Shop.Domain.Entities;
 using Shop.MVC.Extensions;
 using Stripe.Checkout;
-using System.Drawing.Printing;
-using System.Globalization;
 
 namespace Shop.MVC.Controllers
 {

@@ -1,12 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
 using Shop.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Data.SqlClient;
 using System.Linq.Expressions;
 using Shop.Application.Exceptions;
 

@@ -1,5 +1,4 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -9,8 +8,6 @@ using Shop.Application.Category.Commands.EditCategory;
 using Shop.Application.Category.Queries.GetAllCategories;
 using Shop.Application.Category.Queries.GetCategory;
 using Shop.Application.Item.Commands.CreateItem;
-using Shop.Application.Item.Queries.GetAllItems;
-using Shop.Domain.Entities;
 using Shop.MVC.Extensions;
 
 namespace Shop.MVC.Controllers

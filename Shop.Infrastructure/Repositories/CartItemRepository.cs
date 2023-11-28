@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 using Shop.Domain.Entities;
 using Shop.Domain.Interfaces;
 using Shop.Infrastructure.Persistence;
-using System.Threading.Tasks;
 
 namespace Shop.Infrastructure.Repositories
 {

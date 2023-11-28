@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
-using Azure.Core;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Shop.Application.Category.Commands.DeleteCategory;
 using Shop.Application.Item.Commands.DeleteItem;
 using Shop.Application.Item.Commands.EditItem;
 using Shop.Application.Item.Queries.GetAllItems;

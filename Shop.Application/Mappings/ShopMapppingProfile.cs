@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Shop.Application.Cart;
 using Shop.Application.Category;
 using Shop.Application.Category.Commands.CreateCategory;
 using Shop.Application.Category.Commands.EditCategory;
@@ -8,12 +7,6 @@ using Shop.Application.Item.Commands.CreateItem;
 using Shop.Application.Item.Commands.EditItem;
 using Shop.Application.Order;
 using Shop.Application.Order.Commands.CreateOrder;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Shop.Application.Mappings
 {

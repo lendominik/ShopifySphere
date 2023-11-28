@@ -1,16 +1,9 @@
-﻿ using AutoMapper;
+﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Shop.Application.Exceptions;
 using Shop.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.WebSockets;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Shop.Application.Item.Commands.CreateItem
 {

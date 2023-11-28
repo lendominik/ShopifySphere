@@ -6,14 +6,7 @@ using Shop.Application.Cart.Commands.AddToCart;
 using Shop.Application.Cart.Commands.ChangingCartItemQuantity;
 using Shop.Application.Cart.Commands.RemoveFromCart;
 using Shop.Application.Cart.Queries.GetCart;
-using Shop.Application.Category.Commands.CreateCategory;
-using Shop.Application.Category.Commands.DeleteCategory;
-using Shop.Application.Category.Queries.GetAllCategories;
-using Shop.Application.Item.Commands.CreateItem;
-using Shop.Application.Item.Commands.DeleteItem;
-using Shop.Application.Item.Queries.GetItem;
 using Shop.Application.Order.Commands.CreateOrder;
-using Shop.Domain.Entities;
 using Shop.MVC.Extensions;
 
 namespace Shop.MVC.Controllers

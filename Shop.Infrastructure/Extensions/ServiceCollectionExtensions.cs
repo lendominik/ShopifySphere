@@ -5,13 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Shop.Domain.Interfaces;
 using Shop.Infrastructure.Persistence;
 using Shop.Infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
 
 namespace Shop.Infrastructure.Extensions
 {

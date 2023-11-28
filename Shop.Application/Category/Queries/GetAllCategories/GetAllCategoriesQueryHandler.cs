@@ -1,12 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
-using Shop.Application.Item;
 using Shop.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Shop.Application.Category.Queries.GetAllCategories
 {

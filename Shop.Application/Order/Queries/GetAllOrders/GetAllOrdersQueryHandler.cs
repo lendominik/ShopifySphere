@@ -1,16 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Shop.Application.Exceptions;
-using Shop.Domain.Entities;
 using Shop.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit.Abstractions;
 
 namespace Shop.Application.Order.Queries.GetAllOrders
 {
