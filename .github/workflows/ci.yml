@@ -14,9 +14,11 @@ jobs:
         uses: actions/setup-dotnet@v3.2.0
         with:
           dotnet-version: 7.0.x
-      - name: Change to Shop.MVC directory
-        run: cd Shop.MVC
       - name: Restore dependencies
-        run: dotnet restore
+        run: |
+          cd Shop.MVC
+          dotnet restore
       - name: Build
-        run: dotnet build --no-restore
+        run: |
+          cd Shop.MVC
+          dotnet build --no-restore
