@@ -55,4 +55,4 @@ jobs:
           app-name: 'shopifysphere'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1F89559428C44F56810D9DBBEC74F8D6 }}
-          package: ${{ github.workspace }}/.net-app
+          package: ${{ github.workspace }}/Shop.MVC/.net-app
