@@ -15,7 +15,7 @@ jobs:
         with:
           dotnet-version: 7.0.x
       - name: Change to SHOP.mvc directory
-        run: cd SHOP.mvc
+        run: cd SHOP.MVC
       - name: Restore dependencies
         run: dotnet restore
       - name: Build
