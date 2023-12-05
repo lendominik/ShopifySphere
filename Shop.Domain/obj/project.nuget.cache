@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oWMho3v+6Z2gqD8yseRgWiXDxk+kPatKQ6vu7MBh1hhiojwljPyg1DyxkLVQtErFvzCAtKPiOPF3ui4LztDoOQ==",
+  "dgSpecHash": "wTYhr8gfAok1/0rjmtKC8+piffB0XcvRfkOHBppObyvrSxtZDScwpKnosqs1+SAPT3A2W6vtcRQc8owrBnIOYw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Domain\\Shop.Domain.csproj",
+  "projectFilePath": "C:\\Users\\Dominik\\Desktop\\shopify-sphere\\Shop.Domain\\Shop.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

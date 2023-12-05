@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JpKIf3W5FGFP1p/Gs26aktaNd35rxuGIDbFnn3RVzXoTKJxV3NQOWdLVErpYMf2OQdEq9lkZyJEfxSYqvelLrA==",
+  "dgSpecHash": "bfLor448Bpp4WdoWjlO+NfvAVscQTyRtaXL8abv0Ghg/X3HI1872zZ2nVn5VozsXZWVIJB8d21OL4UKCohrdYA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Application.Tests\\Shop.Application.Tests.csproj",
+  "projectFilePath": "C:\\Users\\Dominik\\Desktop\\shopify-sphere\\Shop.Application.Tests\\Shop.Application.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dominik\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Dominik\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
