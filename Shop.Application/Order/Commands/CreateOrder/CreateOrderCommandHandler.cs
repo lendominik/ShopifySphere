@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Shop.Application.Exceptions;
+using Shop.Application.Services;
 using Shop.Domain.Entities;
 using Shop.Domain.Interfaces;
 using System.Security.Claims;
@@ -16,31 +17,23 @@ namespace Shop.Application.Order.Commands.CreateOrder
         private readonly IOrderRepository _orderRepository;
         private readonly ICartItemRepository _cartItemRepository;
         private readonly IItemRepository _itemRepository;
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ICartService _cartService;
         private readonly IMapper _mapper;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public CreateOrderCommandHandler(IOrderRepository orderRepository, IItemRepository itemRepository ,IHttpContextAccessor httpContextAccessor,ICartItemRepository cartItemRepository, IMapper mapper)
+        public CreateOrderCommandHandler(IHttpContextAccessor httpContextAccessor, IOrderRepository orderRepository, IItemRepository itemRepository, ICartService cartService,ICartItemRepository cartItemRepository, IMapper mapper)
         {
             _orderRepository = orderRepository;
             _cartItemRepository = cartItemRepository;
             _itemRepository = itemRepository;
-            _httpContextAccessor = httpContextAccessor;
+            _cartService = cartService;
             _mapper = mapper;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<Unit> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
-            if (_httpContextAccessor == null)
-            {
-                throw new ArgumentNullException(nameof(_httpContextAccessor));
-            }
-
-            var session = _httpContextAccessor.HttpContext.Session;
-            var cartId = session.GetString("CartSessionKey");
-
-            var cart = session.GetString("Cart");
-
-            var cartItems = JsonConvert.DeserializeObject<List<CartItem>>(cart);
+            var cartItems = _cartService.GetCartItems();
 
             if (cartItems == null || cartItems.Count == 0)
             {
@@ -79,8 +72,7 @@ namespace Shop.Application.Order.Commands.CreateOrder
                 item.Item.StockQuantity = item.Item.StockQuantity - item.Quantity;
             }
 
-            var serializedCartItems = JsonConvert.SerializeObject(new List<CartItem>());
-            session.SetString("Cart", serializedCartItems);
+            _cartService.SaveCartItemsToSession(cartItems);
 
             await _orderRepository.Create(order);
 
