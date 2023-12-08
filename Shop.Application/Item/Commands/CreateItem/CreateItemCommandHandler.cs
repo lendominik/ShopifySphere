@@ -34,7 +34,7 @@ namespace Shop.Application.Item.Commands.CreateItem
 
             if(category == null)
             {
-                throw new NotFoundException("Podana kategoria nie istnieje.");
+                throw new NotFoundException("Category not found.");
             }
 
             item.EncodeName();

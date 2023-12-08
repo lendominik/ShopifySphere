@@ -28,10 +28,12 @@ namespace Shop.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
         }
         public async Task<IEnumerable<Item>> GetAll()
-            => await _dbContext.Items.Include(c => c.Category).ToListAsync();
+            => await _dbContext.Items
+            .Select(i => new Item { Description = i.Description, EncodedName = i.EncodedName, Name = i.Name, Price = i.Price, ProductImage = i.ProductImage, StockQuantity = i.StockQuantity, Category = i.Category })
+            .ToListAsync();
         public async Task<Item> GetByEncodedName(string encodedName)
             => await _dbContext.Items.FirstOrDefaultAsync(e => e.EncodedName == encodedName);
-        public async Task<Item> GetByName(string name)
-            => await _dbContext.Items.FirstOrDefaultAsync(e => e.Name == name); 
+        public bool ItemExists(string name)
+            => _dbContext.Categories.Any(c => c.Name == name);
     }
 }

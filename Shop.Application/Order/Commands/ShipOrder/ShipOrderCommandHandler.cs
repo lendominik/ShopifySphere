@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Shop.Application.Exceptions;
 using Shop.Domain.Interfaces;
 
 namespace Shop.Application.Order.Commands.ShipOrder
@@ -13,7 +14,14 @@ namespace Shop.Application.Order.Commands.ShipOrder
         }
         public async Task<Unit> Handle(ShipOrderCommand request, CancellationToken cancellationToken)
         {
-            await _orderRepository.ShipOrder(request.OrderId);
+            var order = await _orderRepository.GetOrderById(request.OrderId);
+
+            if(order == null)
+            {
+                throw new NotFoundException("Order not found.");
+            }
+
+            await _orderRepository.ShipOrder(order);
 
             return Unit.Value;
         }

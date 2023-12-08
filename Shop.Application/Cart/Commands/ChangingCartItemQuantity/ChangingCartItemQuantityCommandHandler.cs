@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Shop.Application.Services;
 using Shop.Domain.Entities;
 using System.Text;
 
@@ -9,24 +10,16 @@ namespace Shop.Application.Cart.Commands.ChangingCartItemQuantity
     public class ChangingCartItemQuantityCommandHandler : IRequestHandler<ChangingCartItemQuantityCommand>
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ICartService _cartService;
 
-        public ChangingCartItemQuantityCommandHandler(IHttpContextAccessor httpContextAccessor)
+        public ChangingCartItemQuantityCommandHandler(IHttpContextAccessor httpContextAccessor, ICartService cartService)
         {
             _httpContextAccessor = httpContextAccessor;
+            _cartService = cartService;
         }
         public async Task<Unit> Handle(ChangingCartItemQuantityCommand request, CancellationToken cancellationToken)
         {
-            if (_httpContextAccessor == null)
-            {
-                throw new ArgumentNullException(nameof(_httpContextAccessor));
-            }
-
-            var session = _httpContextAccessor.HttpContext.Session;
-            var cartId = session.GetString("CartSessionKey");
-
-            var cart = session.GetString("Cart");
-
-            var items = JsonConvert.DeserializeObject<List<CartItem>>(cart);
+            var items = _cartService.GetCartItems();
 
             var item = items.LastOrDefault(i => i.Id == request.Id);
 
@@ -36,8 +29,7 @@ namespace Shop.Application.Cart.Commands.ChangingCartItemQuantity
 
             item.UnitPrice = unitPrice * request.Quantity;
 
-            var serializedCartItems = JsonConvert.SerializeObject(items);
-            session.SetString("Cart", serializedCartItems);
+            _cartService.SaveCartItemsToSession(items);
 
             return Unit.Value;
         }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Shop.Application.Exceptions;
+using Shop.Application.Services;
 using Shop.Domain.Entities;
 using System.Text;
 
@@ -10,42 +11,28 @@ namespace Shop.Application.Cart.Commands.RemoveFromCart
     public class RemoveFromCartCommandHandler : IRequestHandler<RemoveFromCartCommand>
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ICartService _cartService;
 
-        public RemoveFromCartCommandHandler(IHttpContextAccessor httpContextAccessor)
+        public RemoveFromCartCommandHandler(IHttpContextAccessor httpContextAccessor, ICartService cartService)
         {
             _httpContextAccessor = httpContextAccessor;
+            _cartService = cartService;
         }
 
         public async Task<Unit> Handle(RemoveFromCartCommand request, CancellationToken cancellationToken)
         {
-            if (_httpContextAccessor == null)
-            {
-                throw new ArgumentNullException(nameof(_httpContextAccessor));
-            }
-
-            var session = _httpContextAccessor.HttpContext.Session;
-            var cartId = session.GetString("CartSessionKey");
-
-            if (string.IsNullOrWhiteSpace(cartId))
-            {
-                cartId = Guid.NewGuid().ToString();
-                session.SetString("CartSessionKey", cartId);
-            }
-
-            var cart = session.GetString("Cart");
-            var items = JsonConvert.DeserializeObject<List<CartItem>>(cart);
+            var items = _cartService.GetCartItems();
 
             var cartItem = items.FirstOrDefault(i => i.Id == request.Id);
 
-            if (cartId == null || cartItem == null)
+            if (cartItem == null)
             {
-                throw new NotFoundException("Nie znaleziono kosza użytkownika lub podanego przedmiotu.");
+                throw new NotFoundException("Cart or user not found.");
             }
 
             items.Remove(cartItem);
 
-            var serializedCartItems = JsonConvert.SerializeObject(items);
-            session.SetString("Cart", serializedCartItems);
+            _cartService.SaveCartItemsToSession(items);
 
             return Unit.Value;
         }

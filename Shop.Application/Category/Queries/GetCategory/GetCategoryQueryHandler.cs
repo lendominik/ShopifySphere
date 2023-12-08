@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Shop.Application.Exceptions;
 using Shop.Domain.Interfaces;
 
 namespace Shop.Application.Category.Queries.GetCategory
@@ -17,6 +18,11 @@ namespace Shop.Application.Category.Queries.GetCategory
         public async Task<CategoryDto> Handle(GetCategoryQuery request, CancellationToken cancellationToken)
         {
             var category = await _categoryRepository.GetByEncodedName(request.EncodedName);
+
+            if(category == null)
+            {
+                throw new NotFoundException("Category not found.");
+            }
 
             var categoryDto = _mapper.Map<CategoryDto>(category);
 

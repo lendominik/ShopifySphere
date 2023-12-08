@@ -44,7 +44,7 @@ namespace Shop.Application.Order.Commands.CreateOrder
 
             if (cartItems == null || cartItems.Count == 0)
             {
-                throw new NotFoundException("Koszyk jest pusty.");
+                throw new NotFoundException("The cart is empty.");
             }
 
             foreach (var cartItem in cartItems)
@@ -73,7 +73,7 @@ namespace Shop.Application.Order.Commands.CreateOrder
             {
                 if (item.Item.StockQuantity < item.Quantity || item.Item.StockQuantity < 0 || item.Quantity <= 0)
                 {
-                    throw new OutOfStockException("Nie ma tylu przedmiotów w magazynie.");
+                    throw new OutOfStockException("There are not that many items in stock.");
                 }
 
                 item.Item.StockQuantity = item.Item.StockQuantity - item.Quantity;

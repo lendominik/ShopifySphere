@@ -19,7 +19,7 @@ namespace Shop.Application.Item.Commands.DeleteItem
 
             if (item == null)
             {
-                throw new NotFoundException("Podany przedmiot nie istnieje.");
+                throw new NotFoundException("Item not found.");
             }
 
             await _itemRepository.Delete(item);

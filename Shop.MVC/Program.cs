@@ -20,10 +20,9 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-
-
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddAplication();
+builder.Services.AddAutoMapper();
 
 builder.Services.AddHttpContextAccessor();
 

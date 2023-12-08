@@ -11,6 +11,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Shop.Application.Category.Commands.CreateCategory;
 using Shop.Application.Order.Commands.CreateOrder;
+using Shop.Application.Services;
 
 namespace Shop.Application.Extensions
 {
@@ -26,19 +27,29 @@ namespace Shop.Application.Extensions
 
             services.AddHttpContextAccessor();
 
-            services.AddScoped(provider => new MapperConfiguration(cfg =>
-            {
-                var scope = provider.CreateScope();
-                var userContext = scope.ServiceProvider.GetRequiredService<IUserContext>();
-                cfg.AddProfile(new ShopMappingProfile());
-            }).CreateMapper()
-            );
-
             services.AddTransient<ErrorHandlingMiddleware>();
+
+            services.AddScoped<ICartService, CartService>();
 
             services.AddFluentValidation();
             services.AddValidatorsFromAssemblyContaining<CreateItemCommandValidator>();
             services.AddValidatorsFromAssemblyContaining<CreateCategoryCommandValidator>();
+        }
+
+        public static void AddAutoMapper(this IServiceCollection services)
+        {
+            services.AddScoped(provider =>
+            {
+                var scope = provider.CreateScope();
+                var userContext = scope.ServiceProvider.GetRequiredService<IUserContext>();
+
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.AddProfile(new ShopMappingProfile());
+                });
+
+                return config.CreateMapper();
+            });
         }
     }
 }

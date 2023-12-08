@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Shop.Application.Exceptions;
 using Shop.Domain.Interfaces;
 
 namespace Shop.Application.Order.Commands.SetOrderPaidStatus
@@ -15,6 +16,11 @@ namespace Shop.Application.Order.Commands.SetOrderPaidStatus
         public async Task<Unit> Handle(SetOrderPaidStatusCommand request, CancellationToken cancellationToken)
         {
             var order = await _orderRepository.GetOrderById(request.OrderId);
+
+            if (order == null)
+            {
+                throw new NotFoundException("Order not found.");
+            }
 
             await _orderRepository.SetOrderPaidStauts(order);
 

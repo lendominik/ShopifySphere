@@ -28,7 +28,7 @@ namespace Shop.Application.Item.Queries.GetAllItems
 
             if(items == null)
             {
-                throw new NotFoundException("Nie ma żadnych przedmiotów w sklepie");
+                throw new NotFoundException("Items not found.");
             }
 
             if (!string.IsNullOrEmpty(request.SelectedCategory))

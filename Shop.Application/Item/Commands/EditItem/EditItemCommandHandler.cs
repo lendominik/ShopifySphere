@@ -23,7 +23,7 @@ namespace Shop.Application.Item.Commands.EditItem
 
             if (item == null)
             {
-                throw new NotFoundException("Podany przedmiot nie istnieje.");
+                throw new NotFoundException("Item not found.");
             }
 
             item.Description = request.Description;

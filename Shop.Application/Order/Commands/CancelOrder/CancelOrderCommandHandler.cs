@@ -19,15 +19,15 @@ namespace Shop.Application.Order.Commands.CancelOrder
 
             if(order == null)
             {
-                throw new NotFoundException("Zamówienie o podanym ID nie istnieje.");
+                throw new NotFoundException("Order not found.");
             }
 
             if(order.OrderStatus != Domain.Entities.OrderStatus.Pending)
             {
-                throw new Exception("Nie można anulować zamówienia będącego w trakcie realizacji.");
+                throw new Exception("You cannot cancel an order that is currently being processed.");
             }
 
-            await _orderRepository.CancelOrder(request.OrderId);
+            await _orderRepository.CancelOrder(order);
 
             return Unit.Value;
         }
