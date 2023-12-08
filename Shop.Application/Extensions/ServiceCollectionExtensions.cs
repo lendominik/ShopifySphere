@@ -26,19 +26,27 @@ namespace Shop.Application.Extensions
 
             services.AddHttpContextAccessor();
 
-            services.AddScoped(provider => new MapperConfiguration(cfg =>
-            {
-                var scope = provider.CreateScope();
-                var userContext = scope.ServiceProvider.GetRequiredService<IUserContext>();
-                cfg.AddProfile(new ShopMappingProfile());
-            }).CreateMapper()
-            );
-
             services.AddTransient<ErrorHandlingMiddleware>();
 
             services.AddFluentValidation();
             services.AddValidatorsFromAssemblyContaining<CreateItemCommandValidator>();
             services.AddValidatorsFromAssemblyContaining<CreateCategoryCommandValidator>();
+        }
+
+        public static void AddAutoMapper(this IServiceCollection services)
+        {
+            services.AddScoped(provider =>
+            {
+                var scope = provider.CreateScope();
+                var userContext = scope.ServiceProvider.GetRequiredService<IUserContext>();
+
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.AddProfile(new ShopMappingProfile());
+                });
+
+                return config.CreateMapper();
+            });
         }
     }
 }
