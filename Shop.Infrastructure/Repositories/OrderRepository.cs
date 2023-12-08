@@ -50,8 +50,13 @@ namespace Shop.Infrastructure.Repositories
         public async Task<List<Order>> GetAllOrders()
             => await _dbContext.Orders.ToListAsync();
         public async Task<Order> GetOrderById(int orderId)
-            => await _dbContext.Orders.Include(order => order.CartItems).ThenInclude(cartItem => cartItem.Item).Where(o => o.Id == orderId).FirstOrDefaultAsync();
+            => await _dbContext.Orders.Include(order => order.CartItems)
+                .ThenInclude(cartItem => cartItem.Item)
+                .Where(o => o.Id == orderId)
+                .FirstOrDefaultAsync();
         public async Task<List<Order>> GetUserOrders(string email)
-            => await _dbContext.Orders.Where(o => o.Email == email).ToListAsync();
+            => await _dbContext.Orders
+                .Select(u => new Order { Id = u.Id, Email = u.Email, IsPaid = u.IsPaid, OrderStatus = u.OrderStatus })
+                .Where(o => o.Email == email).ToListAsync();
     }
 }
