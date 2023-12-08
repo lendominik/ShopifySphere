@@ -12,8 +12,7 @@ namespace Shop.Application.Category.Commands.CreateCategory
                 .MinimumLength(3)
                 .Custom((value, context) =>
                 {
-                    var existingItem = repository.GetByName(value).Result;
-                    if (existingItem != null)
+                    if (repository.CategoryExists(value))
                     {
                         context.AddFailure("Kategoria o tej nazwie istnieje już w bazie danych.");
                     }

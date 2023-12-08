@@ -8,7 +8,7 @@ namespace Shop.Domain.Interfaces
         Task Create(Category category);
         Task Delete(Category category);
         Task<Category> GetByEncodedName(string encodedName);
-        Task<Category> GetByName(string name);
+        bool CategoryExists(string name);
         Task Commit();
     }
 }

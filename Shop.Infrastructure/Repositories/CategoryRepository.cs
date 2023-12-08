@@ -34,8 +34,7 @@ namespace Shop.Infrastructure.Repositories
         public async Task<Category> GetByEncodedName(string encodedName)
            => await _dbContext.Categories
             .FirstOrDefaultAsync(e => e.EncodedName == encodedName);
-        public async Task<Category?> GetByName(string name)
-            => await _dbContext.Categories
-            .FirstOrDefaultAsync(e => e.Name == name);        
+        public bool CategoryExists(string name)
+            =>  _dbContext.Categories.Any(c => c.Name == name);
     }
 }
