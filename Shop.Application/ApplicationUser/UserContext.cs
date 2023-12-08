@@ -20,7 +20,7 @@ namespace Shop.Application.ApplicationUser
 
             if (user == null)
             {
-                throw new InvalidOperationException("Użytkownik nie istnieje");
+                throw new InvalidOperationException("User not found.");
             }
 
             if (user.Identity == null || !user.Identity.IsAuthenticated)
