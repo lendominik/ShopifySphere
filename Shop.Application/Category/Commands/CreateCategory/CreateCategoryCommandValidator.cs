@@ -14,7 +14,7 @@ namespace Shop.Application.Category.Commands.CreateCategory
                 {
                     if (repository.CategoryExists(value))
                     {
-                        context.AddFailure("Kategoria o tej nazwie istnieje już w bazie danych.");
+                        context.AddFailure("The category with this name already exists in the database.");
                     }
                 });
 

@@ -12,10 +12,9 @@ namespace Shop.Application.Item.Commands.CreateItem
                 .MinimumLength(3)
                 .Custom((value, context) =>
                 {
-                    var existingItem = repository.GetByName(value).Result;
-                    if (existingItem != null)
+                    if (repository.ItemExists(value))
                     {
-                        context.AddFailure("Przedmiot o tej nazwie istnieje już w bazie danych.");
+                        context.AddFailure("The category with this name already exists in the database.");
                     }
                 });
 

@@ -16,8 +16,8 @@ namespace Shop.Application.Order.Commands.CreateOrder
                 .NotEmpty();
 
             RuleFor(o => o.PostalCode)
-            .NotEmpty().WithMessage("Kod pocztowy nie może być pusty.")
-            .Matches(@"^\d{2}-\d{3}$").WithMessage("Niepoprawny format kodu pocztowego (xx-xxx).");
+            .NotEmpty().WithMessage("The postal code cannot be empty.")
+            .Matches(@"^\d{2}-\d{3}$").WithMessage("Invalid postal code format (xx-xxx).");
 
             RuleFor(o => o.FirstName)
                 .NotEmpty();
@@ -26,8 +26,8 @@ namespace Shop.Application.Order.Commands.CreateOrder
                 .NotEmpty();
 
             RuleFor(o => o.PhoneNumber)
-                .NotEmpty().WithMessage("Numer telefonu nie może być pusty.")
-                .Matches(@"^\d{3}-\d{3}-\d{3}$").WithMessage("Niepoprawny format numeru telefonu (123-456-789).");
+                .NotEmpty().WithMessage("The phone number cannot be empty.")
+                .Matches(@"^\d{3}-\d{3}-\d{3}$").WithMessage("Invalid phone number format (123-456-789).");
         }
     }
 }
