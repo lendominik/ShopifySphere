@@ -9,12 +9,10 @@ namespace Shop.Application.Cart.Commands.ChangingCartItemQuantity
 {
     public class ChangingCartItemQuantityCommandHandler : IRequestHandler<ChangingCartItemQuantityCommand>
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ICartService _cartService;
 
-        public ChangingCartItemQuantityCommandHandler(IHttpContextAccessor httpContextAccessor, ICartService cartService)
+        public ChangingCartItemQuantityCommandHandler(ICartService cartService)
         {
-            _httpContextAccessor = httpContextAccessor;
             _cartService = cartService;
         }
         public async Task<Unit> Handle(ChangingCartItemQuantityCommand request, CancellationToken cancellationToken)

@@ -10,13 +10,11 @@ namespace Shop.Application.Cart.Queries.GetCart
 {
     public class GetCartQueryHandler : IRequestHandler<GetCartQuery, CartDto>
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IMapper _mapper;
         private readonly ICartService _cartService;
 
-        public GetCartQueryHandler(IHttpContextAccessor httpContextAccessor, IMapper mapper, ICartService cartService)
+        public GetCartQueryHandler(Mapper mapper, ICartService cartService)
         {
-            _httpContextAccessor = httpContextAccessor;
             _mapper = mapper;
             _cartService = cartService;
         }

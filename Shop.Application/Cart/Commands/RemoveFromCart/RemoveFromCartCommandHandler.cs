@@ -10,12 +10,10 @@ namespace Shop.Application.Cart.Commands.RemoveFromCart
 {
     public class RemoveFromCartCommandHandler : IRequestHandler<RemoveFromCartCommand>
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ICartService _cartService;
 
-        public RemoveFromCartCommandHandler(IHttpContextAccessor httpContextAccessor, ICartService cartService)
+        public RemoveFromCartCommandHandler(ICartService cartService)
         {
-            _httpContextAccessor = httpContextAccessor;
             _cartService = cartService;
         }
 

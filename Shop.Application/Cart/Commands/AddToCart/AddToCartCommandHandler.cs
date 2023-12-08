@@ -11,13 +11,11 @@ namespace Shop.Application.Cart.Commands.AddToCart
 {
     public class AddToCartCommandHandler : IRequestHandler<AddToCartCommand>
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IItemRepository _itemRepository;
         private readonly ICartService _cartService;
 
-        public AddToCartCommandHandler(IHttpContextAccessor httpContextAccessor, IItemRepository itemRepository, ICartService cartService)
+        public AddToCartCommandHandler(IItemRepository itemRepository, ICartService cartService)
         {
-            _httpContextAccessor = httpContextAccessor;
             _itemRepository = itemRepository;
             _cartService = cartService;
         }
