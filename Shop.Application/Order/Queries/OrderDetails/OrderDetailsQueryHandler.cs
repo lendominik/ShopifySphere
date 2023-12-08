@@ -23,7 +23,7 @@ namespace Shop.Application.Order.Queries.OrderDetails
 
             if(order == null || order.CartItems == null)
             {
-                throw new NotFoundException("Nie znaleziono takiego zamówienia.");
+                throw new NotFoundException("Order not found.");
             }
 
             var orderDto = _mapper.Map<OrderDto>(order);

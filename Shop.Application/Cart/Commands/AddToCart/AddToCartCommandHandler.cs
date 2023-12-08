@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using System.Text;
 using Shop.Application.Exceptions;
 using Newtonsoft.Json;
+using Shop.Application.Services;
 
 namespace Shop.Application.Cart.Commands.AddToCart
 {
@@ -12,35 +13,24 @@ namespace Shop.Application.Cart.Commands.AddToCart
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IItemRepository _itemRepository;
+        private readonly ICartService _cartService;
 
-        public AddToCartCommandHandler(IHttpContextAccessor httpContextAccessor, IItemRepository itemRepository)
+        public AddToCartCommandHandler(IHttpContextAccessor httpContextAccessor, IItemRepository itemRepository, ICartService cartService)
         {
             _httpContextAccessor = httpContextAccessor;
             _itemRepository = itemRepository;
+            _cartService = cartService;
         }
 
         public async Task<Unit> Handle(AddToCartCommand request, CancellationToken cancellationToken)
         {
-            if (_httpContextAccessor == null)
-            {
-                throw new ArgumentNullException(nameof(_httpContextAccessor));
-            }
-
-            var session = _httpContextAccessor.HttpContext.Session;
-            var cartId = session.GetString("CartSessionKey");
-
-            if (string.IsNullOrWhiteSpace(cartId))
-            {
-                cartId = Guid.NewGuid().ToString();
-                session.SetString("CartSessionKey", cartId);
-            }
-
-            var cart = session.GetString("Cart");
+            var cartId = _cartService.GetOrCreateCartId();
+            var cart = _cartService.GetCart();
             var items = new List<CartItem>();
 
             if(cart != null )
             {
-               items = JsonConvert.DeserializeObject<List<CartItem>>(cart);
+                items = _cartService.GetCartItems();
             }
             
             var item = await _itemRepository.GetByEncodedName(request.EncodedName);
@@ -52,12 +42,12 @@ namespace Shop.Application.Cart.Commands.AddToCart
 
             if(item == null)
             {
-                throw new NotFoundException("Nie znaleziono podanego przedmiotu.");
+                throw new NotFoundException("Item not found.");
             }
 
             if (request.Quantity > item.StockQuantity || item.StockQuantity < 1)
             {
-                throw new OutOfStockException("Nie ma tylu przedmiotów w magazynie.");
+                throw new OutOfStockException("There are not that many items in stock.");
             }
 
             var existingCartItem = items.FirstOrDefault(ci => ci.ItemId == item.Id && ci.CartId == cartId);
@@ -66,8 +56,8 @@ namespace Shop.Application.Cart.Commands.AddToCart
             {
                 existingCartItem.Quantity = existingCartItem.Quantity + 1;
                 existingCartItem.UnitPrice = item.Price * existingCartItem.Quantity;
-                var serializedCartItems = JsonConvert.SerializeObject(items);
-                session.SetString("Cart", serializedCartItems);
+
+                _cartService.SaveCartItemsToSession(items);
             }
             else
             {
@@ -82,8 +72,7 @@ namespace Shop.Application.Cart.Commands.AddToCart
                 };
                 items.Add(cartItem);
 
-                var serializedCartItems = JsonConvert.SerializeObject(items);
-                session.SetString("Cart", serializedCartItems);
+                _cartService.SaveCartItemsToSession(items);
             }
 
             return Unit.Value;

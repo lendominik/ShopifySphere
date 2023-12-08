@@ -27,7 +27,7 @@ namespace Shop.Application.Order.Commands.CancelOrder
                 throw new Exception("You cannot cancel an order that is currently being processed.");
             }
 
-            await _orderRepository.CancelOrder(request.OrderId);
+            await _orderRepository.CancelOrder(order);
 
             return Unit.Value;
         }

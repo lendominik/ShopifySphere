@@ -14,7 +14,7 @@ namespace Shop.Application.Item.Commands.CreateItem
                 {
                     if (repository.ItemExists(value))
                     {
-                        context.AddFailure("The category with this name already exists in the database.");
+                        context.AddFailure("The item with this name already exists in the database.");
                     }
                 });
 

@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Shop.Application.Services;
 using Shop.Domain.Entities;
 using System.Text;
 
@@ -11,37 +12,21 @@ namespace Shop.Application.Cart.Queries.GetCart
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IMapper _mapper;
+        private readonly ICartService _cartService;
 
-        public GetCartQueryHandler(IHttpContextAccessor httpContextAccessor, IMapper mapper)
+        public GetCartQueryHandler(IHttpContextAccessor httpContextAccessor, IMapper mapper, ICartService cartService)
         {
             _httpContextAccessor = httpContextAccessor;
             _mapper = mapper;
+            _cartService = cartService;
         }
         public async Task<CartDto> Handle(GetCartQuery request, CancellationToken cancellationToken)
         {
-            if (_httpContextAccessor == null)
-            {
-                throw new ArgumentNullException(nameof(_httpContextAccessor));
-            }
+            var cartId = _cartService.GetOrCreateCartId();
+            var cart = _cartService.GetCart();
 
-            var session = _httpContextAccessor.HttpContext.Session;
-            var cartId = session.GetString("CartSessionKey");
-
-            if (string.IsNullOrWhiteSpace(cartId))
-            {
-                cartId = Guid.NewGuid().ToString();
-                session.SetString("CartSessionKey", cartId);
-            }
-
-            var cart = session.GetString("Cart");
-
-            var items = new List<CartItem>();
-
-            if(cart != null )
-            {
-                items = JsonConvert.DeserializeObject<List<CartItem>>(cart);
-            }
-
+            var items = _cartService.GetCartItems();
+  
             var cartDto = new CartDto
             {
                 CartItems = items,

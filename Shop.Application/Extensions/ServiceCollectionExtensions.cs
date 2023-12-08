@@ -11,6 +11,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Shop.Application.Category.Commands.CreateCategory;
 using Shop.Application.Order.Commands.CreateOrder;
+using Shop.Application.Services;
 
 namespace Shop.Application.Extensions
 {
@@ -27,6 +28,8 @@ namespace Shop.Application.Extensions
             services.AddHttpContextAccessor();
 
             services.AddTransient<ErrorHandlingMiddleware>();
+
+            services.AddScoped<ICartService, CartService>();
 
             services.AddFluentValidation();
             services.AddValidatorsFromAssemblyContaining<CreateItemCommandValidator>();

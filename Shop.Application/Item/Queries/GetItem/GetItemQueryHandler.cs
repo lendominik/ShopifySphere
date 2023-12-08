@@ -29,7 +29,7 @@ namespace Shop.Application.Item.Queries.GetItem
 
             if (item == null)
             {
-                throw new NotFoundException("Podany przedmiot nie istnieje.");
+                throw new NotFoundException("Item not found.");
             }
 
             var itemDto = _mapper.Map<ItemDto>(item);

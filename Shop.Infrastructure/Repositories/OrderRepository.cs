@@ -17,16 +17,14 @@ namespace Shop.Infrastructure.Repositories
         {
             await _dbContext.SaveChangesAsync();
         }
-        public async Task CancelOrder(int orderId)
+        public async Task CancelOrder(Order order)
         {
-            var order = await _dbContext.Orders.FirstOrDefaultAsync(o => o.Id == orderId);
             order.OrderStatus = OrderStatus.Cancelled;
             await Commit();
         }
 
-        public async Task CompleteOrder(int orderId)
+        public async Task CompleteOrder(Order order)
         {
-            var order = await _dbContext.Orders.FirstOrDefaultAsync(o => o.Id == orderId);
             order.OrderStatus = OrderStatus.Delivered;
             await Commit();
         }
@@ -40,9 +38,8 @@ namespace Shop.Infrastructure.Repositories
             order.IsPaid = true;
             await Commit();
         }
-        public async Task ShipOrder(int orderId)
+        public async Task ShipOrder(Order order)
         {
-            var order = await _dbContext.Orders.FirstOrDefaultAsync(o => o.Id == orderId);
             order.OrderStatus = OrderStatus.Shipped;
             await Commit();
         }
