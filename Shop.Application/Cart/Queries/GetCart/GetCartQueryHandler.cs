@@ -10,18 +10,15 @@ namespace Shop.Application.Cart.Queries.GetCart
 {
     public class GetCartQueryHandler : IRequestHandler<GetCartQuery, CartDto>
     {
-        private readonly IMapper _mapper;
         private readonly ICartService _cartService;
 
-        public GetCartQueryHandler(Mapper mapper, ICartService cartService)
+        public GetCartQueryHandler(ICartService cartService)
         {
-            _mapper = mapper;
             _cartService = cartService;
         }
         public async Task<CartDto> Handle(GetCartQuery request, CancellationToken cancellationToken)
         {
             var cartId = _cartService.GetOrCreateCartId();
-            var cart = _cartService.GetCart();
 
             var items = _cartService.GetCartItems();
   

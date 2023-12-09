@@ -8,10 +8,12 @@ namespace Shop.Application.Order.Queries.GetPaymentSession
     public class GetPaymentSessionQueryHandler : IRequestHandler<GetPaymentSessionQuery, Session>
     {
         private readonly IOrderRepository _orderRepository;
+        private readonly string _domain;
 
         public GetPaymentSessionQueryHandler(IOrderRepository orderRepository)
         {
             _orderRepository = orderRepository;
+            _domain = "https://localhost:7109/";
         }
         public async Task<Session> Handle(GetPaymentSessionQuery request, CancellationToken cancellationToken)
         {
@@ -19,24 +21,16 @@ namespace Shop.Application.Order.Queries.GetPaymentSession
 
             if (order == null)
             {
-                throw new NotFoundException("Nie znaleziono podanego koszyka.");
+                throw new NotFoundException("Cart not found.");
             }
-
-            var domain = "https://localhost:7109/";
 
             var productList = order.CartItems;
 
             var options = new SessionCreateOptions
             {
-                SuccessUrl = domain + "Order/Success",
-                CancelUrl = domain + "Order/Cancel",
-                LineItems = new List<SessionLineItemOptions>(),
-                Mode = "payment"
-            };
-
-            foreach (var item in productList)
-            {
-                var sessionListItem = new SessionLineItemOptions
+                SuccessUrl = _domain + "Order/Success",
+                CancelUrl = _domain + "Order/Cancel",
+                LineItems = productList.Select(item => new SessionLineItemOptions
                 {
                     PriceData = new SessionLineItemPriceDataOptions
                     {
@@ -49,9 +43,9 @@ namespace Shop.Application.Order.Queries.GetPaymentSession
                         },
                     },
                     Quantity = item.Quantity
-                };
-                options.LineItems.Add(sessionListItem);
-            }
+                }).ToList(),
+                Mode = "payment"
+            };
 
             var service = new SessionService();
             Session session = service.Create(options);

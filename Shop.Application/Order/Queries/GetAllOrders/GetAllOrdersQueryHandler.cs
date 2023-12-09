@@ -25,7 +25,7 @@ namespace Shop.Application.Order.Queries.GetAllOrders
 
             if (orders == null)
             {
-                throw new NotFoundException("Nie ma żadnych zamówień w historii.");
+                throw new NotFoundException("Orders not found.");
             }
 
             if (!string.IsNullOrEmpty(request.SearchPhrase))

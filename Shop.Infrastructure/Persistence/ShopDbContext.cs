@@ -17,14 +17,6 @@ namespace Shop.Infrastructure.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Item>(entity =>
-            {
-                entity.HasMany(i => i.CartItems)
-                    .WithOne(ci => ci.Item)    
-                    .HasForeignKey(ci => ci.ItemId);
-            });
-
-
             modelBuilder.Entity<CartItem>(entity =>
             {
                 entity.HasKey(ci => ci.Id);

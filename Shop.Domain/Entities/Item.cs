@@ -8,7 +8,6 @@
         public string Description { get; set; } 
         public int StockQuantity { get; set; }
         public string ProductImage { get; set; }
-        public List<CartItem> CartItems { get; set; } = new List<CartItem>();
         public Category Category { get; set; }
         public int CategoryId { get; set; }
         public string EncodedName { get; set; } = default!;

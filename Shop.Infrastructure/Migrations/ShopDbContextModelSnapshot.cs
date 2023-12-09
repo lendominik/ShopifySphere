@@ -415,7 +415,7 @@ namespace Shop.Infrastructure.Migrations
             modelBuilder.Entity("Shop.Domain.Entities.CartItem", b =>
                 {
                     b.HasOne("Shop.Domain.Entities.Item", "Item")
-                        .WithMany("CartItems")
+                        .WithMany()
                         .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -441,11 +441,6 @@ namespace Shop.Infrastructure.Migrations
             modelBuilder.Entity("Shop.Domain.Entities.Category", b =>
                 {
                     b.Navigation("Items");
-                });
-
-            modelBuilder.Entity("Shop.Domain.Entities.Item", b =>
-                {
-                    b.Navigation("CartItems");
                 });
 
             modelBuilder.Entity("Shop.Domain.Entities.Order", b =>
