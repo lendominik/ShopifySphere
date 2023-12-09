@@ -39,7 +39,6 @@ namespace Shop.Application.Order.Queries.GetAllOrders
                 orders = orders.Where(r => r.OrderStatus.ToString() == request.Status).ToList();
             }
 
-
             orders = orders.OrderByDescending(order => order.OrderDate).ToList();
 
             var ordersCount = orders.Count();

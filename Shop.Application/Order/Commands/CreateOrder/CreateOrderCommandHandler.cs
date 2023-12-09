@@ -45,38 +45,35 @@ namespace Shop.Application.Order.Commands.CreateOrder
                 await _cartItemRepository.Create(cartItem);
             }
 
-            var order = new Domain.Entities.Order()
-            {
-                Address = request.Address,
-                IsPaid = false,
-                CartItems = cartItems,
-                CartTotal = CalculateCartTotal.Calculate(cartItems),
-                City = request.City,
-                Email = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Email),
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-                OrderDate = DateTime.Now,
-                OrderStatus = OrderStatus.Pending,
-                PhoneNumber = request.PhoneNumber,
-                PostalCode = request.PostalCode,
-                Street = request.Street
-            };
+            var order = _mapper.Map<Domain.Entities.Order>(request);
 
-            foreach (var item in cartItems)
-            {
-                if (item.Item.StockQuantity < item.Quantity || item.Item.StockQuantity < 0 || item.Quantity <= 0)
-                {
-                    throw new OutOfStockException("There are not that many items in stock.");
-                }
+            order.CartItems = cartItems;
+            order.CartTotal = CalculateCartTotal.Calculate(cartItems);
+            order.OrderDate = DateTime.Now;
+            order.Email = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Email);
+            order.OrderStatus = OrderStatus.Pending;
+            order.IsPaid = false;
 
-                item.Item.StockQuantity = item.Item.StockQuantity - item.Quantity;
-            }
+            CheckStockQuantity(cartItems);
 
             _cartService.SaveCartItemsToSession(cartItems);
 
             await _orderRepository.Create(order);
 
             return Unit.Value;
+        }
+
+        private void CheckStockQuantity(IEnumerable<CartItem> cartItems)
+        {
+            foreach (var item in cartItems)
+            {
+                if (item.Item.StockQuantity < item.Quantity || item.Item.StockQuantity < 0 || item.Quantity <= 0)
+                {
+                    throw new OutOfStockException($"There are not enough items in stock for {item.Item.Name}.");
+                }
+
+                item.Item.StockQuantity -= item.Quantity;
+            }
         }
     }
 }
