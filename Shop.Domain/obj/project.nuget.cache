@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2pk74CSr/Ihc+TrMzOIN/OiwHlD3miWNxHMs2AeZKoPfhUhqTmTRDAePOHZ/qxPwTxEUF2CaWmePau1nnZpJUA==",
+  "dgSpecHash": "oWMho3v+6Z2gqD8yseRgWiXDxk+kPatKQ6vu7MBh1hhiojwljPyg1DyxkLVQtErFvzCAtKPiOPF3ui4LztDoOQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dominik\\Desktop\\sgshop\\Shop.Domain\\Shop.Domain.csproj",
+  "projectFilePath": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Domain\\Shop.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

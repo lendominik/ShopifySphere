@@ -26,10 +26,7 @@ namespace Shop.Application.Cart.Commands.AddToCart
             var cart = _cartService.GetCart();
             var items = new List<CartItem>();
 
-            if(cart != null )
-            {
-                items = _cartService.GetCartItems();
-            }
+            items = _cartService.GetCartItems();
             
             var item = await _itemRepository.GetByEncodedName(request.EncodedName);
 
