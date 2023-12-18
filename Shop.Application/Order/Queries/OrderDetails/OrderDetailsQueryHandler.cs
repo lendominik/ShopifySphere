@@ -8,13 +8,11 @@ namespace Shop.Application.Order.Queries.OrderDetails
     public class OrderDetailsQueryHandler : IRequestHandler<OrderDetailsQuery, OrderDto>
     {
         private readonly IOrderRepository _orderRepository;
-        private readonly ICartItemRepository _cartItemRepository;
         private readonly IMapper _mapper;
 
-        public OrderDetailsQueryHandler(IOrderRepository orderRepository, ICartItemRepository cartItemRepository, IMapper mapper)
+        public OrderDetailsQueryHandler(IOrderRepository orderRepository, IMapper mapper)
         {
             _orderRepository = orderRepository;
-            _cartItemRepository = cartItemRepository;
             _mapper = mapper;
         }
         public async Task<OrderDto> Handle(OrderDetailsQuery request, CancellationToken cancellationToken)

@@ -84,3 +84,14 @@ C:\Users\Dominik\Desktop\busconnect\Shop.Domain\obj\Debug\net7.0\Shop.Domain.dll
 C:\Users\Dominik\Desktop\busconnect\Shop.Domain\obj\Debug\net7.0\refint\Shop.Domain.dll
 C:\Users\Dominik\Desktop\busconnect\Shop.Domain\obj\Debug\net7.0\Shop.Domain.pdb
 C:\Users\Dominik\Desktop\busconnect\Shop.Domain\obj\Debug\net7.0\ref\Shop.Domain.dll
+C:\Users\Dominik\Desktop\shopifyspher\Shop.Domain\bin\Debug\net7.0\Shop.Domain.deps.json
+C:\Users\Dominik\Desktop\shopifyspher\Shop.Domain\bin\Debug\net7.0\Shop.Domain.dll
+C:\Users\Dominik\Desktop\shopifyspher\Shop.Domain\bin\Debug\net7.0\Shop.Domain.pdb
+C:\Users\Dominik\Desktop\shopifyspher\Shop.Domain\obj\Debug\net7.0\Shop.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dominik\Desktop\shopifyspher\Shop.Domain\obj\Debug\net7.0\Shop.Domain.AssemblyInfoInputs.cache
+C:\Users\Dominik\Desktop\shopifyspher\Shop.Domain\obj\Debug\net7.0\Shop.Domain.AssemblyInfo.cs
+C:\Users\Dominik\Desktop\shopifyspher\Shop.Domain\obj\Debug\net7.0\Shop.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Dominik\Desktop\shopifyspher\Shop.Domain\obj\Debug\net7.0\Shop.Domain.dll
+C:\Users\Dominik\Desktop\shopifyspher\Shop.Domain\obj\Debug\net7.0\refint\Shop.Domain.dll
+C:\Users\Dominik\Desktop\shopifyspher\Shop.Domain\obj\Debug\net7.0\Shop.Domain.pdb
+C:\Users\Dominik\Desktop\shopifyspher\Shop.Domain\obj\Debug\net7.0\ref\Shop.Domain.dll
