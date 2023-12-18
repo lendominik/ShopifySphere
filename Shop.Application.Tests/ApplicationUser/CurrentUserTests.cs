@@ -14,30 +14,39 @@ namespace Shop.Application.ApplicationUser.Tests
         [Fact()]
         public void IsInRole_WithMatchingRole_ShouldReturnTrue()
         {
+            // Arrange
             var currentUser = new CurrentUser("1", "test@tests.com", new List<string> { "Admin", "User"});
 
+            // Act
             var isInRole = currentUser.IsInRole("Admin");
 
+            // Assert
             isInRole.Should().BeTrue();
         }
 
         [Fact()]
         public void IsInRole_WithNoMatchingRole_ShouldReturnFalse()
         {
+            // Arrange
             var currentUser = new CurrentUser("1", "test@tests.com", new List<string> { "Admin", "User" });
 
+            // Act
             var isInRole = currentUser.IsInRole("Owner");
 
+            // Assert
             isInRole.Should().BeFalse();
         }
 
         [Fact()]
         public void IsInRole_WithNoMatchingCaseRole_ShouldReturnFalse()
         {
+            // Arange
             var currentUser = new CurrentUser("1", "test@tests.com", new List<string> { "Admin", "User" });
 
+            // Act
             var isInRole = currentUser.IsInRole("admin");
 
+            // Assert
             isInRole.Should().BeFalse();
         }
     }
