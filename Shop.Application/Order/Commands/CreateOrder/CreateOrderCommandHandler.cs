@@ -16,17 +16,15 @@ namespace Shop.Application.Order.Commands.CreateOrder
         
         private readonly IOrderRepository _orderRepository;
         private readonly ICartItemRepository _cartItemRepository;
-        private readonly IItemRepository _itemRepository;
         private readonly ICartService _cartService;
         private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IOrderService _orderService;
 
-        public CreateOrderCommandHandler(IHttpContextAccessor httpContextAccessor, IOrderService orderService, IOrderRepository orderRepository, IItemRepository itemRepository, ICartService cartService,ICartItemRepository cartItemRepository, IMapper mapper)
+        public CreateOrderCommandHandler(IHttpContextAccessor httpContextAccessor, IOrderService orderService, IOrderRepository orderRepository, ICartService cartService,ICartItemRepository cartItemRepository, IMapper mapper)
         {
             _orderRepository = orderRepository;
             _cartItemRepository = cartItemRepository;
-            _itemRepository = itemRepository;
             _cartService = cartService;
             _mapper = mapper;
             _httpContextAccessor = httpContextAccessor;
@@ -51,10 +49,7 @@ namespace Shop.Application.Order.Commands.CreateOrder
 
             order.CartItems = cartItems;
             order.CartTotal = _orderService.Calculate(cartItems);
-            order.OrderDate = DateTime.Now;
             order.Email = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Email);
-            order.OrderStatus = OrderStatus.Pending;
-            order.IsPaid = false;
 
             _orderService.CheckStockQuantity(cartItems);
 

@@ -17,6 +17,7 @@ namespace Shop.Application.Services
         void SaveCartItemsToSession(List<CartItem> items);
         decimal CalculateCartTotal(List<CartItem> cartItems);
         void UpdateOrCreateCartItem(Domain.Entities.Item item, string cartId, List<CartItem> items);
+        void UpdateCartItemPriceAndQuantity(CartItem item, int newQuantity);
     }
 
     public class CartService : ICartService
@@ -66,14 +67,12 @@ namespace Shop.Application.Services
 
             return cartId;
         }
-
         public string GetCart()
         {
             var session = _httpContextAccessor.HttpContext.Session;
             var cart = session.GetString("Cart");
             return cart;
         }
-
         public List<CartItem> GetCartItems()
         {
             var session = _httpContextAccessor.HttpContext.Session;
@@ -87,7 +86,6 @@ namespace Shop.Application.Services
 
             return items;
         }
-
         public void SaveCartItemsToSession(List<CartItem> items)
         {
             var session = _httpContextAccessor.HttpContext.Session;
@@ -102,6 +100,12 @@ namespace Shop.Application.Services
                 total += cartItem.UnitPrice;
             }
             return total;
+        }
+        public void UpdateCartItemPriceAndQuantity(CartItem item, int newQuantity)
+        {
+            decimal unitPricePerItem = item.UnitPrice / item.Quantity;
+            item.Quantity = newQuantity;
+            item.UnitPrice = unitPricePerItem * newQuantity;
         }
     }
 }
