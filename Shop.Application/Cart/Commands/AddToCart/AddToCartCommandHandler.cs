@@ -23,9 +23,8 @@ namespace Shop.Application.Cart.Commands.AddToCart
         public async Task<Unit> Handle(AddToCartCommand request, CancellationToken cancellationToken)
         {
             var cartId = _cartService.GetOrCreateCartId();
-            var items = new List<CartItem>();
 
-            items = _cartService.GetCartItems();
+            var items = _cartService.GetCartItems();
             
             var item = await _itemRepository.GetByEncodedName(request.EncodedName);
 

@@ -66,14 +66,12 @@ namespace Shop.Application.Services
 
             return cartId;
         }
-
         public string GetCart()
         {
             var session = _httpContextAccessor.HttpContext.Session;
             var cart = session.GetString("Cart");
             return cart;
         }
-
         public List<CartItem> GetCartItems()
         {
             var session = _httpContextAccessor.HttpContext.Session;
@@ -87,7 +85,6 @@ namespace Shop.Application.Services
 
             return items;
         }
-
         public void SaveCartItemsToSession(List<CartItem> items)
         {
             var session = _httpContextAccessor.HttpContext.Session;
