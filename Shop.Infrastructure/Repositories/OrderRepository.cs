@@ -45,7 +45,7 @@ namespace Shop.Infrastructure.Repositories
         }
         public async Task<List<Order>> GetAllOrders()
             => await _dbContext.Orders
-            .Select(u => new Order { Id = u.Id, Email = u.Email, FirstName = u.FirstName, LastName = u.LastName, IsPaid = u.IsPaid, OrderStatus = u.OrderStatus })
+            .Select(u => new Order { Id = u.Id, Email = u.Email, FirstName = u.FirstName, LastName = u.LastName, IsPaid = u.IsPaid, OrderStatus = u.OrderStatus, OrderDate = u.OrderDate })
             .ToListAsync();
         public async Task<Order> GetOrderById(int orderId)
             => await _dbContext.Orders.Include(order => order.CartItems)
@@ -54,7 +54,7 @@ namespace Shop.Infrastructure.Repositories
             .FirstOrDefaultAsync();
         public async Task<List<Order>> GetUserOrders(string email)
             => await _dbContext.Orders
-            .Select(u => new Order { Id = u.Id, Email = u.Email, IsPaid = u.IsPaid, OrderStatus = u.OrderStatus })
+            .Select(u => new Order { Id = u.Id, Email = u.Email, IsPaid = u.IsPaid, OrderStatus = u.OrderStatus, OrderDate = u.OrderDate })
             .Where(o => o.Email == email)
             .ToListAsync();
     }

@@ -22,7 +22,7 @@ namespace Shop.Application.Order.Queries.GetPaymentSession
 
             if (order == null)
             {
-                throw new NotFoundException("Cart not found.");
+                throw new NotFoundException("Order not found.");
             }
 
             Session session = _paymentService.CreatePaymentSessionForOrder(order);
