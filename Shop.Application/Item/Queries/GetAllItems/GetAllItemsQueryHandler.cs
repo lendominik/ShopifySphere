@@ -3,10 +3,11 @@ using MediatR;
 using Shop.Domain.Interfaces;
 using System.Linq.Expressions;
 using Shop.Application.Exceptions;
+using Shop.Application.Common;
 
 namespace Shop.Application.Item.Queries.GetAllItems
 {
-    public class GetAllItemsQueryHandler : IRequestHandler<GetAllItemsQuery, PagedResult>
+    public class GetAllItemsQueryHandler : IRequestHandler<GetAllItemsQuery, PagedResult<ItemDto>>
     {
         private readonly IItemRepository _itemRepository;
         private readonly ICategoryRepository _categoryRepository;
@@ -19,7 +20,7 @@ namespace Shop.Application.Item.Queries.GetAllItems
             _mapper = mapper;
         }
 
-        public async Task<PagedResult> Handle(GetAllItemsQuery request, CancellationToken cancellationToken)
+        public async Task<PagedResult<ItemDto>> Handle(GetAllItemsQuery request, CancellationToken cancellationToken)
         {
             request.PageNumber = request.PageNumber < 1 ? 1 : request.PageNumber;
             request.PageSize = request.PageSize < 1 ? 10 : request.PageSize;
@@ -63,7 +64,7 @@ namespace Shop.Application.Item.Queries.GetAllItems
 
             var categories = await _categoryRepository.GetAll();
 
-            var result = new PagedResult(itemDtos, itemsCount, request.PageSize,request.PageNumber, categories);
+            var result = new PagedResult<ItemDto>(itemDtos, itemsCount, request.PageSize,request.PageNumber);
 
             return result;
         }

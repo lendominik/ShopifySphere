@@ -1,8 +1,9 @@
 ﻿using MediatR;
+using Shop.Application.Common;
 
 namespace Shop.Application.Item.Queries.GetAllItems
 {
-    public class GetAllItemsQuery : IRequest<PagedResult>
+    public class GetAllItemsQuery : IRequest<PagedResult<ItemDto>>
     {
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
