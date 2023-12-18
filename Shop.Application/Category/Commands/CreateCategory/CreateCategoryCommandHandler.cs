@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Shop.Application.ApplicationUser;
+using Shop.Application.Services;
 using Shop.Domain.Interfaces;
 
 namespace Shop.Application.Category.Commands.CreateCategory
@@ -9,20 +10,17 @@ namespace Shop.Application.Category.Commands.CreateCategory
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
-        private readonly IUserContext _userContext;
+        private readonly IAccessControlService _accessControlService;
 
-        public CreateCategoryCommandHandler(ICategoryRepository categoryRepository, IMapper mapper, IUserContext userContext)
+        public CreateCategoryCommandHandler(IAccessControlService accessControlService, ICategoryRepository categoryRepository, IMapper mapper)
         {
             _categoryRepository = categoryRepository;
             _mapper = mapper;
-            _userContext = userContext;
+            _accessControlService = accessControlService;
         }
         public async Task<Unit> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
         {
-            var user = _userContext.GetCurrentUser();
-            var isEdibable = user != null && (user.IsInRole("Owner"));
-
-            if (!isEdibable)
+            if (!_accessControlService.IsEditable())
             {
                 return Unit.Value;
             }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Shop.Application.ApplicationUser;
+using Shop.Application.Services;
 using Shop.Domain.Interfaces;
 
 namespace Shop.Application.Category.Commands.EditCategory
@@ -8,22 +9,17 @@ namespace Shop.Application.Category.Commands.EditCategory
     public class EditCategoryCommandHandler : IRequestHandler<EditCategoryCommand>
     {
         private readonly ICategoryRepository _categoryRepository;
-        private readonly IMapper _mapper;
-        private readonly IUserContext _userContext;
+        private readonly IAccessControlService _accessControlService;
 
-        public EditCategoryCommandHandler(ICategoryRepository categoryRepository, IUserContext userContext, IMapper mapper)
+        public EditCategoryCommandHandler(ICategoryRepository categoryRepository, IAccessControlService accessControlService, IMapper mapper)
         {
             _categoryRepository = categoryRepository;
-            _mapper = mapper;
-            _userContext = userContext;
+            _accessControlService = accessControlService;
         }
 
         public async Task<Unit> Handle(EditCategoryCommand request, CancellationToken cancellationToken)
         {
-            var user = _userContext.GetCurrentUser();
-            var isEdibable = user != null && (user.IsInRole("Owner"));
-
-            if (!isEdibable)
+            if (!_accessControlService.IsEditable())
             {
                 return Unit.Value;
             }

@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Shop.Application.ApplicationUser;
 using Shop.Application.Exceptions;
+using Shop.Application.Services;
 using Shop.Domain.Interfaces;
 
 namespace Shop.Application.Category.Commands.DeleteCategory
@@ -8,20 +9,17 @@ namespace Shop.Application.Category.Commands.DeleteCategory
     public class DeleteCategoryCommandHandler : IRequestHandler<DeleteCategoryCommand>
     {
         private readonly ICategoryRepository _categoryRepository;
-        private readonly IUserContext _userContext;
+        private readonly IAccessControlService _accessControlService;
 
-        public DeleteCategoryCommandHandler(IUserContext userContext, ICategoryRepository categoryRepository)
+        public DeleteCategoryCommandHandler(IAccessControlService accessControlService, ICategoryRepository categoryRepository)
         {
             _categoryRepository = categoryRepository;
-            _userContext = userContext;
+            _accessControlService = accessControlService;
         }
 
         public async Task<Unit> Handle(DeleteCategoryCommand request, CancellationToken cancellationToken)
         {
-            var user = _userContext.GetCurrentUser();
-            var isEdibable = user != null && (user.IsInRole("Owner"));
-
-            if (!isEdibable)
+            if (!_accessControlService.IsEditable())
             {
                 return Unit.Value;
             }
