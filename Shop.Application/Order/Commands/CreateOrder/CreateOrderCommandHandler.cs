@@ -20,8 +20,9 @@ namespace Shop.Application.Order.Commands.CreateOrder
         private readonly ICartService _cartService;
         private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IOrderService _orderService;
 
-        public CreateOrderCommandHandler(IHttpContextAccessor httpContextAccessor, IOrderRepository orderRepository, IItemRepository itemRepository, ICartService cartService,ICartItemRepository cartItemRepository, IMapper mapper)
+        public CreateOrderCommandHandler(IHttpContextAccessor httpContextAccessor, IOrderService orderService, IOrderRepository orderRepository, IItemRepository itemRepository, ICartService cartService,ICartItemRepository cartItemRepository, IMapper mapper)
         {
             _orderRepository = orderRepository;
             _cartItemRepository = cartItemRepository;
@@ -29,6 +30,7 @@ namespace Shop.Application.Order.Commands.CreateOrder
             _cartService = cartService;
             _mapper = mapper;
             _httpContextAccessor = httpContextAccessor;
+            _orderService = orderService;
         }
 
         public async Task<Unit> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
@@ -48,13 +50,13 @@ namespace Shop.Application.Order.Commands.CreateOrder
             var order = _mapper.Map<Domain.Entities.Order>(request);
 
             order.CartItems = cartItems;
-            order.CartTotal = CalculateCartTotal.Calculate(cartItems);
+            order.CartTotal = _orderService.Calculate(cartItems);
             order.OrderDate = DateTime.Now;
             order.Email = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Email);
             order.OrderStatus = OrderStatus.Pending;
             order.IsPaid = false;
 
-            CheckStockQuantity(cartItems);
+            _orderService.CheckStockQuantity(cartItems);
 
             _cartService.SaveCartItemsToSession(cartItems);
 
@@ -63,17 +65,5 @@ namespace Shop.Application.Order.Commands.CreateOrder
             return Unit.Value;
         }
 
-        private void CheckStockQuantity(IEnumerable<CartItem> cartItems)
-        {
-            foreach (var item in cartItems)
-            {
-                if (item.Item.StockQuantity < item.Quantity || item.Item.StockQuantity < 0 || item.Quantity <= 0)
-                {
-                    throw new OutOfStockException($"There are not enough items in stock for {item.Item.Name}.");
-                }
-
-                item.Item.StockQuantity -= item.Quantity;
-            }
-        }
     }
 }

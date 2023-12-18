@@ -25,20 +25,11 @@ namespace Shop.Application.Cart.Queries.GetCart
             var cartDto = new CartDto
             {
                 CartItems = items,
-                CartTotal = CalculateCartTotal(items),
+                CartTotal = _cartService.CalculateCartTotal(items),
                 Id = cartId
             };
            
             return cartDto;
-        }
-        private decimal CalculateCartTotal(List<CartItem> cartItems)
-        {
-            decimal total = 0;
-            foreach (var cartItem in cartItems)
-            {
-                total += cartItem.UnitPrice;
-            }
-            return total;
         }
     }
 }

@@ -15,6 +15,8 @@ namespace Shop.Application.Services
         string GetOrCreateCartId();
         string GetCart();
         void SaveCartItemsToSession(List<CartItem> items);
+        decimal CalculateCartTotal(List<CartItem> cartItems);
+        void UpdateOrCreateCartItem(Domain.Entities.Item item, string cartId, List<CartItem> items);
     }
 
     public class CartService : ICartService
@@ -24,6 +26,31 @@ namespace Shop.Application.Services
         public CartService(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
+        }
+        public void UpdateOrCreateCartItem(Domain.Entities.Item item, string cartId, List<CartItem> items)
+        {
+            var existingCartItem = items.FirstOrDefault(i => i.ItemId == item.Id);
+
+            if (existingCartItem != null)
+            {
+                existingCartItem.Quantity = existingCartItem.Quantity + 1;
+                existingCartItem.UnitPrice = item.Price * existingCartItem.Quantity;
+            }
+            else
+            {
+                var cartItem = new CartItem
+                {
+                    Id = Guid.NewGuid(),
+                    Item = item,
+                    CartId = cartId,
+                    Quantity = 1,
+                    UnitPrice = 1 * item.Price,
+                    ItemId = item.Id,
+                };
+                items.Add(cartItem);
+            }
+
+            SaveCartItemsToSession(items);
         }
         public string GetOrCreateCartId()
         {
@@ -66,6 +93,15 @@ namespace Shop.Application.Services
             var session = _httpContextAccessor.HttpContext.Session;
             var serializedCartItems = JsonConvert.SerializeObject(items);
             session.SetString("Cart", serializedCartItems);
+        }
+        public decimal CalculateCartTotal(List<CartItem> cartItems)
+        {
+            decimal total = 0;
+            foreach (var cartItem in cartItems)
+            {
+                total += cartItem.UnitPrice;
+            }
+            return total;
         }
     }
 }

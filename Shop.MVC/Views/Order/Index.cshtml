@@ -15,11 +15,7 @@
                     <div class="card-body">
                         <h5 class="card-title">@item.FirstName @item.LastName</h5>
                         <p class="card-text">Adres email: @item.Email</p>
-                        <p class="card-text">Numer telefonu: @item.PhoneNumber</p>
-                        <p class="card-text">Miasto: @item.City</p>
-                        <p class="card-text">Ulica: @item.Street</p>
-                        <p class="card-text">Adres: @item.Address</p>
-                        <p class="card-text">Kod pocztowy: @item.PostalCode</p>
+                        <p class="card-text">Numer zamówienia: @item.Id</p>
                         <p class="card-text">
                             Opłacone:
                             @if (item.IsPaid == true)

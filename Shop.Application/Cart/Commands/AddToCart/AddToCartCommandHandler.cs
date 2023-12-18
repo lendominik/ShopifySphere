@@ -23,7 +23,6 @@ namespace Shop.Application.Cart.Commands.AddToCart
         public async Task<Unit> Handle(AddToCartCommand request, CancellationToken cancellationToken)
         {
             var cartId = _cartService.GetOrCreateCartId();
-            var cart = _cartService.GetCart();
             var items = new List<CartItem>();
 
             items = _cartService.GetCartItems();
@@ -45,30 +44,7 @@ namespace Shop.Application.Cart.Commands.AddToCart
                 throw new OutOfStockException("There are not that many items in stock.");
             }
 
-            var existingCartItem = items.FirstOrDefault(ci => ci.ItemId == item.Id && ci.CartId == cartId);
-
-            if(existingCartItem != null)
-            {
-                existingCartItem.Quantity = existingCartItem.Quantity + 1;
-                existingCartItem.UnitPrice = item.Price * existingCartItem.Quantity;
-
-                _cartService.SaveCartItemsToSession(items);
-            }
-            else
-            {
-                var cartItem = new CartItem
-                {
-                    Id = Guid.NewGuid(),
-                    Item = item,
-                    CartId = cartId,
-                    Quantity = 1,
-                    UnitPrice = 1 * item.Price,
-                    ItemId = item.Id,
-                };
-                items.Add(cartItem);
-
-                _cartService.SaveCartItemsToSession(items);
-            }
+            _cartService.UpdateOrCreateCartItem(item, cartId, items);
 
             return Unit.Value;
         }

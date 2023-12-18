@@ -2,29 +2,40 @@
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Shop.Application.ApplicationUser;
 using Shop.Application.Exceptions;
+using Shop.Application.Services;
 using Shop.Domain.Interfaces;
+using Stripe;
 
 namespace Shop.Application.Item.Commands.CreateItem
 {
     public class CreateItemCommandHandler : IRequestHandler<CreateItemCommand>
     {
-        private readonly IWebHostEnvironment _webHostEnvironment;
+
         private readonly IItemRepository _itemRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
+        private readonly IFileService _fileService;
+        private readonly IAccessControlService _accessControlService;
 
-        public CreateItemCommandHandler(IWebHostEnvironment webHostEnvironment, IItemRepository itemRepository, ICategoryRepository categoryRepository, IMapper mapper)
+        public CreateItemCommandHandler(IAccessControlService accessControlService, IFileService fileService, IItemRepository itemRepository, ICategoryRepository categoryRepository, IMapper mapper)
         {
-            _webHostEnvironment = webHostEnvironment;
             _itemRepository = itemRepository;
             _categoryRepository = categoryRepository;
             _mapper = mapper;
+            _fileService = fileService;
+            _accessControlService = accessControlService;
         }
 
         public async Task<Unit> Handle(CreateItemCommand request, CancellationToken cancellationToken)
         {
-            var imageName = UploadFile(request.Image);
+            if(!_accessControlService.IsEditable())
+            {
+                return Unit.Value;
+            }
+
+            var imageName = _fileService.UploadFile(request.Image);
 
             var item = _mapper.Map<Domain.Entities.Item>(request);
 
@@ -43,23 +54,6 @@ namespace Shop.Application.Item.Commands.CreateItem
             await _itemRepository.Create(item);
 
             return Unit.Value;
-        }
-
-        private string UploadFile(IFormFile image)
-        {
-            string fileName = null;
-
-            if(image != null)
-            {
-                string uploadDir = Path.Combine(_webHostEnvironment.WebRootPath, "Images");
-                fileName = Guid.NewGuid().ToString() + "-" + image.FileName;
-                string filePath = Path.Combine(uploadDir, fileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    image.CopyTo(fileStream);
-                } 
-            }
-            return fileName;
         }
     }
 }
