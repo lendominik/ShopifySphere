@@ -1,8 +1,11 @@
-﻿using Shop.Application.Exceptions;
+﻿using Microsoft.AspNetCore.Http;
+using Shop.Application.Exceptions;
 using Shop.Domain.Entities;
+using Shop.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,10 +15,17 @@ namespace Shop.Application.Services
     {
         decimal Calculate(List<CartItem> cartItems);
         void CheckStockQuantity(IEnumerable<CartItem> cartItems);
+        Domain.Entities.Order CreateOrderFromCart(Domain.Entities.Order order, List<CartItem> cartItems);
     }
 
     public class OrderService : IOrderService
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public OrderService(IHttpContextAccessor httpContextAccessor)
+        {
+            _httpContextAccessor = httpContextAccessor;
+        }
         public decimal Calculate(List<CartItem> cartItems)
         {
             if (cartItems == null)
@@ -38,6 +48,14 @@ namespace Shop.Application.Services
 
                 item.Item.StockQuantity -= item.Quantity;
             }
+        }
+        public Domain.Entities.Order CreateOrderFromCart(Domain.Entities.Order order, List<CartItem> cartItems)
+        {
+            order.CartItems = cartItems;
+            order.CartTotal = Calculate(cartItems);
+            order.Email = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Email);
+
+            return order;
         }
     }
 }

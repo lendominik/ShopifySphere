@@ -47,9 +47,7 @@ namespace Shop.Application.Order.Commands.CreateOrder
 
             var order = _mapper.Map<Domain.Entities.Order>(request);
 
-            order.CartItems = cartItems;
-            order.CartTotal = _orderService.Calculate(cartItems);
-            order.Email = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Email);
+            order = _orderService.CreateOrderFromCart(order, cartItems);
 
             _orderService.CheckStockQuantity(cartItems);
 
