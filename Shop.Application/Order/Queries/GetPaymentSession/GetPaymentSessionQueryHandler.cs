@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Shop.Application.Exceptions;
+using Shop.Application.Services;
 using Shop.Domain.Interfaces;
 using Stripe.Checkout;
 
@@ -8,12 +9,12 @@ namespace Shop.Application.Order.Queries.GetPaymentSession
     public class GetPaymentSessionQueryHandler : IRequestHandler<GetPaymentSessionQuery, Session>
     {
         private readonly IOrderRepository _orderRepository;
-        private readonly string _domain;
+        private readonly IPaymentService _paymentService;
 
-        public GetPaymentSessionQueryHandler(IOrderRepository orderRepository)
+        public GetPaymentSessionQueryHandler(IOrderRepository orderRepository, IPaymentService paymentService)
         {
             _orderRepository = orderRepository;
-            _domain = "https://localhost:7109/";
+            _paymentService = paymentService;
         }
         public async Task<Session> Handle(GetPaymentSessionQuery request, CancellationToken cancellationToken)
         {
@@ -24,31 +25,7 @@ namespace Shop.Application.Order.Queries.GetPaymentSession
                 throw new NotFoundException("Cart not found.");
             }
 
-            var productList = order.CartItems;
-
-            var options = new SessionCreateOptions
-            {
-                SuccessUrl = _domain + "Order/Success",
-                CancelUrl = _domain + "Order/Cancel",
-                LineItems = productList.Select(item => new SessionLineItemOptions
-                {
-                    PriceData = new SessionLineItemPriceDataOptions
-                    {
-                        UnitAmount = (long)item.Item.Price * 100,
-                        Currency = "pln",
-                        ProductData = new SessionLineItemPriceDataProductDataOptions
-                        {
-                            Name = item.Item.Name,
-                            Description = item.Item.Description
-                        },
-                    },
-                    Quantity = item.Quantity
-                }).ToList(),
-                Mode = "payment"
-            };
-
-            var service = new SessionService();
-            Session session = service.Create(options);
+            Session session = _paymentService.CreatePaymentSessionForOrder(order);
 
             return session;
         }
