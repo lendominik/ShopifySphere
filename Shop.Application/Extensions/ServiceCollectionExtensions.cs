@@ -34,6 +34,7 @@ namespace Shop.Application.Extensions
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IAccessControlService, AccessControlService>();
             services.AddScoped<IFileService, Services.FileService>();
+            services.AddScoped<IPaymentService, PaymentService>();
 
             services.AddFluentValidation();
             services.AddValidatorsFromAssemblyContaining<CreateItemCommandValidator>();
