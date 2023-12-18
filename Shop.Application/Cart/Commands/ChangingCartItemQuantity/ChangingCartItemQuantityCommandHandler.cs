@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Shop.Application.Exceptions;
 using Shop.Application.Services;
 using Shop.Domain.Entities;
 using System.Text;
@@ -20,6 +21,11 @@ namespace Shop.Application.Cart.Commands.ChangingCartItemQuantity
             var items = _cartService.GetCartItems();
 
             var item = items.LastOrDefault(i => i.Id == request.Id);
+
+            if(item == null)
+            {
+                throw new NotFoundException("Item not found.");
+            }
 
             decimal unitPrice = item.UnitPrice / item.Quantity;
 

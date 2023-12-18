@@ -12,6 +12,7 @@ using FluentValidation.AspNetCore;
 using Shop.Application.Category.Commands.CreateCategory;
 using Shop.Application.Order.Commands.CreateOrder;
 using Shop.Application.Services;
+using Stripe;
 
 namespace Shop.Application.Extensions
 {
@@ -30,6 +31,9 @@ namespace Shop.Application.Extensions
             services.AddTransient<ErrorHandlingMiddleware>();
 
             services.AddScoped<ICartService, CartService>();
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IAccessControlService, AccessControlService>();
+            services.AddScoped<IFileService, Services.FileService>();
 
             services.AddFluentValidation();
             services.AddValidatorsFromAssemblyContaining<CreateItemCommandValidator>();
