@@ -51,10 +51,7 @@ namespace Shop.Application.Order.Commands.CreateOrder
 
             order.CartItems = cartItems;
             order.CartTotal = _orderService.Calculate(cartItems);
-            order.OrderDate = DateTime.Now;
             order.Email = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Email);
-            order.OrderStatus = OrderStatus.Pending;
-            order.IsPaid = false;
 
             _orderService.CheckStockQuantity(cartItems);
 
