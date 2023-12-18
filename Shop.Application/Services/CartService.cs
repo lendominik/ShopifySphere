@@ -15,6 +15,7 @@ namespace Shop.Application.Services
         string GetOrCreateCartId();
         string GetCart();
         void SaveCartItemsToSession(List<CartItem> items);
+        decimal CalculateCartTotal(List<CartItem> cartItems);
     }
 
     public class CartService : ICartService
@@ -66,6 +67,15 @@ namespace Shop.Application.Services
             var session = _httpContextAccessor.HttpContext.Session;
             var serializedCartItems = JsonConvert.SerializeObject(items);
             session.SetString("Cart", serializedCartItems);
+        }
+        public decimal CalculateCartTotal(List<CartItem> cartItems)
+        {
+            decimal total = 0;
+            foreach (var cartItem in cartItems)
+            {
+                total += cartItem.UnitPrice;
+            }
+            return total;
         }
     }
 }
