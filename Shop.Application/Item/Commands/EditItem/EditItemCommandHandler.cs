@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Hosting;
+using Shop.Application.ApplicationUser;
 using Shop.Application.Exceptions;
 using Shop.Domain.Interfaces;
 
@@ -9,8 +10,9 @@ namespace Shop.Application.Item.Commands.EditItem
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IItemRepository _itemRepository;
+        private readonly IUserContext _userContext;
 
-        public EditItemCommandHandler(IItemRepository itemRepository, IWebHostEnvironment webHostEnvironment)
+        public EditItemCommandHandler(IUserContext userContext, IItemRepository itemRepository, IWebHostEnvironment webHostEnvironment)
         {
             _webHostEnvironment = webHostEnvironment;
             _itemRepository = itemRepository;
@@ -18,8 +20,15 @@ namespace Shop.Application.Item.Commands.EditItem
 
         public async Task<Unit> Handle(EditItemCommand request, CancellationToken cancellationToken)
         {
-            var item = await _itemRepository.GetByEncodedName(request.EncodedName);
+            var user = _userContext.GetCurrentUser();
+            var isEdibable = user != null && (user.IsInRole("Owner"));
 
+            if (!isEdibable)
+            {
+                return Unit.Value;
+            }
+
+            var item = await _itemRepository.GetByEncodedName(request.EncodedName);
 
             if (item == null)
             {

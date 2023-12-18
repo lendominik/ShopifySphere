@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Shop.Application.ApplicationUser;
 using Shop.Application.Exceptions;
 using Shop.Domain.Interfaces;
 
@@ -13,17 +14,27 @@ namespace Shop.Application.Item.Commands.CreateItem
         private readonly IItemRepository _itemRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
+        private readonly IUserContext _userContext;
 
-        public CreateItemCommandHandler(IWebHostEnvironment webHostEnvironment, IItemRepository itemRepository, ICategoryRepository categoryRepository, IMapper mapper)
+        public CreateItemCommandHandler(IUserContext userContext, IWebHostEnvironment webHostEnvironment, IItemRepository itemRepository, ICategoryRepository categoryRepository, IMapper mapper)
         {
             _webHostEnvironment = webHostEnvironment;
             _itemRepository = itemRepository;
             _categoryRepository = categoryRepository;
             _mapper = mapper;
+            _userContext = userContext;
         }
 
         public async Task<Unit> Handle(CreateItemCommand request, CancellationToken cancellationToken)
         {
+            var user = _userContext.GetCurrentUser();
+            var isEdibable = user != null && (user.IsInRole("Owner"));
+
+            if (!isEdibable)
+            {
+                return Unit.Value;
+            }
+
             var imageName = UploadFile(request.Image);
 
             var item = _mapper.Map<Domain.Entities.Item>(request);
