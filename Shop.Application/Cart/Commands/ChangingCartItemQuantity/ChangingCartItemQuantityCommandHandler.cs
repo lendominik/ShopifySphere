@@ -27,11 +27,7 @@ namespace Shop.Application.Cart.Commands.ChangingCartItemQuantity
                 throw new NotFoundException("Item not found.");
             }
 
-            decimal unitPrice = item.UnitPrice / item.Quantity;
-
-            item.Quantity = request.Quantity;
-
-            item.UnitPrice = unitPrice * request.Quantity;
+            _cartService.UpdateCartItemPriceAndQuantity(item, request.Quantity);
 
             _cartService.SaveCartItemsToSession(items);
 
