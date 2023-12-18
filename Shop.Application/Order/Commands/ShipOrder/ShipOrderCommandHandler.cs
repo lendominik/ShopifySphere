@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Shop.Application.ApplicationUser;
 using Shop.Application.Exceptions;
+using Shop.Application.Services;
 using Shop.Domain.Interfaces;
 
 namespace Shop.Application.Order.Commands.ShipOrder
@@ -8,19 +9,16 @@ namespace Shop.Application.Order.Commands.ShipOrder
     public class ShipOrderCommandHandler : IRequestHandler<ShipOrderCommand>
     {
         private readonly IOrderRepository _orderRepository;
-        private readonly IUserContext _userContext;
+        private readonly IAccessControlService _accessControlService;
 
-        public ShipOrderCommandHandler(IUserContext userContext, IOrderRepository orderRepository)
+        public ShipOrderCommandHandler(IOrderRepository orderRepository, IAccessControlService accessControlService)
         {
             _orderRepository = orderRepository;
-            _userContext = userContext;
+            _accessControlService = accessControlService;
         }
         public async Task<Unit> Handle(ShipOrderCommand request, CancellationToken cancellationToken)
         {
-            var user = _userContext.GetCurrentUser();
-            var isEdibable = user != null && (user.IsInRole("Owner"));
-
-            if (!isEdibable)
+            if(!_accessControlService.IsEditable())
             {
                 return Unit.Value;
             }
