@@ -29,7 +29,10 @@ namespace Shop.Infrastructure.Repositories
         }
         public async Task<IEnumerable<Item>> GetAll()
             => await _dbContext.Items
-            .Select(i => new Item { Description = i.Description, EncodedName = i.EncodedName, Name = i.Name, Price = i.Price, ProductImage = i.ProductImage, StockQuantity = i.StockQuantity, Category = i.Category })
+            .Select(i => new Item 
+            {   Description = i.Description, EncodedName = i.EncodedName,
+                Name = i.Name, Price = i.Price, ProductImage = i.ProductImage,
+                StockQuantity = i.StockQuantity, Category = i.Category })
             .ToListAsync();
         public async Task<Item> GetByEncodedName(string encodedName)
             => await _dbContext.Items.FirstOrDefaultAsync(e => e.EncodedName == encodedName);
