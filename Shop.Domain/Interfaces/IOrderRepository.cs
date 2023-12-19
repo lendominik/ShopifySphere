@@ -6,7 +6,7 @@ namespace Shop.Domain.Interfaces
     {
         Task Create(Order order);
         Task<List<Order>> GetUserOrders(string email);
-        Task<List<Order>> GetAllOrders();
+        IQueryable<Order> GetAllOrders();
         Task<Order> GetOrderById(int orderId);
         Task CancelOrder(Order order);
         Task CompleteOrder(Order order);

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 using Shop.Domain.Entities;
 using Shop.Domain.Interfaces;
 using Shop.Infrastructure.Persistence;
@@ -43,13 +44,18 @@ namespace Shop.Infrastructure.Repositories
             order.OrderStatus = OrderStatus.Shipped;
             await Commit();
         }
-        public async Task<List<Order>> GetAllOrders()
-            => await _dbContext.Orders
+        public IQueryable<Order> GetAllOrders()
+            => _dbContext.Orders
             .Select(u => new Order
-                {  Id = u.Id, Email = u.Email, FirstName = u.FirstName,
-                LastName = u.LastName, IsPaid = u.IsPaid,
-                OrderStatus= u.OrderStatus, OrderDate = u.OrderDate })
-            .ToListAsync();
+            {
+                Id = u.Id,
+                Email = u.Email,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                IsPaid = u.IsPaid,
+                OrderStatus = u.OrderStatus,
+                OrderDate = u.OrderDate
+            });
         public async Task<Order> GetOrderById(int orderId)
             => await _dbContext.Orders.Include(order => order.CartItems)
             .ThenInclude(cartItem => cartItem.Item)
