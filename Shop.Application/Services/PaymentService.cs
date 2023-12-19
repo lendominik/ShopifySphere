@@ -9,15 +9,20 @@ namespace Shop.Application.Services
     }
 
     public class PaymentService : IPaymentService
-    { 
+    {
+        private readonly SessionService _sessionService;
+
+        public PaymentService(SessionService sessionService)
+        {
+            _sessionService = sessionService;
+        }
         public Session CreatePaymentSessionForOrder(Domain.Entities.Order order, string domain)
         {
             var productList = order.CartItems;
 
             var options = GetSessionCreateOptions(productList, domain);
 
-            var service = new SessionService();
-            Session session = service.Create(options);
+            Session session = _sessionService.Create(options);
 
             return session;
         }

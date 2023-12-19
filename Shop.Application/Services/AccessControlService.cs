@@ -1,5 +1,4 @@
 ﻿using Shop.Application.ApplicationUser;
-using Shop.Application.Order.Commands.ShipOrder;
 
 namespace Shop.Application.Services
 {

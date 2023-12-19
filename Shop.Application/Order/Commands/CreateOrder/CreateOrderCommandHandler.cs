@@ -37,7 +37,7 @@ namespace Shop.Application.Order.Commands.CreateOrder
         {
             var cartItems = _cartService.GetCartItems(_httpContextAccessor);
 
-            if (cartItems == null || cartItems.Count == 0)
+            if (!cartItems.Any())
             {
                 throw new NotFoundException("The cart is empty.");
             }
