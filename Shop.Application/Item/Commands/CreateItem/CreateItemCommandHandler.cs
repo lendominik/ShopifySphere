@@ -18,24 +18,28 @@ namespace Shop.Application.Item.Commands.CreateItem
         private readonly IMapper _mapper;
         private readonly IFileService _fileService;
         private readonly IAccessControlService _accessControlService;
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IUserContext _userContext;
 
-        public CreateItemCommandHandler(IAccessControlService accessControlService, IFileService fileService, IItemRepository itemRepository, ICategoryRepository categoryRepository, IMapper mapper)
+        public CreateItemCommandHandler(IUserContext userContext, IWebHostEnvironment webHostEnvironment, IAccessControlService accessControlService, IFileService fileService, IItemRepository itemRepository, ICategoryRepository categoryRepository, IMapper mapper)
         {
             _itemRepository = itemRepository;
             _categoryRepository = categoryRepository;
             _mapper = mapper;
             _fileService = fileService;
             _accessControlService = accessControlService;
+            _webHostEnvironment = webHostEnvironment;
+            _userContext = userContext;
         }
 
         public async Task<Unit> Handle(CreateItemCommand request, CancellationToken cancellationToken)
         {
-            if(!_accessControlService.IsEditable())
+            if(!_accessControlService.IsEditable(_userContext))
             {
                 return Unit.Value;
             }
 
-            var imageName = _fileService.UploadFile(request.Image);
+            var imageName = _fileService.UploadFile(request.Image, _webHostEnvironment);
 
             var item = _mapper.Map<Domain.Entities.Item>(request);
 

@@ -10,16 +10,18 @@ namespace Shop.Application.Category.Commands.EditCategory
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IAccessControlService _accessControlService;
+        private readonly IUserContext _userContext;
 
-        public EditCategoryCommandHandler(ICategoryRepository categoryRepository, IAccessControlService accessControlService, IMapper mapper)
+        public EditCategoryCommandHandler(ICategoryRepository categoryRepository, IAccessControlService accessControlService, IMapper mapper, IUserContext userContext)
         {
             _categoryRepository = categoryRepository;
             _accessControlService = accessControlService;
+            _userContext = userContext;
         }
 
         public async Task<Unit> Handle(EditCategoryCommand request, CancellationToken cancellationToken)
         {
-            if (!_accessControlService.IsEditable())
+            if (!_accessControlService.IsEditable(_userContext))
             {
                 return Unit.Value;
             }

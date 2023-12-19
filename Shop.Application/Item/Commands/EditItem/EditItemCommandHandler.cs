@@ -11,16 +11,18 @@ namespace Shop.Application.Item.Commands.EditItem
     {
         private readonly IItemRepository _itemRepository;
         private readonly IAccessControlService _accessControlService;
+        private readonly IUserContext _userContext;
 
         public EditItemCommandHandler(IUserContext userContext, IItemRepository itemRepository, IAccessControlService accessControlService)
         {
             _itemRepository = itemRepository;
             _accessControlService = accessControlService;
+            _userContext = userContext;
         }
 
         public async Task<Unit> Handle(EditItemCommand request, CancellationToken cancellationToken)
         {
-            if (!_accessControlService.IsEditable())
+            if (!_accessControlService.IsEditable(_userContext))
             {
                 return Unit.Value;
             }

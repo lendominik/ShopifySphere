@@ -19,6 +19,7 @@ namespace Shop.Application.Order.Commands.CreateOrder
         private readonly ICartService _cartService;
         private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly string _email;
         private readonly IOrderService _orderService;
 
         public CreateOrderCommandHandler(IHttpContextAccessor httpContextAccessor, IOrderService orderService, IOrderRepository orderRepository, ICartService cartService,ICartItemRepository cartItemRepository, IMapper mapper)
@@ -29,11 +30,12 @@ namespace Shop.Application.Order.Commands.CreateOrder
             _mapper = mapper;
             _httpContextAccessor = httpContextAccessor;
             _orderService = orderService;
+            _email = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Email);
         }
 
         public async Task<Unit> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
-            var cartItems = _cartService.GetCartItems();
+            var cartItems = _cartService.GetCartItems(_httpContextAccessor);
 
             if (cartItems == null || cartItems.Count == 0)
             {
@@ -47,11 +49,11 @@ namespace Shop.Application.Order.Commands.CreateOrder
 
             var order = _mapper.Map<Domain.Entities.Order>(request);
 
-            order = _orderService.CreateOrderFromCart(order, cartItems);
+            order = _orderService.CreateOrderFromCart(order, cartItems, _email);
 
             _orderService.CheckStockQuantity(cartItems);
 
-            _cartService.SaveCartItemsToSession(cartItems);
+            _cartService.SaveCartItemsToSession(cartItems, _httpContextAccessor);
 
             await _orderRepository.Create(order);
 

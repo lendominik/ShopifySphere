@@ -11,24 +11,18 @@ namespace Shop.Application.Services
 {
     public interface ICartService
     {
-        List<CartItem> GetCartItems();
-        string GetOrCreateCartId();
-        string GetCart();
-        void SaveCartItemsToSession(List<CartItem> items);
+        List<CartItem> GetCartItems(IHttpContextAccessor httpContextAccessor);
+        string GetOrCreateCartId(IHttpContextAccessor httpContextAccessor);
+        string GetCart(IHttpContextAccessor httpContextAccessor);
+        void SaveCartItemsToSession(List<CartItem> items, IHttpContextAccessor httpContextAccessor);
         decimal CalculateCartTotal(List<CartItem> cartItems);
-        void UpdateOrCreateCartItem(Domain.Entities.Item item, string cartId, List<CartItem> items);
+        void UpdateOrCreateCartItem(Domain.Entities.Item item, string cartId, List<CartItem> items, IHttpContextAccessor httpContextAccessor);
         void UpdateCartItemPriceAndQuantity(CartItem item, int newQuantity);
     }
 
     public class CartService : ICartService
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-
-        public CartService(IHttpContextAccessor httpContextAccessor)
-        {
-            _httpContextAccessor = httpContextAccessor;
-        }
-        public void UpdateOrCreateCartItem(Domain.Entities.Item item, string cartId, List<CartItem> items)
+        public void UpdateOrCreateCartItem(Domain.Entities.Item item, string cartId, List<CartItem> items, IHttpContextAccessor httpContextAccessor)
         {
             var existingCartItem = items.FirstOrDefault(i => i.ItemId == item.Id);
 
@@ -51,11 +45,11 @@ namespace Shop.Application.Services
                 items.Add(cartItem);
             }
 
-            SaveCartItemsToSession(items);
+            SaveCartItemsToSession(items, httpContextAccessor);
         }
-        public string GetOrCreateCartId()
+        public string GetOrCreateCartId(IHttpContextAccessor httpContextAccessor)
         {
-            var session = _httpContextAccessor.HttpContext.Session;
+            var session = httpContextAccessor.HttpContext.Session;
 
             var cartId = session.GetString("CartSessionKey");
 
@@ -67,15 +61,15 @@ namespace Shop.Application.Services
 
             return cartId;
         }
-        public string GetCart()
+        public string GetCart(IHttpContextAccessor httpContextAccessor)
         {
-            var session = _httpContextAccessor.HttpContext.Session;
+            var session = httpContextAccessor.HttpContext.Session;
             var cart = session.GetString("Cart");
             return cart;
         }
-        public List<CartItem> GetCartItems()
+        public List<CartItem> GetCartItems(IHttpContextAccessor httpContextAccessor)
         {
-            var session = _httpContextAccessor.HttpContext.Session;
+            var session = httpContextAccessor.HttpContext.Session;
             var cart = session.GetString("Cart");
             var items = new List<CartItem>();
 
@@ -86,9 +80,9 @@ namespace Shop.Application.Services
 
             return items;
         }
-        public void SaveCartItemsToSession(List<CartItem> items)
+        public void SaveCartItemsToSession(List<CartItem> items, IHttpContextAccessor httpContextAccessor)
         {
-            var session = _httpContextAccessor.HttpContext.Session;
+            var session = httpContextAccessor.HttpContext.Session;
             var serializedCartItems = JsonConvert.SerializeObject(items);
             session.SetString("Cart", serializedCartItems);
         }

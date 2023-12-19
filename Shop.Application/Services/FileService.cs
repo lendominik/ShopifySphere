@@ -5,24 +5,18 @@ namespace Shop.Application.Services
 {
     public interface IFileService
     {
-        string UploadFile(IFormFile image);
+        string UploadFile(IFormFile image, IWebHostEnvironment webHostEnvironment);
     }
 
     public class FileService : IFileService
     {
-        private readonly IWebHostEnvironment _webHostEnvironment;
-
-        public FileService(IWebHostEnvironment webHostEnvironment)
-        {
-            _webHostEnvironment = webHostEnvironment;
-        }
-        public string UploadFile(IFormFile image)
+        public string UploadFile(IFormFile image, IWebHostEnvironment webHostEnvironment)
         {
             string fileName = null;
 
             if (image != null)
             {
-                string uploadDir = Path.Combine(_webHostEnvironment.WebRootPath, "Images");
+                string uploadDir = Path.Combine(webHostEnvironment.WebRootPath, "Images");
                 fileName = Guid.NewGuid().ToString() + "-" + image.FileName;
                 string filePath = Path.Combine(uploadDir, fileName);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))

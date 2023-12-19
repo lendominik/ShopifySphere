@@ -11,16 +11,18 @@ namespace Shop.Application.Cart.Queries.GetCart
     public class GetCartQueryHandler : IRequestHandler<GetCartQuery, CartDto>
     {
         private readonly ICartService _cartService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public GetCartQueryHandler(ICartService cartService)
+        public GetCartQueryHandler(ICartService cartService, IHttpContextAccessor httpContextAccessor)
         {
             _cartService = cartService;
+            _httpContextAccessor = httpContextAccessor;
         }
         public async Task<CartDto> Handle(GetCartQuery request, CancellationToken cancellationToken)
         {
-            var cartId = _cartService.GetOrCreateCartId();
+            var cartId = _cartService.GetOrCreateCartId(_httpContextAccessor);
 
-            var items = _cartService.GetCartItems();
+            var items = _cartService.GetCartItems(_httpContextAccessor);
   
             var cartDto = new CartDto
             {

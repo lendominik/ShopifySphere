@@ -11,14 +11,16 @@ namespace Shop.Application.Cart.Commands.ChangingCartItemQuantity
     public class ChangingCartItemQuantityCommandHandler : IRequestHandler<ChangingCartItemQuantityCommand>
     {
         private readonly ICartService _cartService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public ChangingCartItemQuantityCommandHandler(ICartService cartService)
+        public ChangingCartItemQuantityCommandHandler(ICartService cartService, IHttpContextAccessor httpContextAccessor)
         {
             _cartService = cartService;
+            _httpContextAccessor = httpContextAccessor;
         }
         public async Task<Unit> Handle(ChangingCartItemQuantityCommand request, CancellationToken cancellationToken)
         {
-            var items = _cartService.GetCartItems();
+            var items = _cartService.GetCartItems(_httpContextAccessor);
 
             var item = items.LastOrDefault(i => i.Id == request.Id);
 
@@ -29,7 +31,7 @@ namespace Shop.Application.Cart.Commands.ChangingCartItemQuantity
 
             _cartService.UpdateCartItemPriceAndQuantity(item, request.Quantity);
 
-            _cartService.SaveCartItemsToSession(items);
+            _cartService.SaveCartItemsToSession(items, _httpContextAccessor);
 
             return Unit.Value;
         }

@@ -11,15 +11,17 @@ namespace Shop.Application.Cart.Commands.RemoveFromCart
     public class RemoveFromCartCommandHandler : IRequestHandler<RemoveFromCartCommand>
     {
         private readonly ICartService _cartService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public RemoveFromCartCommandHandler(ICartService cartService)
+        public RemoveFromCartCommandHandler(ICartService cartService, IHttpContextAccessor httpContextAccessor)
         {
             _cartService = cartService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<Unit> Handle(RemoveFromCartCommand request, CancellationToken cancellationToken)
         {
-            var items = _cartService.GetCartItems();
+            var items = _cartService.GetCartItems(_httpContextAccessor);
 
             var cartItem = items.FirstOrDefault(i => i.Id == request.Id);
 
@@ -30,7 +32,7 @@ namespace Shop.Application.Cart.Commands.RemoveFromCart
 
             items.Remove(cartItem);
 
-            _cartService.SaveCartItemsToSession(items);
+            _cartService.SaveCartItemsToSession(items, _httpContextAccessor);
 
             return Unit.Value;
         }

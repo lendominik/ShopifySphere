@@ -10,15 +10,17 @@ namespace Shop.Application.Order.Commands.ShipOrder
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IAccessControlService _accessControlService;
+        private readonly IUserContext _userContext;
 
-        public ShipOrderCommandHandler(IOrderRepository orderRepository, IAccessControlService accessControlService)
+        public ShipOrderCommandHandler(IOrderRepository orderRepository, IAccessControlService accessControlService, IUserContext userContext)
         {
             _orderRepository = orderRepository;
             _accessControlService = accessControlService;
+            _userContext = userContext;
         }
         public async Task<Unit> Handle(ShipOrderCommand request, CancellationToken cancellationToken)
         {
-            if(!_accessControlService.IsEditable())
+            if(!_accessControlService.IsEditable(_userContext))
             {
                 return Unit.Value;
             }

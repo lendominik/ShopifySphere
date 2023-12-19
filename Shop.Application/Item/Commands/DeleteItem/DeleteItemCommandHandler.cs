@@ -10,16 +10,18 @@ namespace Shop.Application.Item.Commands.DeleteItem
     {
         private readonly IItemRepository _itemRepository;
         private readonly IAccessControlService _accessControlService;
+        private readonly IUserContext _userContext;
 
-        public DeleteItemCommandHandler(IAccessControlService accessControlService, IItemRepository itemRepository)
+        public DeleteItemCommandHandler(IAccessControlService accessControlService, IItemRepository itemRepository, IUserContext userContext)
         {
             _itemRepository = itemRepository;
             _accessControlService = accessControlService;
+            _userContext = userContext;
         }
 
         public async Task<Unit> Handle(DeleteItemCommand request, CancellationToken cancellationToken)
         {
-            if (!_accessControlService.IsEditable())
+            if (!_accessControlService.IsEditable(_userContext))
             {
                 return Unit.Value;
             }

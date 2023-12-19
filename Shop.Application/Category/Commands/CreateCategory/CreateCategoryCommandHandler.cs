@@ -11,16 +11,18 @@ namespace Shop.Application.Category.Commands.CreateCategory
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
         private readonly IAccessControlService _accessControlService;
+        private readonly IUserContext _userContext;
 
-        public CreateCategoryCommandHandler(IAccessControlService accessControlService, ICategoryRepository categoryRepository, IMapper mapper)
+        public CreateCategoryCommandHandler(IAccessControlService accessControlService, ICategoryRepository categoryRepository, IMapper mapper, IUserContext userContext)
         {
             _categoryRepository = categoryRepository;
             _mapper = mapper;
             _accessControlService = accessControlService;
+            _userContext = userContext;
         }
         public async Task<Unit> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
         {
-            if (!_accessControlService.IsEditable())
+            if (!_accessControlService.IsEditable(_userContext))
             {
                 return Unit.Value;
             }

@@ -15,17 +15,11 @@ namespace Shop.Application.Services
     {
         decimal Calculate(List<CartItem> cartItems);
         void CheckStockQuantity(IEnumerable<CartItem> cartItems);
-        Domain.Entities.Order CreateOrderFromCart(Domain.Entities.Order order, List<CartItem> cartItems);
+        Domain.Entities.Order CreateOrderFromCart(Domain.Entities.Order order, List<CartItem> cartItems, string email);
     }
 
     public class OrderService : IOrderService
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-
-        public OrderService(IHttpContextAccessor httpContextAccessor)
-        {
-            _httpContextAccessor = httpContextAccessor;
-        }
         public decimal Calculate(List<CartItem> cartItems)
         {
             if (!cartItems.Any())
@@ -49,11 +43,11 @@ namespace Shop.Application.Services
                 throw new OutOfStockException("There are not enough items in stock.");
             }
         }
-        public Domain.Entities.Order CreateOrderFromCart(Domain.Entities.Order order, List<CartItem> cartItems)
+        public Domain.Entities.Order CreateOrderFromCart(Domain.Entities.Order order, List<CartItem> cartItems, string email)
         {
             order.CartItems = cartItems;
             order.CartTotal = Calculate(cartItems);
-            order.Email = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Email);
+            order.Email = email;
 
             return order;
         }

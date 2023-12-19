@@ -13,18 +13,20 @@ namespace Shop.Application.Cart.Commands.AddToCart
     {
         private readonly IItemRepository _itemRepository;
         private readonly ICartService _cartService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AddToCartCommandHandler(IItemRepository itemRepository, ICartService cartService)
+        public AddToCartCommandHandler(IItemRepository itemRepository, ICartService cartService, IHttpContextAccessor httpContextAccessor)
         {
             _itemRepository = itemRepository;
             _cartService = cartService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<Unit> Handle(AddToCartCommand request, CancellationToken cancellationToken)
         {
-            var cartId = _cartService.GetOrCreateCartId();
+            var cartId = _cartService.GetOrCreateCartId(_httpContextAccessor);
 
-            var items = _cartService.GetCartItems();
+            var items = _cartService.GetCartItems(_httpContextAccessor);
 
             var item = await _itemRepository.GetByEncodedName(request.EncodedName);
 
@@ -38,7 +40,7 @@ namespace Shop.Application.Cart.Commands.AddToCart
                 throw new OutOfStockException("There are not that many items in stock.");
             }
 
-            _cartService.UpdateOrCreateCartItem(item, cartId, items);
+            _cartService.UpdateOrCreateCartItem(item, cartId, items, _httpContextAccessor);
 
             return Unit.Value;
         }

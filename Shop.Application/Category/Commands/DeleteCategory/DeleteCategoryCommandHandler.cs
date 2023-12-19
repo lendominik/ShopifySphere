@@ -10,16 +10,18 @@ namespace Shop.Application.Category.Commands.DeleteCategory
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IAccessControlService _accessControlService;
+        private readonly IUserContext _userContext;
 
-        public DeleteCategoryCommandHandler(IAccessControlService accessControlService, ICategoryRepository categoryRepository)
+        public DeleteCategoryCommandHandler(IAccessControlService accessControlService, ICategoryRepository categoryRepository, IUserContext userContext)
         {
             _categoryRepository = categoryRepository;
             _accessControlService = accessControlService;
+            _userContext = userContext;
         }
 
         public async Task<Unit> Handle(DeleteCategoryCommand request, CancellationToken cancellationToken)
         {
-            if (!_accessControlService.IsEditable())
+            if (!_accessControlService.IsEditable(_userContext))
             {
                 return Unit.Value;
             }

@@ -5,22 +5,16 @@ namespace Shop.Application.Services
 {
     public interface IPaymentService
     {
-        Session CreatePaymentSessionForOrder(Domain.Entities.Order order);
+        Session CreatePaymentSessionForOrder(Domain.Entities.Order order, string domain);
     }
 
     public class PaymentService : IPaymentService
-    {
-        private readonly string _domain;
-
-        public PaymentService()
-        {
-            _domain = "https://localhost:7109/";
-        }
-        public Session CreatePaymentSessionForOrder(Domain.Entities.Order order)
+    { 
+        public Session CreatePaymentSessionForOrder(Domain.Entities.Order order, string domain)
         {
             var productList = order.CartItems;
 
-            var options = GetSessionCreateOptions(productList);
+            var options = GetSessionCreateOptions(productList, domain);
 
             var service = new SessionService();
             Session session = service.Create(options);
@@ -28,12 +22,12 @@ namespace Shop.Application.Services
             return session;
         }
 
-        private SessionCreateOptions GetSessionCreateOptions(List<CartItem> productList)
+        private SessionCreateOptions GetSessionCreateOptions(List<CartItem> productList, string domain)
         {
             var options = new SessionCreateOptions
             {
-                SuccessUrl = _domain + "/Order/Success",
-                CancelUrl = _domain + "/Order/Cancel",
+                SuccessUrl = domain + "/Order/Success",
+                CancelUrl = domain + "/Order/Cancel",
                 LineItems = productList.Select(item => new SessionLineItemOptions
                 {
                     PriceData = new SessionLineItemPriceDataOptions
