@@ -27,13 +27,19 @@ namespace Shop.Infrastructure.Repositories
             _dbContext.Items.Remove(item);
             await _dbContext.SaveChangesAsync();
         }
-        public async Task<IEnumerable<Item>> GetAll()
-            => await _dbContext.Items
-            .Select(i => new Item 
-            {   Description = i.Description, EncodedName = i.EncodedName,
-                Name = i.Name, Price = i.Price, ProductImage = i.ProductImage,
-                StockQuantity = i.StockQuantity, Category = i.Category })
-            .ToListAsync();
+        public IQueryable<Item> GetAll()
+            => _dbContext.Items
+            .Select(i => new Item
+            {
+                Description = i.Description,
+                EncodedName = i.EncodedName,
+                Name = i.Name,
+                Price = i.Price,
+                ProductImage = i.ProductImage,
+                StockQuantity = i.StockQuantity,
+                Category = i.Category
+            });
+           
         public async Task<Item> GetByEncodedName(string encodedName)
             => await _dbContext.Items.FirstOrDefaultAsync(e => e.EncodedName == encodedName);
         public bool ItemExists(string name)

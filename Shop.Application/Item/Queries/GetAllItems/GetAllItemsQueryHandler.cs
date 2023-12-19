@@ -4,6 +4,8 @@ using Shop.Domain.Interfaces;
 using System.Linq.Expressions;
 using Shop.Application.Exceptions;
 using Shop.Application.Common;
+using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Shop.Application.Item.Queries.GetAllItems
 {
@@ -25,7 +27,7 @@ namespace Shop.Application.Item.Queries.GetAllItems
             request.PageNumber = request.PageNumber < 1 ? 1 : request.PageNumber;
             request.PageSize = request.PageSize < 1 ? 10 : request.PageSize;
 
-            var items = await _itemRepository.GetAll();
+            var items = _itemRepository.GetAll();
 
             if(items == null)
             {
