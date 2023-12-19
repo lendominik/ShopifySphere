@@ -29,7 +29,8 @@ namespace Shop.Infrastructure.Repositories
         }
         public async Task<IEnumerable<Category>> GetAll()
             => await _dbContext.Categories
-            .Select(c => new Category {  Description = c.Description, Name = c.Name, EncodedName = c.EncodedName })
+            .Select(c => new Category
+            {  Description = c.Description, Name = c.Name, EncodedName = c.EncodedName })
             .ToListAsync();
         public async Task<Category> GetByEncodedName(string encodedName)
            => await _dbContext.Categories

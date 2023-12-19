@@ -2,6 +2,7 @@
 using MediatR;
 using Shop.Application.Common;
 using Shop.Application.Exceptions;
+using Shop.Application.Services;
 using Shop.Domain.Interfaces;
 
 namespace Shop.Application.Order.Queries.GetAllOrders
