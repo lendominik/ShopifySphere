@@ -28,25 +28,25 @@ namespace Shop.Application.Services
         }
         public decimal Calculate(List<CartItem> cartItems)
         {
-            if (cartItems == null)
+            if (!cartItems.Any())
             {
                 return 0;
             }
 
-            decimal total = cartItems.Sum(item => item.UnitPrice);
-
-            return total;
+            return cartItems.Sum(item => item.UnitPrice);
         }
         public void CheckStockQuantity(IEnumerable<CartItem> cartItems)
         {
-            foreach (var item in cartItems)
+            if (cartItems.All(ci => ci.Item.StockQuantity >= ci.Quantity && ci.Quantity > 0))
             {
-                if (item.Item.StockQuantity < item.Quantity || item.Item.StockQuantity < 0 || item.Quantity <= 0)
+                foreach (var cartItem in cartItems)
                 {
-                    throw new OutOfStockException($"There are not enough items in stock for {item.Item.Name}.");
+                    cartItem.Item.StockQuantity -= cartItem.Quantity;
                 }
-
-                item.Item.StockQuantity -= item.Quantity;
+            }
+            else
+            {
+                throw new OutOfStockException("There are not enough items in stock.");
             }
         }
         public Domain.Entities.Order CreateOrderFromCart(Domain.Entities.Order order, List<CartItem> cartItems)
