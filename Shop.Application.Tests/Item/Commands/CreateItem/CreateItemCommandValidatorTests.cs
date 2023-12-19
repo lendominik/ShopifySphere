@@ -16,6 +16,7 @@ namespace Shop.Application.Item.Commands.CreateItem.Tests
         [Fact()]
         public void Validate_WithValidCommand_ShouldNotHaveValidationError()
         {
+            // Assert
             var itemRepositoryMock = new Mock<IItemRepository>();
 
             var validator = new CreateItemCommandValidator(itemRepositoryMock.Object);
@@ -29,13 +30,16 @@ namespace Shop.Application.Item.Commands.CreateItem.Tests
                 Price = 1
             };
 
+            // Act
             var result = validator.TestValidate(command);
 
+            // Arrange
             result.ShouldNotHaveAnyValidationErrors();
         }
         [Fact()]
         public void Validate_WithValidCommand_ShouldHaveValidationError()
         {
+            // Assert
             var itemRepositoryMock = new Mock<IItemRepository>();
 
             var validator = new CreateItemCommandValidator(itemRepositoryMock.Object);
@@ -47,8 +51,10 @@ namespace Shop.Application.Item.Commands.CreateItem.Tests
                 Price = 1
             };
 
+            // Act
             var result = validator.TestValidate(command);
 
+            // Arrange
             result.ShouldHaveValidationErrorFor(i => i.Name);
             result.ShouldHaveValidationErrorFor(i => i.Description);
             result.ShouldHaveValidationErrorFor(i => i.StockQuantity);

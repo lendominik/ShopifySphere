@@ -21,7 +21,6 @@ namespace Shop.Application.Services.Tests
             var isEditable = accessControlService.IsEditable();
 
             // Assert
-
             isEditable.Should().BeTrue();
         }
         [Fact]
@@ -38,7 +37,6 @@ namespace Shop.Application.Services.Tests
             var isEditable = accessControlService.IsEditable();
 
             // Assert
-
             isEditable.Should().BeFalse();
         }
     }

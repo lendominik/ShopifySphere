@@ -17,6 +17,7 @@ namespace Shop.Application.Category.Commands.CreateCategory.Tests
         [Fact()]
         public void Validate_WithValidCommand_ShouldNotHaveValidationError()
         {
+            // Assert
             var categoryRepositoryMock = new Mock<ICategoryRepository>();
 
             var validator = new CreateCategoryCommandValidator(categoryRepositoryMock.Object);
@@ -28,13 +29,16 @@ namespace Shop.Application.Category.Commands.CreateCategory.Tests
                 Name = "name"
             };
 
+            // Act
             var result = validator.TestValidate(command);
 
+            // Arrange
             result.ShouldNotHaveAnyValidationErrors();
         }
         [Fact()]
         public void Validate_WithValidCommand_ShouldHaveValidationError()
         {
+            // Assert
             var categoryRepositoryMock = new Mock<ICategoryRepository>();
 
             var validator = new CreateCategoryCommandValidator(categoryRepositoryMock.Object);
@@ -45,8 +49,10 @@ namespace Shop.Application.Category.Commands.CreateCategory.Tests
                 EncodedName = "category",
             };
 
+            // Act
             var result = validator.TestValidate(command);
 
+            // Arrange
             result.ShouldHaveValidationErrorFor(i => i.Name);
             result.ShouldHaveValidationErrorFor(i => i.Description);
         }

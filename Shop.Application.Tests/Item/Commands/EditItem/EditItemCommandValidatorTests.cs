@@ -15,6 +15,7 @@ namespace Shop.Application.Item.Commands.EditItem.Tests
         [Fact()]
         public void Validate_WithValidCommand_ShouldNotHaveValidationError()
         {
+            // Assert
             var validator = new EditItemCommandValidator();
 
             var command = new EditItemCommand()
@@ -24,13 +25,16 @@ namespace Shop.Application.Item.Commands.EditItem.Tests
                 StockQuantity = 1
             };
 
+            // Act
             var result = validator.TestValidate(command);
 
+            // Arrange
             result.ShouldNotHaveAnyValidationErrors();
         }
         [Fact()]
         public void Validate_WithValidCommand_ShouldHaveValidationError()
         {
+            // Assert
             var validator = new EditItemCommandValidator();
 
             var command = new EditItemCommand()
@@ -38,8 +42,10 @@ namespace Shop.Application.Item.Commands.EditItem.Tests
                 Description = "desc",
             };
 
+            // Act
             var result = validator.TestValidate(command);
 
+            // Arrange
             result.ShouldHaveValidationErrorFor(i => i.Description);
             result.ShouldHaveValidationErrorFor(i => i.Price);
             result.ShouldHaveValidationErrorFor(i => i.StockQuantity);

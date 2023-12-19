@@ -17,6 +17,7 @@ namespace Shop.Application.Category.Commands.EditCategory.Tests
         [Fact()]
         public void Validate_WithValidCommand_ShouldNotHaveValidationError()
         {
+            // Assert
             var validator = new EditCategoryCommandValidator();
 
             var command = new EditCategoryCommand()
@@ -25,13 +26,16 @@ namespace Shop.Application.Category.Commands.EditCategory.Tests
                 EncodedName = "categoryname",
             };
 
+            // Act
             var result = validator.TestValidate(command);
 
+            // Arrange
             result.ShouldNotHaveAnyValidationErrors();
         }
         [Fact()]
         public void Validate_WithValidCommand_ShouldHaveValidationError()
         {
+            // Assert
             var validator = new EditCategoryCommandValidator();
 
             var command = new EditCategoryCommand()
@@ -40,8 +44,10 @@ namespace Shop.Application.Category.Commands.EditCategory.Tests
                 EncodedName = "categoryname",
             };
 
+            // Act
             var result = validator.TestValidate(command);
 
+            // Arrange
             result.ShouldHaveValidationErrorFor(i => i.Description);
         }
     }

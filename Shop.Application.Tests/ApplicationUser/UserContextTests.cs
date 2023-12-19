@@ -17,6 +17,7 @@ namespace Shop.Application.ApplicationUser.Tests
         [Fact()]
         public void GetCurrentUser_WithAuthenticatedUser_ShouldReturnCurrentUser()
         {
+            // Assert
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, "1"),
@@ -36,8 +37,10 @@ namespace Shop.Application.ApplicationUser.Tests
 
             var userContext = new UserContext(httpContextAccessorMock.Object);
 
+            // Act 
             var currentUser = userContext.GetCurrentUser();
 
+            // Arrange
             currentUser.Should().NotBeNull();
             currentUser!.Id.Should().Be("1");
             currentUser.Email.Should().Be("test@example.com");
