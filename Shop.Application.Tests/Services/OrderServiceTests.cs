@@ -19,13 +19,12 @@ namespace Shop.Application.Services.Tests
         public void Calculate_WhenCartItemsExist_ReturnsCorrectTotal()
         {
             // Arrange
-            var httpContextAccessor = new Mock<IHttpContextAccessor>();  
             var cartItems = new List<CartItem>
             {
                 new CartItem { UnitPrice = 10 },
                 new CartItem { UnitPrice = 20 }
             };
-            var orderService = new OrderService(httpContextAccessor.Object);
+            var orderService = new OrderService();
 
             // Act
             var result = orderService.Calculate(cartItems);
@@ -38,9 +37,8 @@ namespace Shop.Application.Services.Tests
         public void Calculate_WhenNoCartItemsExist_ReturnsZero()
         {
             // Arrange
-            var httpContextAccessor = new Mock<IHttpContextAccessor>();
             var cartItems = new List<CartItem>();
-            var orderService = new OrderService(httpContextAccessor.Object);
+            var orderService = new OrderService();
 
             // Act
             var result = orderService.Calculate(cartItems);
@@ -53,12 +51,11 @@ namespace Shop.Application.Services.Tests
         public void CheckStockQuantity_WhenStockIsSufficient_NoExceptionThrown()
         {
             // Arrange
-            var httpContextAccessor = new Mock<IHttpContextAccessor>();
             var cartItems = new List<CartItem>
             {
                 new CartItem { Quantity = 2, Item = new Domain.Entities.Item { StockQuantity = 3 } }
             };
-            var orderService = new OrderService(httpContextAccessor.Object);
+            var orderService = new OrderService();
 
             // Act & Assert
             FluentActions.Invoking(() => orderService.CheckStockQuantity(cartItems)).Should().NotThrow();
@@ -73,7 +70,7 @@ namespace Shop.Application.Services.Tests
             {
                 new CartItem { Quantity = 5, Item = new Domain.Entities.Item { StockQuantity = 3 } }
             };
-            var orderService = new OrderService(httpContextAccessor.Object);
+            var orderService = new OrderService();
 
             // Act & Assert
             Assert.Throws<OutOfStockException>(() => orderService.CheckStockQuantity(cartItems));

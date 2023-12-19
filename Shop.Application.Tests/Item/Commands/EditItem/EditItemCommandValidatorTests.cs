@@ -1,11 +1,4 @@
 ﻿using Xunit;
-using Shop.Application.Item.Commands.EditItem;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Shop.Application.Item.Commands.EditItem;
 using FluentValidation.TestHelper;
 
 namespace Shop.Application.Item.Commands.EditItem.Tests

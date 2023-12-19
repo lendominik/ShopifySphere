@@ -15,10 +15,10 @@ namespace Shop.Application.Services.Tests
             var userContextMock = new Mock<IUserContext>();
             userContextMock.Setup(u => u.GetCurrentUser()).Returns(currentUser);
 
-            var accessControlService = new AccessControlService(userContextMock.Object);
+            var accessControlService = new AccessControlService();
 
             // Act
-            var isEditable = accessControlService.IsEditable();
+            var isEditable = accessControlService.IsEditable(userContextMock.Object);
 
             // Assert
             isEditable.Should().BeTrue();
@@ -31,10 +31,10 @@ namespace Shop.Application.Services.Tests
             var userContextMock = new Mock<IUserContext>();
             userContextMock.Setup(u => u.GetCurrentUser()).Returns(currentUser);
 
-            var accessControlService = new AccessControlService(userContextMock.Object);
+            var accessControlService = new AccessControlService();
 
             // Act
-            var isEditable = accessControlService.IsEditable();
+            var isEditable = accessControlService.IsEditable(userContextMock.Object);
 
             // Assert
             isEditable.Should().BeFalse();

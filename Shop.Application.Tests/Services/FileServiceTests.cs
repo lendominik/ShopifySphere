@@ -15,10 +15,10 @@ namespace Shop.Application.Services.Tests
                 // Arrange
                 var webHostEnvironment = new Mock<IWebHostEnvironment>();
                 IFormFile nullImage = null;
-                var fileUploadService = new FileService(webHostEnvironment.Object);
+                var fileUploadService = new FileService();
 
                 // Act
-                var result = fileUploadService.UploadFile(nullImage);
+                var result = fileUploadService.UploadFile(nullImage, webHostEnvironment.Object);
 
                 // Assert
                 Assert.Null(result);
