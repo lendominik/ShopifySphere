@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using MediatR;
-using Shop.Application.Common;
+using Shop.Application.Common.PagedResult;
 using Shop.Application.Exceptions;
 using Shop.Application.Services;
 using Shop.Domain.Interfaces;
 
 namespace Shop.Application.Order.Queries.GetAllOrders
 {
-    public class GetAllOrdersQueryHandler : IRequestHandler<GetAllOrdersQuery, PagedResult<OrderDto>>
+    public class GetAllOrdersQueryHandler : IRequestHandler<GetAllOrdersQuery, OrderPagedResult<OrderDto>>
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IMapper _mapper;
@@ -18,7 +18,7 @@ namespace Shop.Application.Order.Queries.GetAllOrders
             _mapper = mapper;
         }
         
-        public async Task<PagedResult<OrderDto>> Handle(GetAllOrdersQuery request, CancellationToken cancellationToken)
+        public async Task<OrderPagedResult<OrderDto>> Handle(GetAllOrdersQuery request, CancellationToken cancellationToken)
         {
             request.PageNumber = request.PageNumber < 1 ? 1 : request.PageNumber;
             request.PageSize = request.PageSize < 1 ? 10 : request.PageSize;
@@ -48,7 +48,7 @@ namespace Shop.Application.Order.Queries.GetAllOrders
 
             var orderDtos = _mapper.Map<IEnumerable<OrderDto>>(ordersToDisplay);
 
-            var result = new PagedResult<OrderDto>(orderDtos, ordersCount, request.PageSize, request.PageNumber);
+            var result = new OrderPagedResult<OrderDto>(orderDtos, ordersCount, request.PageSize, request.PageNumber);
 
             return result;
         }

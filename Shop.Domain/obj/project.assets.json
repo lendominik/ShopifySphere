@@ -15,11 +15,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.Domain\\Shop.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Domain\\Shop.Domain.csproj",
       "projectName": "Shop.Domain",
-      "projectPath": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.Domain\\Shop.Domain.csproj",
+      "projectPath": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Domain\\Shop.Domain.csproj",
       "packagesPath": "C:\\Users\\Dominik\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.Domain\\obj\\",
+      "outputPath": "C:\\Users\\Dominik\\Desktop\\shop\\Shop.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

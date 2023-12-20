@@ -1,8 +1,8 @@
 ﻿using Shop.Application.Order;
 
-namespace Shop.Application.Common
+namespace Shop.Application.Common.PagedResult
 {
-    public class PagedResult<T>
+    public abstract class PagedResult<T>
     {
         public int TotalItemsCount { get; set; }
         public int ItemsFrom { get; set; }

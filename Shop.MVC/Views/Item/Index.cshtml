@@ -1,4 +1,4 @@
-﻿@model Shop.Application.Common.PagedResult<Shop.Application.Item.ItemDto>;
+﻿@model Shop.Application.Common.PagedResult.ItemPagedResult<Shop.Application.Item.ItemDto>;
 
 <div class="d-flex justify-content-between align-items-center mb-3">
     <form method="post" action="/Item/Index" class="flex-grow-1 me-2">
@@ -42,14 +42,14 @@
 </div>
 
 
-brajn@* <form method="post" action="/Item/Index">
+<form method="post" action="/Item/Index">
     <div class="category-buttons">
         @foreach (var category in Model.Categories)
         {
             <button type="submit" name="selectedCategory" value="@category.Name" class="btn btn-outline-primary">@category.Name</button>
         }
     </div>
-</form> *@
+</form>
 
 <br />
 
