@@ -59,10 +59,8 @@ namespace Shop.Infrastructure.Repositories
             });
         public async Task<Order> GetOrderById(int orderId)
             => await _dbContext.Orders
-            .AsSplitQuery()
             .Include(order => order.CartItems)
                 .ThenInclude(cartItem => cartItem.Item)
-                .AsSplitQuery()
             .Where(o => o.Id == orderId)
             .FirstOrDefaultAsync();
         public async Task<List<Order>> GetUserOrders(string email)
