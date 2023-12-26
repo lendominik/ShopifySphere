@@ -29,6 +29,7 @@ namespace Shop.Infrastructure.Repositories
         }
         public async Task<IEnumerable<Category>> GetAll()
             => await _dbContext.Categories
+            .AsNoTracking()
             .Select(c => new Category
             {  Description = c.Description, Name = c.Name, EncodedName = c.EncodedName })
             .ToListAsync();

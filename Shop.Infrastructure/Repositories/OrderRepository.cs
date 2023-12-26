@@ -46,6 +46,7 @@ namespace Shop.Infrastructure.Repositories
         }
         public IQueryable<Order> GetAllOrders()
             => _dbContext.Orders
+            .AsNoTracking()
             .Select(u => new Order
             {
                 Id = u.Id,
@@ -57,7 +58,8 @@ namespace Shop.Infrastructure.Repositories
                 OrderDate = u.OrderDate
             });
         public async Task<Order> GetOrderById(int orderId)
-            => await _dbContext.Orders.Include(order => order.CartItems)
+            => await _dbContext.Orders
+            .Include(order => order.CartItems)
             .ThenInclude(cartItem => cartItem.Item)
             .Where(o => o.Id == orderId)
             .FirstOrDefaultAsync();

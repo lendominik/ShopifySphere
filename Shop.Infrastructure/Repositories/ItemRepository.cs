@@ -29,6 +29,7 @@ namespace Shop.Infrastructure.Repositories
         }
         public IQueryable<Item> GetAll()
             => _dbContext.Items
+            .AsNoTracking()
             .Select(i => new Item
             {
                 Description = i.Description,
@@ -41,7 +42,8 @@ namespace Shop.Infrastructure.Repositories
             });
            
         public async Task<Item> GetByEncodedName(string encodedName)
-            => await _dbContext.Items.FirstOrDefaultAsync(e => e.EncodedName == encodedName);
+            => await _dbContext.Items
+            .FirstOrDefaultAsync(e => e.EncodedName == encodedName);
         public bool ItemExists(string name)
             => _dbContext.Categories.Any(c => c.Name == name);
     }
