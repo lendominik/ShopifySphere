@@ -21,10 +21,10 @@ namespace Shop.Infrastructure.Extensions
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ShopDbContext>();
 
-            services.AddScoped<IItemRepository, ItemRepository>();
-            services.AddScoped<ICategoryRepository, CategoryRepository>();
-            services.AddScoped<ICartItemRepository, CartItemRepository>();
-            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddTransient<IItemRepository, ItemRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<ICartItemRepository, CartItemRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
         }
     }
 }

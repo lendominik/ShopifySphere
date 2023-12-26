@@ -20,7 +20,7 @@ namespace Shop.Application.Extensions
     {
         public static void AddAplication(this IServiceCollection services)
         {
-            services.AddScoped<IUserContext, UserContext>();
+            services.AddTransient<IUserContext, UserContext>();
             services.AddMediatR(typeof(GetAllItemsQuery));
             services.AddMediatR(typeof(GetCartQuery));
 
@@ -28,13 +28,13 @@ namespace Shop.Application.Extensions
 
             services.AddHttpContextAccessor();
 
-            services.AddTransient<ErrorHandlingMiddleware>();
+            services.AddScoped<ErrorHandlingMiddleware>();
 
-            services.AddScoped<ICartService, CartService>();
-            services.AddScoped<IOrderService, OrderService>();
-            services.AddScoped<IAccessControlService, AccessControlService>();
-            services.AddScoped<IFileService, Services.FileService>();
-            services.AddScoped<IPaymentService, PaymentService>();
+            services.AddTransient<ICartService, CartService>();
+            services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<IAccessControlService, AccessControlService>();
+            services.AddTransient<IFileService, Services.FileService>();
+            services.AddTransient<IPaymentService, PaymentService>();
 
             services.AddFluentValidation();
             services.AddValidatorsFromAssemblyContaining<CreateItemCommandValidator>();
@@ -43,7 +43,7 @@ namespace Shop.Application.Extensions
 
         public static void AddAutoMapper(this IServiceCollection services)
         {
-            services.AddScoped(provider =>
+            services.AddTransient(provider =>
             {
                 var scope = provider.CreateScope();
                 var userContext = scope.ServiceProvider.GetRequiredService<IUserContext>();
