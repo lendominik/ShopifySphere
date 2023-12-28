@@ -52,7 +52,7 @@
                         <a>Szczegóły zamówienia</a>
                     </th>
                     <th>
-                        <a>Status zamówienia</a>
+                        <a>Akcje na zamówieniu</a>
                     </th>
                 </tr>
             </thead>
@@ -86,41 +86,7 @@
                             <a class="btn btn-primary" asp-controller="Order" asp-action="Details" asp-route-orderId="@item.Id">Szczegóły</a>
                         </td>
                         <td>
-                            @if (User.IsInRole("Owner"))
-                            {
-                                @if (item.OrderStatus.ToString() == "Pending")
-                                {
-                                    <form asp-action="CancelOrderByAdmin" method="post">
-                                        <input type="hidden" name="OrderId" value="@item.Id" />
-                                        <button type="submit" class="btn btn-warning">Anuluj zamówienie</button>
-                                    </form>
-                                    @if (User.IsInRole("Owner"))
-                                    {
-                                        <form asp-action="Ship" method="post">
-                                            <input type="hidden" name="OrderId" value="@item.Id" />
-                                            <button type="submit" class="btn btn-warning">Oznacz jako wysłane</button>
-                                        </form>
-                                    }
-
-                                }
-                                else if (item.OrderStatus.ToString() == "Cancelled")
-                                {
-                                    <a class="btn btn-danger">Zamówienie anulowane.</a>
-                                }
-                                else if (item.OrderStatus.ToString() == "Shipped")
-                                {
-                                    <a class="btn btn-info">Zamówienie jest realizowane.</a>
-
-                                    <form asp-action="Complete" method="post">
-                                        <input type="hidden" name="OrderId" value="@item.Id" />
-                                        <button type="submit" class="btn btn-warning">Oznacz jako zrealizowane.</button>
-                                    </form>
-                                }
-                                else
-                                {
-                                    <button type="submit" class="btn btn-success">Zamówienie zrealizowane.</button>
-                                }
-                            }
+                            @Html.Partial("_OrderActions", item)
                         </td>
                     </tr>
                 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OLHo6KByzzltEUGFRyBxy5d4nC4GvtCIfLUweRwT24slpyuf9rD798K5nar4FMPXYUD8h/4JTDXrzxtPPEW7Jw==",
+  "dgSpecHash": "IAoMZ8+DuN2RyWe1DLwhddRklhp7l4L7DexCFA6gWyL6H9uEfsFrZ9u6GX+TP+PFpIO6QZYx9wNu+/A0UgAzsg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dominik\\Desktop\\shopifysphere\\Shop.Domain.Tests\\Shop.Domain.Tests.csproj",
+  "projectFilePath": "C:\\Users\\Dominik\\Desktop\\sohp\\Shop.Domain.Tests\\Shop.Domain.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dominik\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\Dominik\\.nuget\\packages\\fluentassertions\\6.12.0\\fluentassertions.6.12.0.nupkg.sha512",

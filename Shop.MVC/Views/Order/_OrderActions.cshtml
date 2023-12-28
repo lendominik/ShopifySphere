@@ -1,0 +1,27 @@
+﻿@model Shop.Application.Order.OrderDto
+
+@if (User.IsInRole("Owner"))
+{
+    <form method="post">
+        <input type="hidden" name="OrderId" value="@Model.Id" />
+
+        @if (Model.OrderStatus.ToString() == "Pending")
+        {
+            <button type="submit" formaction="CancelOrderByAdmin" class="btn btn-warning">Anuluj zamówienie</button>
+            <button type="submit" formaction="Ship" class="btn btn-warning">Oznacz jako wysłane</button>
+        }
+        else if (Model.OrderStatus.ToString() == "Cancelled")
+        {
+            <a class="btn btn-danger">Zamówienie anulowane.</a>
+        }
+        else if (Model.OrderStatus.ToString() == "Shipped")
+        {
+            <a class="btn btn-info">Zamówienie jest realizowane.</a>
+            <button type="submit" formaction="Complete" class="btn btn-warning">Oznacz jako zrealizowane.</button>
+        }
+        else
+        {
+            <button type="submit" class="btn btn-success">Zamówienie zrealizowane.</button>
+        }
+    </form>
+}
