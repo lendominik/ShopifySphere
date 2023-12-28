@@ -29,29 +29,7 @@
                         </p>
                         <a href="@Url.Action("Details", "Order", new { orderId = item.Id })" class="btn btn-primary">Szczegóły zamówienia</a>
                         <div>
-                            @if (item.OrderStatus.ToString() == "Pending" && item.IsPaid == false)
-                            {
-                                <form asp-action="CancelUserOrder" method="post">
-                                    <input type="hidden" name="OrderId" value="@item.Id" />
-                                    <button type="submit" class="btn btn-warning">Anuluj zamówienie</button>
-                                </form>
-                            }
-                            else if (item.OrderStatus.ToString() == "Pending")
-                            {
-                                <span class="badge bg-danger">Przyjęto zamówienie</span>
-                            }
-                            else if (item.OrderStatus.ToString() == "Cancelled")
-                            {
-                                <span class="badge bg-danger">Zamówienie anulowane</span>
-                            }
-                            else if (item.OrderStatus.ToString() == "Shipped")
-                            {
-                                <span class="badge bg-info">Zamówienie jest realizowane</span>
-                            }
-                            else
-                            {
-                                <span class="badge bg-success">Zamówienie zrealizowane</span>
-                            }
+                            @Html.Partial("_UserOrderActions", item)
                         </div>
                     </div>
                 </div>

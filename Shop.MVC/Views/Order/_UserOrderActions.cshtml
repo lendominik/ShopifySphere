@@ -1,0 +1,25 @@
+﻿@model Shop.Application.Order.OrderDto
+
+@if (Model.OrderStatus.ToString() == "Pending" && Model.IsPaid == false)
+{
+    <form asp-action="CancelUserOrder" method="post">
+        <input type="hidden" name="OrderId" value="@Model.Id" />
+        <button type="submit" class="btn btn-warning">Anuluj zamówienie</button>
+    </form>
+}
+else if (Model.OrderStatus.ToString() == "Pending")
+{
+    <span class="badge bg-danger">Przyjęto zamówienie</span>
+}
+else if (Model.OrderStatus.ToString() == "Cancelled")
+{
+    <span class="badge bg-danger">Zamówienie anulowane</span>
+}
+else if (Model.OrderStatus.ToString() == "Shipped")
+{
+    <span class="badge bg-info">Zamówienie jest realizowane</span>
+}
+else
+{
+    <span class="badge bg-success">Zamówienie zrealizowane</span>
+}
