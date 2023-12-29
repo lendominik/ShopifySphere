@@ -1,11 +1,4 @@
-﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Shop.Application.Services.ItemServices
+﻿namespace Shop.Application.Services.ItemServices
 {
     public interface IItemPaginationService
     {
@@ -16,6 +9,9 @@ namespace Shop.Application.Services.ItemServices
     {
         public IEnumerable<Domain.Entities.Item> PaginationSkipAndTake(IQueryable<Domain.Entities.Item> items, int pageNumber, int pageSize)
         {
+            pageNumber = pageNumber < 1 ? 1 : pageNumber;
+            pageSize = pageSize < 1 ? 10 : pageSize;
+
             var itemsToDisplay = items.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
             return itemsToDisplay;
         }
