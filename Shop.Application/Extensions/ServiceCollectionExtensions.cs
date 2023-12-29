@@ -13,6 +13,7 @@ using Shop.Application.Category.Commands.CreateCategory;
 using Shop.Application.Order.Commands.CreateOrder;
 using Shop.Application.Services;
 using Stripe;
+using Shop.Application.Services.ItemServices;
 
 namespace Shop.Application.Extensions
 {
@@ -34,6 +35,9 @@ namespace Shop.Application.Extensions
             services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<IAccessControlService, AccessControlService>();
             services.AddTransient<IFileService, Services.FileService>();
+            services.AddTransient<IItemFilterService, ItemFilterService>();
+            services.AddTransient<IItemPaginationService, ItemPaginationService>();
+            services.AddTransient<IItemSortService, ItemSortService>();
             services.AddTransient<IPaymentService, PaymentService>();
 
             services.AddFluentValidation();
