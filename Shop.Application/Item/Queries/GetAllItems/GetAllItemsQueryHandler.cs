@@ -4,7 +4,8 @@ using Shop.Domain.Interfaces;
 using System.Linq.Expressions;
 using Shop.Application.Exceptions;
 using Shop.Application.Common.PagedResult;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+using Shop.Application.Services;
+using Shop.Application.Services.ItemServices;
 
 namespace Shop.Application.Item.Queries.GetAllItems
 {
@@ -13,12 +14,18 @@ namespace Shop.Application.Item.Queries.GetAllItems
         private readonly IItemRepository _itemRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
+        private readonly IItemFilterService _itemFilterService;
+        private readonly IItemSortService _itemSortService;
+        private readonly IItemPaginationService _itemPaginationService;
 
-        public GetAllItemsQueryHandler(IItemRepository itemRepository, ICategoryRepository categoryRepository,IMapper mapper)
+        public GetAllItemsQueryHandler(IItemPaginationService itemPaginationService, IItemSortService itemSortService, IItemFilterService itemFilterService, IItemRepository itemRepository, ICategoryRepository categoryRepository, IMapper mapper)
         {
             _itemRepository = itemRepository;
             _categoryRepository = categoryRepository;
             _mapper = mapper;
+            _itemFilterService = itemFilterService;
+            _itemSortService = itemSortService;
+            _itemPaginationService = itemPaginationService;
         }
 
         public async Task<ItemPagedResult<ItemDto>> Handle(GetAllItemsQuery request, CancellationToken cancellationToken)
@@ -33,33 +40,15 @@ namespace Shop.Application.Item.Queries.GetAllItems
                 throw new NotFoundException("Items not found.");
             }
 
-            if (!string.IsNullOrEmpty(request.SelectedCategory))
-            {
-                items = items.Where(c => c.Category.Name == request.SelectedCategory);
-            }
+            items = _itemFilterService.FilterByCategory(items, request.SelectedCategory);
 
-            if (!string.IsNullOrEmpty(request.SearchPhrase))
-            {
-                items = items.Where(r => r.Name.ToLower().Contains(request.SearchPhrase.ToLower()) || r.Description.ToLower().Contains(request.SearchPhrase.ToLower()));
-            }  
+            items = _itemFilterService.FilterBySearchPhrase(items, request.SearchPhrase);
 
-            if (!string.IsNullOrEmpty(request.SortBy))
-            {
-                var columnsSelectors = new Dictionary<string, Expression<Func<Domain.Entities.Item, object>>>
-            {
-                {nameof(Domain.Entities.Item.Name), x => x.Name},
-                {nameof(Domain.Entities.Item.Category), x => x.Category.Name},
-                {nameof(Domain.Entities.Item.Price), x => x.Price},
-            };
-
-                if (columnsSelectors.TryGetValue(request.SortBy, out var selectedColumn))
-                {
-                    items = request.SortDirection == "ASC" ? items.AsQueryable().OrderBy(selectedColumn) : items.AsQueryable().OrderByDescending(selectedColumn);
-                }
-            }
+            items = _itemSortService.SortItems(items, request.SortBy, request.SortDirection);
 
             var itemsCount = items.Count();
-            var itemsToDisplay = items.Skip((request.PageNumber - 1) * request.PageSize).Take(request.PageSize).ToList();
+
+            var itemsToDisplay = _itemPaginationService.PaginationSkipAndTake(items, request.PageNumber, request.PageSize);
 
             var itemDtos = _mapper.Map<IEnumerable<ItemDto>>(itemsToDisplay);
 
