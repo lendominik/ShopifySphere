@@ -16,6 +16,7 @@ using Stripe;
 using Shop.Application.Services.ItemServices;
 using Shop.Application.Services.OrderServices;
 using Shop.Application.Services.CartServices;
+using Shop.Application.Services.PaymentService;
 
 namespace Shop.Application.Extensions
 {
@@ -41,10 +42,11 @@ namespace Shop.Application.Extensions
             services.AddTransient<IPaginationService, PaginationService>();
             services.AddTransient<IItemSortService, ItemSortService>();
             services.AddTransient<IPaymentService, PaymentService>();
-            services.AddTransient<ICartIdProviderService, CartIdProviderService>();
+            services.AddTransient<ICartIdProviderService, CartIdService>();
             services.AddTransient<ICartCalculatorService, CartCalculatorService>();
             services.AddTransient<ICartRepositoryService, CartRepositoryService>();
             services.AddTransient<ICartUpdaterService, CartUpdaterService>();
+            services.AddTransient<IPaymentSessionOptionsService, PaymentSessionOptionsService>();
 
             services.AddValidatorsFromAssemblyContaining<CreateItemCommandValidator>();
             services.AddValidatorsFromAssemblyContaining<CreateCategoryCommandValidator>();

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Shop.Application.Exceptions;
-using Shop.Application.Services;
+using Shop.Application.Services.PaymentService;
 using Shop.Domain.Interfaces;
 using Stripe.Checkout;
 

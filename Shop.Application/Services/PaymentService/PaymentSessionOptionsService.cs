@@ -1,28 +1,15 @@
 ﻿using Shop.Domain.Entities;
 using Stripe.Checkout;
 
-namespace Shop.Application.Services
+namespace Shop.Application.Services.PaymentService
 {
-    public interface IPaymentService
+    public interface IPaymentSessionOptionsService
     {
-        Session CreatePaymentSessionForOrder(Domain.Entities.Order order, string domain);
+        SessionCreateOptions GetSessionCreateOptions(List<CartItem> productList, string domain);
     }
-
-    public class PaymentService : IPaymentService
+    public class PaymentSessionOptionsService : IPaymentSessionOptionsService
     {
-        public Session CreatePaymentSessionForOrder(Domain.Entities.Order order, string domain)
-        {
-            var productList = order.CartItems;
-
-            var options = GetSessionCreateOptions(productList, domain);
-
-            var service = new SessionService();
-            Session session = service.Create(options);
-
-            return session;
-        }
-
-        private SessionCreateOptions GetSessionCreateOptions(List<CartItem> productList, string domain)
+        public SessionCreateOptions GetSessionCreateOptions(List<CartItem> productList, string domain)
         {
             var options = new SessionCreateOptions
             {

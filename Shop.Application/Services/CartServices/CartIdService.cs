@@ -6,7 +6,7 @@ namespace Shop.Application.Services.CartServices
     {
         string GetOrCreateCartId(IHttpContextAccessor httpContextAccessor);
     }
-    public class CartIdProviderService : ICartIdProviderService
+    public class CartIdService : ICartIdProviderService
     {
         public string GetOrCreateCartId(IHttpContextAccessor httpContextAccessor)
         {
