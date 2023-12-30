@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
 using Shop.Domain.Interfaces;
-using System.Linq.Expressions;
 using Shop.Application.Exceptions;
 using Shop.Application.Common.PagedResult;
 using Shop.Application.Services;
@@ -16,16 +15,16 @@ namespace Shop.Application.Item.Queries.GetAllItems
         private readonly IMapper _mapper;
         private readonly IItemFilterService _itemFilterService;
         private readonly IItemSortService _itemSortService;
-        private readonly IItemPaginationService _itemPaginationService;
+        private readonly IPaginationService _paginationService;
 
-        public GetAllItemsQueryHandler(IItemPaginationService itemPaginationService, IItemSortService itemSortService, IItemFilterService itemFilterService, IItemRepository itemRepository, ICategoryRepository categoryRepository, IMapper mapper)
+        public GetAllItemsQueryHandler(IPaginationService paginationService, IItemSortService itemSortService, IItemFilterService itemFilterService, IItemRepository itemRepository, ICategoryRepository categoryRepository, IMapper mapper)
         {
             _itemRepository = itemRepository;
             _categoryRepository = categoryRepository;
             _mapper = mapper;
             _itemFilterService = itemFilterService;
             _itemSortService = itemSortService;
-            _itemPaginationService = itemPaginationService;
+            _paginationService = paginationService;
         }
 
         public async Task<ItemPagedResult<ItemDto>> Handle(GetAllItemsQuery request, CancellationToken cancellationToken)
@@ -45,7 +44,7 @@ namespace Shop.Application.Item.Queries.GetAllItems
 
             var itemsCount = items.Count();
 
-            var itemsToDisplay = _itemPaginationService.PaginationSkipAndTake(items, request.PageNumber, request.PageSize);
+            var itemsToDisplay = _paginationService.PaginationSkipAndTake(items, request.PageNumber, request.PageSize);
 
             var itemDtos = _mapper.Map<IEnumerable<ItemDto>>(itemsToDisplay);
 

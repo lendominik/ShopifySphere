@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace Shop.Application.Services
+﻿namespace Shop.Application.Services
 {
     public interface IItemFilterService
     {
