@@ -5,28 +5,32 @@ using Microsoft.AspNetCore.Http;
 using System.Text;
 using Shop.Application.Exceptions;
 using Newtonsoft.Json;
-using Shop.Application.Services;
+using Shop.Application.Services.CartServices;
 
 namespace Shop.Application.Cart.Commands.AddToCart
 {
     public class AddToCartCommandHandler : IRequestHandler<AddToCartCommand>
     {
         private readonly IItemRepository _itemRepository;
-        private readonly ICartService _cartService;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ICartIdProviderService _cartIdProvider;
+        private readonly ICartRepositoryService _cartRepositoryService;
+        private readonly ICartUpdaterService _cartUpdaterService;
 
-        public AddToCartCommandHandler(IItemRepository itemRepository, ICartService cartService, IHttpContextAccessor httpContextAccessor)
+        public AddToCartCommandHandler(ICartUpdaterService cartUpdaterService, ICartIdProviderService cartIdProvider, ICartRepositoryService cartRepositoryService, IItemRepository itemRepository, IHttpContextAccessor httpContextAccessor)
         {
             _itemRepository = itemRepository;
-            _cartService = cartService;
             _httpContextAccessor = httpContextAccessor;
+            _cartIdProvider = cartIdProvider;
+            _cartRepositoryService = cartRepositoryService;
+            _cartUpdaterService = cartUpdaterService;
         }
 
         public async Task<Unit> Handle(AddToCartCommand request, CancellationToken cancellationToken)
         {
-            var cartId = _cartService.GetOrCreateCartId(_httpContextAccessor);
+            var cartId = _cartIdProvider.GetOrCreateCartId(_httpContextAccessor);
 
-            var items = _cartService.GetCartItems(_httpContextAccessor);
+            var items = _cartRepositoryService.GetCartItems(_httpContextAccessor);
 
             var item = await _itemRepository.GetByEncodedName(request.EncodedName);
 
@@ -40,7 +44,7 @@ namespace Shop.Application.Cart.Commands.AddToCart
                 throw new OutOfStockException("There are not that many items in stock.");
             }
 
-            _cartService.UpdateOrCreateCartItem(item, cartId, items, _httpContextAccessor);
+            _cartUpdaterService.UpdateOrCreateCartItem(item, cartId, items, _httpContextAccessor);
 
             return Unit.Value;
         }

@@ -1,7 +1,7 @@
 ﻿using Shop.Application.Exceptions;
 using Shop.Domain.Entities;
 
-namespace Shop.Application.Services
+namespace Shop.Application.Services.OrderServices
 {
     public interface IOrderService
     {

@@ -3,7 +3,8 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Shop.Application.Exceptions;
-using Shop.Application.Services;
+using Shop.Application.Services.CartServices;
+using Shop.Application.Services.OrderServices;
 using Shop.Domain.Entities;
 using Shop.Domain.Interfaces;
 using System.Security.Claims;
@@ -15,27 +16,27 @@ namespace Shop.Application.Order.Commands.CreateOrder
     {
         
         private readonly IOrderRepository _orderRepository;
-        private readonly ICartItemRepository _cartItemRepository;
-        private readonly ICartService _cartService;
         private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly string _email;
+        private readonly ICartRepositoryService _cartRepositoryService;
+        private readonly ICartItemRepository _cartItemRepository;
         private readonly IOrderService _orderService;
 
-        public CreateOrderCommandHandler(IHttpContextAccessor httpContextAccessor, IOrderService orderService, IOrderRepository orderRepository, ICartService cartService,ICartItemRepository cartItemRepository, IMapper mapper)
+        public CreateOrderCommandHandler(ICartItemRepository cartItemRepository, IHttpContextAccessor httpContextAccessor, IOrderService orderService, IOrderRepository orderRepository, ICartRepositoryService cartRepositoryService, IMapper mapper)
         {
             _orderRepository = orderRepository;
-            _cartItemRepository = cartItemRepository;
-            _cartService = cartService;
             _mapper = mapper;
             _httpContextAccessor = httpContextAccessor;
             _orderService = orderService;
             _email = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Email);
+            _cartRepositoryService = cartRepositoryService;
+            _cartItemRepository = cartItemRepository;
         }
 
         public async Task<Unit> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
-            var cartItems = _cartService.GetCartItems(_httpContextAccessor);
+            var cartItems = _cartRepositoryService.GetCartItems(_httpContextAccessor);
 
             if (!cartItems.Any())
             {
@@ -53,7 +54,7 @@ namespace Shop.Application.Order.Commands.CreateOrder
 
             _orderService.CheckStockQuantity(cartItems);
 
-            _cartService.SaveCartItemsToSession(cartItems, _httpContextAccessor);
+            _cartRepositoryService.SaveCartItemsToSession(cartItems, _httpContextAccessor);
 
             await _orderRepository.Create(order);
 

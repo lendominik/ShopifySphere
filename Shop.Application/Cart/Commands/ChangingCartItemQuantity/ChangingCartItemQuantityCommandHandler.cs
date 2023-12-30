@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Shop.Application.Exceptions;
-using Shop.Application.Services;
+using Shop.Application.Services.CartServices;
 using Shop.Domain.Entities;
 using System.Text;
 
@@ -10,17 +10,19 @@ namespace Shop.Application.Cart.Commands.ChangingCartItemQuantity
 {
     public class ChangingCartItemQuantityCommandHandler : IRequestHandler<ChangingCartItemQuantityCommand>
     {
-        private readonly ICartService _cartService;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ICartRepositoryService _cartRepositoryService;
+        private readonly ICartCalculatorService _cartCalculatorService;
 
-        public ChangingCartItemQuantityCommandHandler(ICartService cartService, IHttpContextAccessor httpContextAccessor)
+        public ChangingCartItemQuantityCommandHandler(IHttpContextAccessor httpContextAccessor, ICartRepositoryService cartRepositoryService, ICartCalculatorService cartCalculatorService)
         {
-            _cartService = cartService;
             _httpContextAccessor = httpContextAccessor;
+            _cartRepositoryService = cartRepositoryService;
+            _cartCalculatorService = cartCalculatorService;
         }
         public async Task<Unit> Handle(ChangingCartItemQuantityCommand request, CancellationToken cancellationToken)
         {
-            var items = _cartService.GetCartItems(_httpContextAccessor);
+            var items = _cartRepositoryService.GetCartItems(_httpContextAccessor);
 
             var item = items.LastOrDefault(i => i.Id == request.Id);
 
@@ -29,9 +31,9 @@ namespace Shop.Application.Cart.Commands.ChangingCartItemQuantity
                 throw new NotFoundException("Item not found.");
             }
 
-            _cartService.UpdateCartItemPriceAndQuantity(item, request.Quantity);
+            _cartCalculatorService.UpdateCartItemPriceAndQuantity(item, request.Quantity);
 
-            _cartService.SaveCartItemsToSession(items, _httpContextAccessor);
+            _cartRepositoryService.SaveCartItemsToSession(items, _httpContextAccessor);
 
             return Unit.Value;
         }
