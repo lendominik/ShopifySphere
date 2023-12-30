@@ -1,2 +1,5 @@
 **/bin/
 **/obj/
+**/obj/Debug/net7.0
+**/.vs
+obj/Debug/net7.0
