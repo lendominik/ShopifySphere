@@ -10,6 +10,7 @@ using Moq;
 using Shop.Application.Exceptions;
 using Shop.Domain.Entities;
 using FluentAssertions;
+using Shop.Application.Services.OrderServices;
 
 namespace Shop.Application.Services.Tests
 {
