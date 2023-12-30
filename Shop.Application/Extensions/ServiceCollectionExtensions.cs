@@ -42,7 +42,6 @@ namespace Shop.Application.Extensions
             services.AddTransient<IItemSortService, ItemSortService>();
             services.AddTransient<IPaymentService, PaymentService>();
 
-            services.AddFluentValidation();
             services.AddValidatorsFromAssemblyContaining<CreateItemCommandValidator>();
             services.AddValidatorsFromAssemblyContaining<CreateCategoryCommandValidator>();
         }
