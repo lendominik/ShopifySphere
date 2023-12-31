@@ -1,14 +1,11 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
 using Shop.Application.Exceptions;
 using Shop.Application.Services.CartServices;
 using Shop.Application.Services.OrderServices;
-using Shop.Domain.Entities;
 using Shop.Domain.Interfaces;
 using System.Security.Claims;
-using System.Text;
 
 namespace Shop.Application.Order.Commands.CreateOrder
 {

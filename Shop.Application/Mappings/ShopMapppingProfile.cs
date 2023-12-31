@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Shop.Application.Category;
 using Shop.Application.Category.Commands.CreateCategory;
 using Shop.Application.Category.Commands.EditCategory;
@@ -9,7 +8,6 @@ using Shop.Application.Item.Commands.EditItem;
 using Shop.Application.Order;
 using Shop.Application.Order.Commands.CreateOrder;
 using Shop.Domain.Entities;
-using System.Security.Claims;
 
 namespace Shop.Application.Mappings
 {

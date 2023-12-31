@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Hosting;
 using Shop.Application.ApplicationUser;
 using Shop.Application.Exceptions;
 using Shop.Application.Services;

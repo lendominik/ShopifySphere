@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Shop.Application.ApplicationUser;
 using Shop.Application.Exceptions;
 using Shop.Application.Services;
 using Shop.Domain.Interfaces;
-using Stripe;
 
 namespace Shop.Application.Item.Commands.CreateItem
 {

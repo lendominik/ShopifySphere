@@ -2,10 +2,10 @@
 {
     public enum OrderStatus
     {
-        Pending, // Zamówienie oczekuje na przetworzenie
-        Shipped, // Zamówienie zostało wysłane do klienta
-        Delivered, // Zamówienie zostało dostarczone do klienta
-        Cancelled // Zamówienie zostało anulowane
+        Pending,
+        Shipped, 
+        Delivered,
+        Cancelled
     }
     public class Order
     {
