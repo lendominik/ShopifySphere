@@ -1,10 +1,7 @@
 ﻿using MediatR;
-using Shop.Domain.Entities;
 using Shop.Domain.Interfaces;
 using Microsoft.AspNetCore.Http;
-using System.Text;
 using Shop.Application.Exceptions;
-using Newtonsoft.Json;
 using Shop.Application.Services.CartServices;
 
 namespace Shop.Application.Cart.Commands.AddToCart

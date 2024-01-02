@@ -1,10 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
 using Shop.Application.Exceptions;
 using Shop.Application.Services.CartServices;
-using Shop.Domain.Entities;
-using System.Text;
 
 namespace Shop.Application.Cart.Commands.ChangingCartItemQuantity
 {

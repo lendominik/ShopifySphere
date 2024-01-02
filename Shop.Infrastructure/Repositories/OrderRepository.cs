@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.Internal;
 using Shop.Domain.Entities;
 using Shop.Domain.Interfaces;
 using Shop.Infrastructure.Persistence;
