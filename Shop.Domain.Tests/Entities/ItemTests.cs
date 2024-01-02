@@ -18,5 +18,19 @@ namespace Shop.Domain.Entities.Tests
             // Assert
             item.EncodedName.Should().Be("itemtestitem");
         }
+
+        [Fact]
+        public void EncodeName_ShouldThrowException_WhenNameIsNull()
+        {
+            // Arramge
+            var item = new Item();
+
+            // Act
+            var action = () => item.EncodeName();
+
+            // Assert
+            action.Invoking(a => a.Invoke())
+                .Should().Throw<NullReferenceException>();
+        }
     }
 }

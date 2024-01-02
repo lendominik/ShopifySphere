@@ -5,7 +5,7 @@ namespace Shop.Domain.Entities.Tests
 {
     public class CategoryTests
     {
-        [Fact()]
+        [Fact]
         public void EncodeName_ShouldSetEncodedName()
         {
             // Arrange
@@ -17,6 +17,20 @@ namespace Shop.Domain.Entities.Tests
 
             // Assert
             category.EncodedName.Should().Be("categorytestcategory");
+        }
+
+        [Fact]
+        public void EncodeName_ShouldThrowException_WhenNameIsNull()
+        {
+            // Arramge
+            var category = new Category();
+
+            // Act
+            var action = () => category.EncodeName();
+
+            // Assert
+            action.Invoking(a => a.Invoke())
+                .Should().Throw<NullReferenceException>();
         }
     }
 }
