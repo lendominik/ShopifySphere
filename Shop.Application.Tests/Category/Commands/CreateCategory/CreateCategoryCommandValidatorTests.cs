@@ -56,5 +56,6 @@ namespace Shop.Application.Category.Commands.CreateCategory.Tests
             result.ShouldHaveValidationErrorFor(i => i.Name);
             result.ShouldHaveValidationErrorFor(i => i.Description);
         }
+
     }
 }
