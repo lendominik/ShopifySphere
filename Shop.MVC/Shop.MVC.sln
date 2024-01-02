@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Domain", "..\Shop.Doma
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Infrastructure", "..\Shop.Infrastructure\Shop.Infrastructure.csproj", "{125BD657-AE0C-4585-87DC-49A522361B54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Domain.Tests", "..\Shop.Domain.Tests\Shop.Domain.Tests.csproj", "{2E310417-AEDD-41C2-85A2-9EB7EF1E7712}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Domain.Tests", "..\Shop.Domain.Tests\Shop.Domain.Tests.csproj", "{2E310417-AEDD-41C2-85A2-9EB7EF1E7712}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Application.Tests", "..\Shop.Application.Tests\Shop.Application.Tests.csproj", "{D5745ECB-8A1F-417B-8E00-194F62A98850}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Application.Tests", "..\Shop.Application.Tests\Shop.Application.Tests.csproj", "{D5745ECB-8A1F-417B-8E00-194F62A98850}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E076B0A2-819B-4C38-9E9A-63FFFBE860AF}"
 EndProject
