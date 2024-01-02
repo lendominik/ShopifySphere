@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Shop.Application.ApplicationUser;
+using Shop.Application.Exceptions;
 using Shop.Application.Services;
 using Shop.Domain.Interfaces;
 
@@ -27,6 +28,11 @@ namespace Shop.Application.Category.Commands.EditCategory
             }
 
             var category = await _categoryRepository.GetByEncodedName(request.EncodedName);
+
+            if ( category == null)
+            {
+                throw new NotFoundException("Category not found.");
+            }
 
             category.Description = request.Description;
 
