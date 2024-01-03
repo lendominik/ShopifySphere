@@ -28,6 +28,11 @@ namespace Shop.Application.Cart.Commands.ChangingCartItemQuantity
                 throw new NotFoundException("Item not found.");
             }
 
+            if(request.Quantity < 0)
+            {
+                throw new Exception("Quantity should not be below zero.");
+            }
+
             _cartCalculatorService.UpdateCartItemPriceAndQuantity(item, request.Quantity);
 
             _cartRepositoryService.SaveCartItemsToSession(items, _httpContextAccessor);
