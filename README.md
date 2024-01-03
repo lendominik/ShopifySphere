@@ -4,6 +4,7 @@
 > Aplikacja podczas dodawania przez użytkownika produktów do koszyka przechowuje je w sesji użytkownika, dopiero po złożeniu zamówienia produkty z koszyka trafiają do bazy danych.
 > Podczas wdrożenia jakichkolwiek zmian w aplikacji sprawdzana jest jej poprawność za pomocą continuous integration.
 > Kod aplikacji został napisany w zgodzie z zasadami SOLID.
+> Dodatkowo w aplikacji zostały zaimplementowane testy jednostkowe poszczególnych metod.
 > 
 ## Spis treści
 * [Główne informacje](#główne-informacje)
