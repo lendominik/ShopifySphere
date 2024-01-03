@@ -24,7 +24,7 @@ namespace Shop.Application.Cart.Commands.RemoveFromCart
 
             if (cartItem == null)
             {
-                throw new NotFoundException("Cart or user not found.");
+                throw new NotFoundException("Cart item not found.");
             }
 
             items.Remove(cartItem);

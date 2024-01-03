@@ -3,7 +3,6 @@ using FluentAssertions;
 using MediatR;
 using Moq;
 using Shop.Application.ApplicationUser;
-using Shop.Application.Category.Commands.EditCategory;
 using Shop.Application.Exceptions;
 using Shop.Application.Services;
 using Shop.Domain.Interfaces;

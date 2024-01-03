@@ -4,7 +4,7 @@ namespace Shop.Application.Cart.Commands.ChangingCartItemQuantity
 {
     public class ChangingCartItemQuantityCommand : IRequest
     {
-        public Guid Id { get; set; } // id cartItem
-        public int Quantity { get; set; } // new quantity
+        public Guid Id { get; set; }
+        public int Quantity { get; set; }
     }
 }
