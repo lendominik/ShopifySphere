@@ -34,7 +34,7 @@ namespace Shop.Application.Extensions
 
             services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<IAccessControlService, AccessControlService>();
-            services.AddTransient<IFileService, Services.FileService>();
+            services.AddTransient<IFileService, FileService>();
             services.AddTransient<IItemFilterService, ItemFilterService>();
             services.AddTransient<IOrderFilterService, OrderFilterService>();
             services.AddTransient<IPaginationService, PaginationService>();

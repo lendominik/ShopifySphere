@@ -1,6 +1,4 @@
-﻿using Shop.Application.Order;
-
-namespace Shop.Application.Common.PagedResult
+﻿namespace Shop.Application.Common.PagedResult
 {
     public abstract class PagedResult<T>
     {
